@@ -1,0 +1,5 @@
+[user]
+	name = David Blume
+	email = david.blume@gmail.com
+[push]
+	default = simple
