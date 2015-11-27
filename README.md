@@ -25,11 +25,11 @@ Run the following:
     dotfiles$ rm dotfiles.tar
     dotfiles$ chmod +x setup.sh
 
-Then, then you run setup.sh, it'll backup your old files to "backup_of_orig_dotfiles".
+Then, then you run `setup.sh`, it'll backup your old files to `backup_of_orig_dotfiles_<date>`.
 
     dotfiles$ ./setup.sh
 
-And see [config.dlma.com](http://config.dlma.com) for more.
+And see config.dlma.com for more.
 
 #### What's installed
 
