@@ -39,11 +39,13 @@ See [config.dlma.com](http://config.dlma.com) for more.
     2. An empty .vim_undo directory
     3. .vim with the following plugins:
         1. [pathogen](https://github.com/tpope/vim-pathogen).
-        2. [bbye for :Bdelete](https://github.com/moll/vim-bbye).
-        3. [nerdtree](https://github.com/scrooloose/nerdtree).
-        4. [taglist](http://www.vim.org/scripts/script.php?script_id=273).
-        5. [vim-powerline](https://github.com/Lokaltog/vim-powerline).
-        6. Assorted favorite colors like [desert](https://github.com/dblume/desert.vim).
+        2. [vim-powerline](https://github.com/Lokaltog/vim-powerline).
+        3. [bbye for :Bdelete](https://github.com/moll/vim-bbye).
+        4. [nerdtree](https://github.com/scrooloose/nerdtree).
+        5. [taglist](http://www.vim.org/scripts/script.php?script_id=273).
+        6. [file-line](http://www.vim.org/scripts/script.php?script_id=2184).
+        7. [visual-star-search](http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html).
+        8. Assorted favorite colors like [desert](https://github.com/dblume/desert.vim).
 3. .gitconfig (but it needs vimdiff and github settings.)
 
 #### What's not installed
