@@ -23,9 +23,9 @@ Run the following:
     dotfiles$ curl -L http://git.dlma.com/dotfiles.git/tarball/master > dotfiles.tar
     dotfiles$ tar -xvf dotfiles.tar
     dotfiles$ rm dotfiles.tar
-    dotfiles$ chmod +x setup.sh
 
-Then, then you run `setup.sh`, it'll backup your old files to `backup_of_orig_dotfiles_<date>`.
+Then, then you run `setup.sh`, it'll backup your old files to `backup_of_orig_dotfiles_<date>`
+and replace them with the ones here.
 
     dotfiles$ ./setup.sh
 
