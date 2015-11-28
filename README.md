@@ -29,7 +29,7 @@ and replace them with the ones here.
 
     dotfiles$ ./setup.sh
 
-And see config.dlma.com for more.
+See [config.dlma.com](http://config.dlma.com) for more.
 
 #### What's installed
 

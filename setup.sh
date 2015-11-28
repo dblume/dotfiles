@@ -1,11 +1,7 @@
 #!/bin/bash
 set -eu -o pipefail # See: https://sipb.mit.edu/doc/safe-shell/
 
-if [[ $(uname -s) == Darwin* ]]; then
-    declare -r backup_dir=$HOME/backup_of_orig_dotfiles_`date "+%Y-%m-%d"`
-else
-    declare -r backup_dir=$HOME/backup_of_orig_dotfiles_`date -Idate`
-fi
+declare -r backup_dir=$HOME/backup_of_orig_dotfiles_`date "+%Y-%m-%d"`
 
 if [ ! -d $backup_dir ]; then
     mkdir -p $backup_dir
