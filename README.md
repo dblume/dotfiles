@@ -38,19 +38,19 @@ See [config.dlma.com](http://config.dlma.com) for more.
     1. .vimrc
     2. An empty .vim_undo directory
     3. .vim with the following plugins:
-        1. [pathogen](https://github.com/tpope/vim-pathogen).
-        2. [vim-powerline](https://github.com/Lokaltog/vim-powerline).
-        3. [bbye for :Bdelete](https://github.com/moll/vim-bbye).
-        4. [nerdtree](https://github.com/scrooloose/nerdtree).
-        5. [taglist](http://www.vim.org/scripts/script.php?script_id=273).
-        6. [file-line](http://www.vim.org/scripts/script.php?script_id=2184).
-        7. [visual-star-search](http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html).
+        1. [pathogen](https://github.com/tpope/vim-pathogen), the Vim plugin manager.
+        2. [vim-powerline](https://github.com/Lokaltog/vim-powerline), for a better Vim statusline.
+        3. [bbye for :Bdelete](https://github.com/moll/vim-bbye), to delete buffers without affecting windows.
+        4. [nerdtree](https://github.com/scrooloose/nerdtree), a better filesystem tree-view explorer.
+        5. [taglist](http://www.vim.org/scripts/script.php?script_id=273), a ctags tree-view explorer.
+        6. [file-line](http://www.vim.org/scripts/script.php?script_id=2184), to open file:line as from a compiler error.
+        7. [visual-star-search](http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html), so * and # work in visual mode too.
         8. Assorted favorite colors like [desert](https://github.com/dblume/desert.vim).
 3. .gitconfig (but it needs vimdiff and github settings.)
 
 #### What's not installed
 
-1. Private or public keys, get those from the USB4 bioport in the back of your neck.
+1. Private data like keys, get those from the USB4 bioport in the back of your neck.
 
 ### Is it any good?
 

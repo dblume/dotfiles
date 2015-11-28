@@ -23,11 +23,13 @@ fi
 
 echo Note: Your old dotfiles are backed up to $backup_dir
 
-# Move new dot files in
-mv .bashrc $HOME
-mv .bash_profile $HOME
-mv .gitconfig $HOME
-mv .vim $HOME
+# Move new dot files in.
+# If you cloned the repo, consider making symbolic links instead,
+# to more easily keep this home directory current by pulling updates.
+cp .bashrc $HOME
+cp .bash_profile $HOME
+cp .gitconfig $HOME
+cp -r .vim $HOME
 
 # Make a directory for vim undo
 if [ ! -d $HOME/.vim_undo ]; then
