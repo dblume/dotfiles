@@ -11,14 +11,14 @@ add_to_path() {
 # Add /usr/lib/lapack at the end so python's numpy can find lapack_lite
 # (Note: BSD bash, used by OS X doesn't have the "substr" test for expr.)
 if [[ $(uname -s) == CYGWIN* ]]; then
-        PATH=/usr/local/bin:/usr/bin:$PATH
-	PATH=${PATH//":/usr/local/bin:/usr/bin"/} # delete any instances in middle
-	add_to_path /usr/lib/lapack
-	ulimit -n 1024 # for "duplicity"
-	alias ls='ls --color=auto'
+    PATH=/usr/local/bin:/usr/bin:$PATH
+    PATH=${PATH//":/usr/local/bin:/usr/bin"/} # delete any instances in middle
+    add_to_path /usr/lib/lapack
+    ulimit -n 1024 # for "duplicity"
+    alias ls='ls --color=auto'
 elif [[ $(uname -s) == Darwin* ]]; then
-	export LSCOLORS=gxfxcxdxbxegedabagacad
-	export CLICOLOR=1
+    export LSCOLORS=gxfxcxdxbxegedabagacad
+    export CLICOLOR=1
 fi
 
 # change the color of directories in the ls command 
@@ -27,9 +27,9 @@ fi
 # And changing the following line in .dircolors:
 # DIR 00;36 # directory
 if [ "$TERM" != "dumb" ]; then
-	[ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
-	[ -e "$DIR_COLORS" ] || DIR_COLORS=""
-	eval "`dircolors -b $DIR_COLORS`"
+    [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
+    [ -e "$DIR_COLORS" ] || DIR_COLORS=""
+    eval "`dircolors -b $DIR_COLORS`"
 fi
 
 # Add to PATH only if not already in PATH.
