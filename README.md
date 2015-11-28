@@ -1,4 +1,4 @@
-# dotfiles (home directory .files)
+# David Blume's dotfiles
 
 These are some of David Blume's dot files to be installed
 in new user home directories.
@@ -10,13 +10,13 @@ You can get a copy of this project by clicking on the
 or [TAR](http://git.dlma.com/dotfiles.git/tarball/master) buttons
 near the top right of the GitList web page.
 
-You can clone from the origin with:
+With an account, you can clone from the origin with:
 
     git clone ssh://USERNAME@dlma.com/~/git/dotfiles.git
 
 ### Installation 
 
-Run the following:
+If you're not cloning the repo, then run the following:
 
     ~$ mkdir dotfiles
     ~$ cd dotfiles
@@ -24,7 +24,7 @@ Run the following:
     dotfiles$ tar -xvf dotfiles.tar
     dotfiles$ rm dotfiles.tar
 
-Then, then you run `setup.sh`, it'll backup your old files to `backup_of_orig_dotfiles_<date>`
+Then, when you run `setup.sh`, it'll backup your old files to `backup_of_orig_dotfiles_<date>`
 and replace them with the ones here.
 
     dotfiles$ ./setup.sh
