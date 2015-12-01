@@ -24,7 +24,7 @@ If you're not cloning the repo, then run the following:
     dotfiles$ tar -xvf dotfiles.tar
     dotfiles$ rm dotfiles.tar
 
-Then, when you run `setup.sh`, it'll backup your old files to `backup_of_orig_dotfiles_<date>`
+Then, when you run `setup.sh`, it'll backup your old files to `backup_of_dotfiles_<date>`
 and replace them with the ones here.
 
     dotfiles$ ./setup.sh
@@ -47,6 +47,7 @@ See [config.dlma.com](http://config.dlma.com) for more.
         7. [visual-star-search](http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html), so * and # work in visual mode too.
         8. Assorted favorite colors like [desert](https://github.com/dblume/desert.vim).
 3. .gitconfig (but it needs vimdiff and github settings.)
+4. .gitignore
 
 #### What's not installed
 
