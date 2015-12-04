@@ -2,7 +2,7 @@
 set -eu -o pipefail # See: https://sipb.mit.edu/doc/safe-shell/
 
 declare -r backup_dir=$HOME/backup_of_dotfiles_`date "+%Y-%m-%d"`
-declare -a dotfiles=(".bashrc" ".bash_profile" ".gitconfig" ".gitignore")
+declare -a dotfiles=(".bashrc" ".bash_profile" ".vimrc" ".gitconfig" ".gitignore")
 
 if [ ! -d $backup_dir ]; then
     mkdir -p $backup_dir
