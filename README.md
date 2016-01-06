@@ -47,6 +47,7 @@ See [config.dlma.com](http://config.dlma.com) for more.
         7. [visual-star-search](http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html), so * and # work in visual mode too.
         8. Assorted favorite colors like [desert](https://github.com/dblume/desert.vim).
 3. .gitconfig and .gitignore
+4. .inputrc
 
 #### What's not installed
 
