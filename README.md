@@ -51,7 +51,8 @@ See [config.dlma.com](http://config.dlma.com) for more.
 
 #### What's not installed
 
-1. Private data like keys, get those from the USB4 bioport in the back of your neck.
+1. .dircolors (There are instructions in .bashrc to lighten the color of directories.)
+2. Private data like keys, get those from the USB4 bioport in the back of your neck.
 
 ### Is it any good?
 
