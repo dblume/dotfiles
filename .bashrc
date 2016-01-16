@@ -15,20 +15,20 @@ if [[ $(uname -s) == CYGWIN* ]]; then
     PATH=${PATH//":/usr/local/bin:/usr/bin"/} # delete any instances in middle
     add_to_path /usr/lib/lapack
     ulimit -n 1024 # for "duplicity"
-    alias ls='ls --color=auto'
-elif [[ $(uname -s) == Darwin* ]]; then
-    export LSCOLORS=gxfxcxdxbxegedabagacad
-    export CLICOLOR=1
 fi
 
 # change the color of directories in the ls command 
-#
-# After executing: dircolors -p > .dircolors
-# Lighten the color of directories from blue to light blue
-# sed -i '/# directory/c\DIR 00;36 # directory' .dircolors
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+if [[ $(uname -s) == Darwin* ]]; then
+    export LSCOLORS=gxfxcxdxbxegedabagacad
+    export CLICOLOR=1
+else
+    # After executing: dircolors -p > .dircolors
+    # Lighten the color of directories from blue to light blue
+    # sed -i '/# directory/c\DIR 00;36 # directory' .dircolors
+    if [ -x /usr/bin/dircolors ]; then
+        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+        alias ls='ls --color=auto'
+    fi
 fi
 
 alias grep='grep --color=auto'
