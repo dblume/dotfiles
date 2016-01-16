@@ -24,8 +24,13 @@ If you're not cloning the repo, then run the following:
     dotfiles$ tar -xvf dotfiles.tar
     dotfiles$ rm dotfiles.tar
 
-Then, when you run `setup.sh`, it'll backup your old files to `backup_of_dotfiles_<date>`
-and replace them with the ones here.
+Then, when you run `setup.sh`, it'll backup your changed files to `backup_of_dotfiles_<date>`
+and replace them with the ones here. You can perform a **dry run** to see which files will
+be changed by passing the "-n" parameter.
+
+    dotfiles$ ./setup.sh -n
+
+If you approve of the changes, then just run `setup.sh`
 
     dotfiles$ ./setup.sh
 

@@ -1,39 +1,70 @@
 #!/usr/bin/env bash
 set -eu -o pipefail # See: https://sipb.mit.edu/doc/safe-shell/
 
+declare -r SCRIPT_NAME=$(basename "$BASH_SOURCE")
 declare -r backup_dir=$HOME/backup_of_dotfiles_`date "+%Y-%m-%d"`
 declare -a dotfiles=(".bashrc" ".bash_profile" ".vimrc" 
                      ".gitconfig" ".gitignore" ".inputrc")
+declare -i DRY_RUN=0
+
+## exit the shell (with status 2) after printing the message
+usage() {
+    echo "\
+$SCRIPT_NAME -hn
+    -h      Print this help text
+    -n      Perform a dry run, to see what'll change
+"
+    exit 2;
+}
+
+## Process the options
+while getopts "hn" OPTION
+do
+  case $OPTION in
+    h) usage;;
+    n) DRY_RUN=1;;
+    \?) usage;;
+  esac
+done
 
 if [ ! -d $backup_dir ]; then
-    mkdir -p $backup_dir
+    ((DRY_RUN==0)) && mkdir -p $backup_dir
 fi
 
 # Move original dot files to backup
 for i in "${dotfiles[@]}"
 do
     if [ -e $HOME/"$i" ]; then
-        mv $HOME/"$i" $backup_dir
+        if ! cmp --silent $HOME/"$i" "$i" ; then
+	    echo "$i" will be changed as follows:
+	    diff $HOME/"$i" "$i" || true
+            if [ $DRY_RUN -eq 0 ]; then
+                mv $HOME/"$i" $backup_dir
+                # Consider using symbolic links instead
+                # so pulling updates automatically apply
+                cp "$i" $HOME
+            fi
+	else
+	    echo No change to "$i".
+	fi
+    else
+        echo "$i" will be added to HOME.
+	((DRY_RUN==0)) && cp "$i" $HOME
     fi
 done
-if [ -d $HOME/.vim ]; then
-    mv $HOME/.vim $backup_dir
+
+if [ $DRY_RUN -eq 0 ]; then
+    if [ -d $HOME/.vim ]; then
+        mv $HOME/.vim $backup_dir
+    fi
+    cp -r .vim $HOME
 fi
 
-echo Note: Your old dotfiles are backed up to $backup_dir
-
-# Move new dot files in.
-# If you cloned the repo, consider making symbolic links instead,
-# to more easily keep this home directory current by pulling updates.
-for i in "${dotfiles[@]}"
-do
-    cp "$i" $HOME
-done
-cp -r .vim $HOME
+echo Your old dotfiles are backed up to $backup_dir
 
 # Make a directory for vim undo
 if [ ! -d $HOME/.vim_undo ]; then
-    mkdir -p $HOME/.vim_undo
+    ((DRY_RUN==0)) && mkdir -p $HOME/.vim_undo
 fi
 
 # Tell David what's left.
