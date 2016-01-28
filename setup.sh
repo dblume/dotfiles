@@ -58,6 +58,10 @@ if [ $DRY_RUN -eq 0 ]; then
         mv $HOME/.vim $backup_dir
     fi
     cp -r .vim $HOME
+    if [ -d $backup_dir/.vim ]; then
+	# Copy back some proprietary file types, if any.
+        cp -r -n $backup_dir/.vim $HOME
+    fi
 fi
 
 echo Your old dotfiles are backed up to $backup_dir
