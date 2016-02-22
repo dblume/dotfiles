@@ -66,5 +66,5 @@ See [config.dlma.com](http://config.dlma.com) for more.
 
 ### License
 
-This software uses the [WTFPL](http://www.wtfpl.net/).
+This software uses the [MIT license](http://git.dlma.com/dotfiles.git/blob/master/LICENSE.txt).
 
