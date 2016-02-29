@@ -39,17 +39,17 @@ do
             echo "$i" will be changed as follows:
             diff $HOME/"$i" "$i" || true
             if [ $DRY_RUN -eq 0 ]; then
-                mv $HOME/"$i" $backup_dir
+                mv $HOME/"$i" $backup_dir/"$i"
                 # Consider using symbolic links instead
                 # so pulling updates automatically apply
-                cp "$i" $HOME
+                cp "$i" $HOME/"$i"
             fi
         else
             echo No change to "$i".
         fi
     else
         echo "$i" will be added to HOME.
-        ((DRY_RUN==0)) && cp "$i" $HOME
+        ((DRY_RUN==0)) && cp "$i" $HOME/"$i"
     fi
 done
 
