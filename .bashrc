@@ -41,5 +41,9 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # Add to PATH only if not already in PATH.
 add_to_path $HOME/bin
 
-alias findinchppfiles="find . -type f \( -name \*.[ch]pp -or -name \*.[ch] \) -print0 | xargs -0 grep -nI"
 alias findinpyfiles="find . -name \*.py -print0 | xargs -0 grep -nI"
+alias findinchppfiles="find . -type f \( -name \*.[ch]pp -or -name \*.[ch] \) -print0 | xargs -0 grep -nI"
+alias findincppfiles="find . -type f \( -name \*.cpp -or -name \*.c \) -print0 | xargs -0 grep -nI"
+alias findinhppfiles="find . -type f \( -name \*.hpp -or -name \*.h \) -print0 | xargs -0 grep -nI"
+
+alias clip="expand | cut -b1-\$COLUMNS"

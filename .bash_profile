@@ -1,12 +1,16 @@
 # ~/.bash_profile: executed by bash for login shells.
 
-# source the system wide bashrc if it exists
-if [ -e /etc/bash.bashrc ] ; then
-  source /etc/bash.bashrc
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    # Macintosh (Darwin) and Fedora / Red Hat
+    . /etc/bashrc
+elif [ -f /etc/bash.bashrc ]; then
+    # Raspberry Pi / Debian and Cygwin
+    . /etc/bash.bashrc
 fi
 
-# source the users bashrc if it exists
-if [ -e "${HOME}/.bashrc" ] ; then
-  source "${HOME}/.bashrc"
+# source the user's bashrc if it exists
+if [ -f "${HOME}/.bashrc" ]; then
+    source "${HOME}/.bashrc"
 fi
 
