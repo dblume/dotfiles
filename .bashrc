@@ -1,3 +1,9 @@
+if [[ $(uname -s) != Darwin* ]] && [ -f /etc/bashrc ]; then
+    # Fedora but not Macintosh requires explicit sourcing of /etc/bashrc
+    # On Debian, it's /etc/bash.bashrc, but it doesn't have to be sourced here.
+    . /etc/bashrc
+fi
+
 export PS1="\W\$ "
 
 add_to_path() {
