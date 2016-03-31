@@ -4,7 +4,7 @@ if [[ $(uname -s) != Darwin* ]] && [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-export PS1="\W\$ "
+export PS1="\h:\W\$ "
 
 add_to_path() {
     if [ -d "$1" ] && [[ ! $PATH =~ (^|:)$1(:|$) ]]; then
