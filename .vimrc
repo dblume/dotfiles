@@ -1,4 +1,4 @@
-" Version 2015-08-12.1 - Leader-n = number! Leader-e = nerdtree (:Explore)
+" Version 2016-04-07.1 - OpenInOtherWindow()
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -157,6 +157,29 @@ function! DeleteTrailingWS()
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
+
+function! OpenInOtherWindow()
+  if winnr('$') == 1
+    exe "wincmd F"
+  else
+    let curNum = winnr()
+    let oldBuf = bufnr( "%" )
+    if curNum == 1
+      let othNum = 2
+    else
+      let othNum = 1
+    endif
+    exe "normal! gF"
+    let newBuf = bufnr( "%" )
+    let newLine = line(".")
+    exe 'hide buf' oldBuf
+    exe othNum . "wincmd w"
+    exe 'hide buf' newBuf
+    exe "normal! " . newLine . "G"
+  endif
+endfunc
+
+nmap <silent> <leader>F :call OpenInOtherWindow()<cr>
 
 if has("autocmd")
   autocmd! BufWritePost .vimrc source %           " re-source this file when saved.
