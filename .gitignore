@@ -21,6 +21,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# PyCharm project user-specific stuff:
+.idea/workspace.xml
+.idea/tasks.xml
+
 ### SublimeText ###
 # cache files for sublime text
 *.tmlanguage.cache
