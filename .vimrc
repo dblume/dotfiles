@@ -1,4 +1,4 @@
-" Version 2016-04-07.1 - OpenInOtherWindow()
+" Version 2016-09-25.1 - php mods
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -186,13 +186,13 @@ if has("autocmd")
   autocmd BufWrite *.py :call DeleteTrailingWS()  " Delete trailing whitespace
   " Don't let smartindent unindent the # character in Python files
   autocmd FileType python  inoremap # X<c-h>#
-  autocmd FileType c,cpp,python,brs  set expandtab  " Use spaces instead of tabs
+  autocmd FileType c,cpp,python,php,brs  set expandtab  " Use spaces instead of tabs
   autocmd Filetype make    setl noexpandtab       " ...not for files that use tabs.
 
   " Use the vim command %retab before applying the following
   " two with files that have 8-space tabs.
-  autocmd FileType c,cpp,python  set tabstop=4
-  autocmd FileType c,cpp,python  set shiftwidth=4
+  autocmd FileType c,cpp,python,php  set tabstop=4
+  autocmd FileType c,cpp,python,php  set shiftwidth=4
 
   autocmd FileType python  set foldmethod=indent  " 'za' to fold
   autocmd FileType python  set foldlevel=99
@@ -214,8 +214,6 @@ if has("autocmd")
   autocmd BufRead *.txt set tw=78                  " Limit width of text to 78 chars
   autocmd BufRead *.txt set wrap linebreak nolist  " "soft" wrap of existing lines
   autocmd BufRead README set wrap linebreak nolist " "soft" wrap of existing lines
-
-  autocmd BufRead *.c,*.cpp,*.python,*.h,*.hpp,*.js set nowrap
 
   " When editing a file, always jump to the last cursor position
   autocmd BufReadPost *

@@ -37,6 +37,8 @@ else
     fi
 fi
 
+export P4DIFF='vim -d'  # Override from the command line: "P4DIFF=; p4 diff main.py"
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
