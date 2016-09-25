@@ -55,3 +55,7 @@ alias findincppfiles="find . -type f \( -name \*.cpp -or -name \*.c \) -print0 |
 alias findinhppfiles="find . -type f \( -name \*.hpp -or -name \*.h \) -print0 | xargs -0 grep -nI"
 
 alias clip="expand | cut -b1-\$COLUMNS"
+
+if [ -f .localrc ]; then
+    source .localrc
+fi
