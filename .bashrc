@@ -56,6 +56,6 @@ alias findinhppfiles="find . -type f \( -name \*.hpp -or -name \*.h \) -print0 |
 
 alias clip="expand | cut -b1-\$COLUMNS"
 
-if [ -f .localrc ]; then
-    source .localrc
+if [ -f $HOME/.localrc ]; then
+    source $HOME/.localrc
 fi
