@@ -106,9 +106,9 @@ nmap <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 " pastetoggle
 nmap <leader>p :set invpaste paste?<cr>
 
-nmap <leader>e :NERDTreeToggle<cr>    " install nerdtree (e for Explore)
-nmap <leader>l :TlistToggle<cr>       " install taglist
-nmap <leader>bd :Bdelete<cr>          " install vim-bbye
+nmap <leader>e :NERDTreeToggle %:p:h<cr>  " install nerdtree (e for Explore)
+nmap <leader>l :TlistToggle<cr>           " install taglist
+nmap <leader>bd :Bdelete<cr>              " install vim-bbye
 
 " Visual mode mappings
 """
