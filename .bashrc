@@ -56,6 +56,9 @@ alias findinhppfiles="find . -type f \( -name \*.hpp -or -name \*.h \) -print0 |
 
 alias clip="expand | cut -b1-\$COLUMNS"
 
+# For httpie: https://github.com/jakubroztocil/httpie#installation
+alias https='http --default-scheme=https'
+
 if [ -f $HOME/.localrc ]; then
     source $HOME/.localrc
 fi
