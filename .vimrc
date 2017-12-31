@@ -1,4 +1,4 @@
-" Version 2016-09-25.1 - php mods
+" Version 2017-12-30.1 - cscope 
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -263,6 +263,16 @@ def EvaluateCurrentRange():
     eval(compile('\n'.join(vim.current.range),'','exec'),globals())
 EOL
 vnoremap <C-h> :py EvaluateCurrentRange()<cr>
+endif
+
+" cscope
+if has("cscope")
+    set cscopetag  " Use both cscope and ctag for 'ctrl-]'
+    set csto=0     " 0=cscope first; 1=ctags first
+    if filereadable("cscope.out")
+        cs add cscope.out
+    endif
+    set cscopeverbose
 endif
 
 " Install Pathogen for this next call to work
