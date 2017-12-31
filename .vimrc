@@ -268,7 +268,7 @@ endif
 " cscope
 if has("cscope")
     set cscopetag  " Use both cscope and ctag for 'ctrl-]'
-    set csto=0     " 0=cscope first; 1=ctags first
+    set csto=1     " 0=cscope first; 1=ctags first
     set cscopeverbose
 endif
 
