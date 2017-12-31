@@ -269,9 +269,6 @@ endif
 if has("cscope")
     set cscopetag  " Use both cscope and ctag for 'ctrl-]'
     set csto=0     " 0=cscope first; 1=ctags first
-    if filereadable("cscope.out")
-        cs add cscope.out
-    endif
     set cscopeverbose
 endif
 
