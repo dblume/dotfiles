@@ -27,8 +27,8 @@ do
   esac
 done
 
-if [ ! -d $backup_dir ]; then
-    ((DRY_RUN==0)) && mkdir -p $backup_dir
+if [ ! -d $backup_dir/.ssh ]; then
+    ((DRY_RUN==0)) && mkdir -p $backup_dir/.ssh
 fi
 
 # Move original dot files to backup
@@ -43,7 +43,12 @@ do
                 # Consider using symbolic links instead
                 # so pulling updates automatically apply
                 cp "$i" $HOME/"$i"
+	        echo "# vimdiff \"$HOME/$i\" \"$backup_dir/$i\""
+	    else
+		# Provide a diff that can still be used
+	        echo "# vimdiff \"$i\" \"$HOME/$i\""
             fi
+	    echo
         else
             echo No change to "$i".
         fi
