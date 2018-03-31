@@ -4,7 +4,13 @@ if [[ $(uname -s) != Darwin* ]] && [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-export PS1="\h:\W\$ "
+if [[ -n $SSH_CLIENT ]]; then
+    export PS1='\[\e[48;5;$((!!$?*36+16));38;5;248m\]\h:\W$\[\e[0m\] '
+else
+    export PS1='\[\e[48;5;$((!!$?*36+16));38;5;248m\]\W$\[\e[0m\] '
+fi
+
+set -o vi
 
 add_to_path() {
     if [ -d "$1" ] && [[ ! $PATH =~ (^|:)$1(:|$) ]]; then

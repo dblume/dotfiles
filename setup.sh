@@ -3,7 +3,7 @@ set -eu -o pipefail # See: https://sipb.mit.edu/doc/safe-shell/
 
 declare -r SCRIPT_NAME=$(basename "$BASH_SOURCE")
 declare -r backup_dir=$HOME/backup_of_dotfiles_`date "+%Y-%m-%d"`
-declare -a dotfiles=(".bashrc" ".bash_profile" ".vimrc" 
+declare -a dotfiles=(".bashrc" ".bash_profile" ".vimrc" ".editrc"
                      ".gitconfig" ".gitignore" ".inputrc" ".ssh/config")
 declare -i DRY_RUN=0
 

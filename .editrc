@@ -1,0 +1,3 @@
+# OS X: Enable vi mode. Use tab for word completion.
+bind -v
+bind '\t' rl_complete
