@@ -5,9 +5,9 @@ if [[ $(uname -s) != Darwin* ]] && [ -f /etc/bashrc ]; then
 fi
 
 if [[ -n $SSH_CLIENT ]]; then
-    export PS1='\[\e[48;5;$((!!$?*36+16));38;5;248m\]\h:\W$\[\e[0m\] '
+    export PS1='\[\e[48;5;$((!!$?*36+16));38;5;242m\]\h:\W$\[\e[0m\] '
 else
-    export PS1='\[\e[48;5;$((!!$?*36+16));38;5;248m\]\W$\[\e[0m\] '
+    export PS1='\[\e[48;5;$((!!$?*36+16));38;5;242m\]\W$\[\e[0m\] '
 fi
 
 set -o vi
