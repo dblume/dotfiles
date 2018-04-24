@@ -4,10 +4,11 @@ if [[ $(uname -s) != Darwin* ]] && [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+export PROMPT_DIRTRIM=3
 if [[ -n $SSH_CLIENT ]]; then
-    export PS1='\[\e[48;5;$((!!$?*36+16));38;5;242m\]\h:\W$\[\e[0m\] '
+    export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93"; else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\h:\w$\[\e[0m\] '
 else
-    export PS1='\[\e[48;5;$((!!$?*36+16));38;5;242m\]\W$\[\e[0m\] '
+    export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93"; else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\w$\[\e[0m\] '
 fi
 
 set -o vi
