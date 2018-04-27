@@ -1,4 +1,4 @@
-" Version 2017-12-30.1 - cscope 
+" Version 2018-04-24.1 - vim-airline with powerlineish theme
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -232,7 +232,7 @@ set omnifunc=syntaxcomplete#Complete
 " inoremap <Nul> <C-x><C-o>
 
 " This function attempts to reuse the same scratch
-" buffer over and over, so you always see output in 
+" buffer over and over, so you always see output in
 " the same location in your window layout.
 function! ExecuteFileIntoScratchBuffer()
   write
@@ -271,6 +271,16 @@ if has("cscope")
     set csto=1     " 0=cscope first; 1=ctags first
     set cscopeverbose
 endif
+
+" I use 12p Roboto Mono from https://github.com/powerline/fonts
+" On iTerm2, Preferences -> Profiles -> Text -> Font
+
+" When using vim-powerline
+let g:Powerline_symbols = 'fancy'
+
+" When using vim-airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'powerlineish'
 
 " Install Pathogen for this next call to work
 call pathogen#infect()
