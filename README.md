@@ -14,7 +14,7 @@ With an account, you can clone from the origin with:
 
     git clone ssh://USERNAME@dlma.com/~/git/dotfiles.git
 
-### Installation 
+### Installation
 
 If you're not cloning the repo, then run the following:
 
@@ -38,13 +38,13 @@ See [config.dlma.com](http://config.dlma.com) for more.
 
 #### What's installed
 
-1. .bashrc and .bash_profile
+1. .bashrc and .bash\_profile
 2. Vim resources
     1. .vimrc
-    2. An empty .vim_undo directory
+    2. An empty .vim\_undo directory
     3. .vim with the following plugins:
         1. [pathogen](https://github.com/tpope/vim-pathogen), the Vim plugin manager.
-        2. [vim-powerline](https://github.com/Lokaltog/vim-powerline), for a better Vim statusline.
+        2. [vim-airline](https://github.com/vim-airline/vim-airline), for a better Vim statusline.
         3. [bbye for :Bdelete](https://github.com/moll/vim-bbye), to delete buffers without affecting windows.
         4. [nerdtree](https://github.com/scrooloose/nerdtree), a better filesystem tree-view explorer.
         5. [taglist](http://www.vim.org/scripts/script.php?script_id=273), a ctags tree-view explorer.
