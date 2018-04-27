@@ -43,12 +43,12 @@ do
                 # Consider using symbolic links instead
                 # so pulling updates automatically apply
                 cp "$i" $HOME/"$i"
-	        echo "# vimdiff \"$HOME/$i\" \"$backup_dir/$i\""
-	    else
-		# Provide a diff that can still be used
-	        echo "# vimdiff \"$i\" \"$HOME/$i\""
+                echo "# vimdiff \"$HOME/$i\" \"$backup_dir/$i\""
+            else
+                # Provide a diff that can still be used
+                echo "# vimdiff \"$i\" \"$HOME/$i\""
             fi
-	    echo
+            echo
         else
             echo No change to "$i".
         fi
@@ -58,15 +58,22 @@ do
     fi
 done
 
-if [ $DRY_RUN -eq 0 ]; then
-    if [ -d $HOME/.vim ]; then
-        mv $HOME/.vim $backup_dir
+if ! diff -qr $HOME/.vim .vim > /dev/null ; then
+    if [ $DRY_RUN -eq 0 ]; then
+        if [ -d $HOME/.vim ]; then
+            mv $HOME/.vim $backup_dir
+        fi
+        cp -r .vim $HOME
+        if [ -d $backup_dir/.vim ]; then
+            # Copy back some proprietary file types, if any.
+            cp -r -n $backup_dir/.vim $HOME
+        fi
     fi
-    cp -r .vim $HOME
     if [ -d $backup_dir/.vim ]; then
-	# Copy back some proprietary file types, if any.
-        cp -r -n $backup_dir/.vim $HOME
+        echo "# diff -qr \"$backup_dir/.vim\" \"$HOME/.vim\""
     fi
+else
+    echo No change to the .vim directories.
 fi
 
 echo Your old dotfiles are backed up to $backup_dir
