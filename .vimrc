@@ -1,4 +1,4 @@
-" Version 2018-04-24.1 - vim-airline with powerlineish theme
+" Version 2018-04-29.1 - Turn off vim-airline whitespace warnings by filetype
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -197,8 +197,12 @@ if has("autocmd")
   autocmd FileType python  set foldmethod=indent  " 'za' to fold
   autocmd FileType python  set foldlevel=99
 
-  autocmd Filetype c,cpp nmap <buffer> <leader>s :call SwitchSourceHeader()<cr>
+  autocmd FileType c,cpp nmap <buffer> <leader>s :call SwitchSourceHeader()<cr>
   autocmd FileType c,cpp set foldmethod=syntax
+
+  " autocmd FileType roku :let g:airline_extensions = []
+  " autocmd FileType roku :let g:airline_section_warning = airline#section#create([])
+  autocmd FileType roku :let g:airline#extensions#whitespace#enabled = 0
 
   if v:version >= 703
     " I toggle out of relative number when Vim's focus is lost, because
@@ -282,6 +286,7 @@ let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
 let g:airline#extensions#wordcount#enabled = 0
+" let g:airline_exclude_filetypes = []
 
 " Install Pathogen for this next call to work
 call pathogen#infect()
