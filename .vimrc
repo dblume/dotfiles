@@ -281,6 +281,7 @@ let g:Powerline_symbols = 'fancy'
 " When using vim-airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
+let g:airline#extensions#wordcount#enabled = 0
 
 " Install Pathogen for this next call to work
 call pathogen#infect()
