@@ -65,15 +65,18 @@ if ! diff -qr $HOME/.vim .vim > /dev/null ; then
         fi
         cp -r .vim $HOME
         if [ -d $backup_dir/.vim ]; then
-            # Copy back some proprietary file types, if any.
+            # Copy back proprietary file types (ex. ftdetect/my.vim), if any.
             cp -r -n $backup_dir/.vim $HOME
         fi
     fi
-    if [ -d $backup_dir/.vim ]; then
+    if [[ -d $backup_dir/.vim || $DRY_RUN -ne 0 ]]; then
+        echo
+        diff -qr "$backup_dir/.vim" "$HOME/.vim" || true
         echo "# diff -qr \"$backup_dir/.vim\" \"$HOME/.vim\""
+        echo
     fi
 else
-    echo No change to the .vim directories.
+    echo No change to the .vim/ directories.
 fi
 
 echo Your old dotfiles are backed up to $backup_dir
