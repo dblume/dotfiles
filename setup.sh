@@ -66,7 +66,9 @@ if ! diff -qr $HOME/.vim .vim > /dev/null ; then
         cp -r .vim $HOME
         if [ -d $backup_dir/.vim ]; then
             # Copy back proprietary file types (ex. ftdetect/my.vim), if any.
-            cp -r -n $backup_dir/.vim $HOME || true
+            # Print only the files that got moved back into ~/.vim
+            cp -rnv $backup_dir/.vim $HOME | grep " -> " | cut -d " " -f3 | \
+                xargs -I{} sh -c "test -f {} && echo Restored {}" || true
         fi
     fi
     if [[ -d $backup_dir/.vim || $DRY_RUN -ne 0 ]]; then
