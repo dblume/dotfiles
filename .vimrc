@@ -1,4 +1,4 @@
-" Version 2018-04-29.1 - Turn off vim-airline whitespace warnings by filetype
+" Version 2018-05-12.1 - jk and remove comments on same line as remaps
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -23,7 +23,17 @@ endif
 nnoremap / /\v
 vnoremap / /\v
 
-" nnoremap <cr> :noh<cr><cr>     " clear search highlights
+" Make j and k move to the next row, not file line
+nnoremap j gj
+nnoremap k gk
+
+" From Steve Losh: http://learnvimscriptthehardway.stevelosh.com/chapters/10.html
+" Map jk to ESC in insert mode
+inoremap jk <esc>
+" inoremap kj <esc>
+
+" clear search highlights
+nnoremap <cr> :noh<cr><cr>
 
 " Commented out because I want tags searches to always be case sensitive.
 " Override with \c anywhere in your search.
@@ -117,8 +127,8 @@ nmap <leader>bd :Bdelete<cr>              " install vim-bbye
 vnoremap <leader>s :sort<cr>
 
 "easier moving of code blocks
-vnoremap < <gv  " better indentation
-vnoremap > >gv  " better indentation
+vnoremap < <gv
+vnoremap > >gv
 
 " If too many file system events are getting triggered.
 set nobackup       " ~ files
