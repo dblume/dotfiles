@@ -30,7 +30,7 @@ if [[ $(uname -s) == CYGWIN* ]]; then
     ulimit -n 1024 # for "duplicity"
 fi
 
-# change the color of directories in the ls command 
+# change the color of directories in the ls command
 if [[ $(uname -s) == Darwin* ]]; then
     export LSCOLORS=gxfxcxdxbxegedabagacad
     export CLICOLOR=1
