@@ -83,12 +83,16 @@ else
     echo No change to the .vim/ directories.
 fi
 
-echo Your old dotfiles are backed up to $backup_dir
-
 # Make a directory for vim undo
 if [ ! -d $HOME/.vim_undo ]; then
     ((DRY_RUN==0)) && mkdir -p $HOME/.vim_undo
 fi
 
-# Tell David what's left.
-echo Done. Check http://config.dlma.com for more.
+if [ $DRY_RUN -eq 0 ]; then
+    echo Your old dotfiles are backed up to $backup_dir
+    echo Done. Check http://config.dlma.com for more.
+else
+    echo Your old dotfiles would have been backed up to $backup_dir
+    echo Dry run completed.
+fi
+
