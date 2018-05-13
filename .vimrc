@@ -286,8 +286,10 @@ if has("cscope")
     set cscopeverbose
 endif
 
-" I use 12p Roboto Mono from https://github.com/powerline/fonts
+" I use Roboto Mono from https://github.com/powerline/fonts
 " On iTerm2, Preferences -> Profiles -> Text -> Font
+" Cygwin64 won't let you choose it. Launch Cygwin64 as follows:
+" C:\cygwin64\bin\mintty.exe -i /Cygwin-Terminal.ico -o Font="Roboto Mono for Powerline" -
 
 " When using vim-powerline
 let g:Powerline_symbols = 'fancy'
