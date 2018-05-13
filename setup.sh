@@ -71,13 +71,15 @@ if ! diff -qr $HOME/.vim .vim > /dev/null ; then
                 xargs -I{} sh -c "test -f {} && echo Restored {}" || true
         fi
     fi
-    if [[ -d $backup_dir/.vim || $DRY_RUN -ne 0 ]]; then
+    if [[ -d $backup_dir/.vim ]]; then
         if ! diff -qr "$backup_dir/.vim" "$HOME/.vim" ; then
             echo "# diff -qr \"$backup_dir/.vim\" \"$HOME/.vim\""
             echo
         else
             echo No change to the .vim/ directories after restoring proprietary files.
         fi
+    else
+        echo No $backup_dir/.vim/ from which to restore proprietary files \(yet\).
     fi
 else
     echo No change to the .vim/ directories.
