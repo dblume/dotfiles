@@ -4,3 +4,9 @@
 # arrow down
 "\e[B":history-search-forward
 set editing-mode vi
+# vi settings
+$if mode=vi
+    # insert mode
+    set keymap vi-insert
+    "jk": vi-movement-mode
+$endif
