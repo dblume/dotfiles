@@ -30,7 +30,6 @@ nnoremap k gk
 " From Steve Losh: http://learnvimscriptthehardway.stevelosh.com/chapters/10.html
 " Map jk to ESC in insert mode
 inoremap jk <esc>
-" inoremap kj <esc>
 
 " clear search highlights
 nnoremap <cr> :noh<cr><cr>
@@ -66,7 +65,7 @@ else
   set background=dark
   colorscheme desert                           " install desert
   if v:version >= 703
-    highlight ColorColumn ctermbg=234 guibg=Black " dark gray (or 17, dark blue)
+    highlight ColorColumn ctermbg=232 guibg=Black " dark gray (or 17, dark blue)
   endif
   highlight StatusLine   ctermfg=20 ctermbg=Gray " override scheme (overridden by powerline)
   highlight StatusLineNC ctermfg=17 ctermbg=DarkGray" override scheme
