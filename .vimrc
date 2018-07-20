@@ -65,7 +65,7 @@ else
   set background=dark
   colorscheme desert                           " install desert
   if v:version >= 703
-    highlight ColorColumn ctermbg=232 guibg=Black " dark gray (or 17, dark blue)
+    highlight ColorColumn ctermbg=233 guibg=Black " dark gray (or 17, dark blue)
   endif
   highlight StatusLine   ctermfg=20 ctermbg=Gray " override scheme (overridden by powerline)
   highlight StatusLineNC ctermfg=17 ctermbg=DarkGray" override scheme
