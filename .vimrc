@@ -1,4 +1,4 @@
-" Version 2018-05-12.1 - jk and remove comments on same line as remaps
+" Version 2018-08-22.1 - added Control+p for paste onto next line
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -114,6 +114,9 @@ nmap <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " pastetoggle
 nmap <leader>p :set invpaste paste?<cr>
+
+" Control+p to paste onto next line
+nmap <C-p> :pu<cr>
 
 nmap <leader>e :NERDTreeToggle %:p:h<cr>  " install nerdtree (e for Explore)
 nmap <leader>l :TlistToggle<cr>           " install taglist
