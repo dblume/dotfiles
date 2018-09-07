@@ -5,5 +5,5 @@ if [ -f "${HOME}/.bashrc" ]; then
 fi
 if [[ -n $ITERM_PROFILE && -z $SSH_CLIENT &&
 	$(uname -s) == Darwin* && -f "${HOME}/tips.txt" ]]; then
-    cat ~/tips.txt
+    cat "${HOME}/tips.txt"
 fi
