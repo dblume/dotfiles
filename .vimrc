@@ -1,4 +1,4 @@
-" Version 2018-08-22.1 - added Control+p for paste onto next line
+" Version 2018-10-07.1 - Don't set textwidth. I like to hit Return on my own.
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -227,7 +227,9 @@ if has("autocmd")
   " automatically save the file when focus is lost.
   " autocmd FocusLost * silent! wa
 
-  autocmd BufRead *.txt set tw=78                  " Limit width of text to 78 chars
+  " I'm in the habit of hitting Return myself.
+  " autocmd BufRead *.txt set textwidth=78         " Limit width of text to 78 chars
+
   autocmd BufRead *.txt set wrap linebreak nolist  " "soft" wrap of existing lines
   autocmd BufRead README set wrap linebreak nolist " "soft" wrap of existing lines
 
