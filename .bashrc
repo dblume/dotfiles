@@ -27,6 +27,7 @@ if [[ $(uname -s) == CYGWIN* ]]; then
     PATH=/usr/local/bin:/usr/bin:$PATH
     PATH=${PATH//":/usr/local/bin:/usr/bin"/} # delete any instances in middle
     add_to_path /usr/lib/lapack
+    export GIT_SSH=/cygdrive/c/cygwin64/bin/ssh
     ulimit -n 1024 # for "duplicity"
 fi
 
@@ -68,14 +69,19 @@ alias clip="expand | cut -b1-\$COLUMNS"
 alias https='http --default-scheme=https'
 
 md() {
-    if [[ $(uname -s) == Darwin* ]]; then
+    local sys_name=$(uname -s)
+    if [[ $sys_name == Darwin* ]]; then
         T=$(mktemp $TMPDIR$(uuidgen).html)
-	curl -X POST --data-binary @"$1" https://md.dlma.com/ > $T
-	open -a /Applications/Safari.app $T
+        curl -s -X POST --data-binary @"$1" https://md.dlma.com/ > $T
+        open -a /Applications/Safari.app $T
+    elif [[ $sys_name == CYGWIN* ]]; then
+        T=$(mktemp --suffix=.html)
+        curl -s -X POST --data-binary @"$1" https://md.dlma.com/ > $T
+        cygstart $T
     else
         T=$(mktemp --suffix=.html)
-	curl -X POST --data-binary @"$1" https://md.dlma.com/ > $T
-	xdg-open $T
+        curl -s -X POST --data-binary @"$1" https://md.dlma.com/ > $T
+        xdg-open $T
     fi
 }
 
