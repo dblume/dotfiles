@@ -67,6 +67,18 @@ alias clip="expand | cut -b1-\$COLUMNS"
 # For httpie: https://github.com/jakubroztocil/httpie#installation
 alias https='http --default-scheme=https'
 
+md() {
+    if [[ $(uname -s) == Darwin* ]]; then
+        T=$(mktemp $TMPDIR$(uuidgen).html)
+	curl -X POST --data-binary @"$1" https://md.dlma.com/ > $T
+	open -a /Applications/Safari.app $T
+    else
+        T=$(mktemp --suffix=.html)
+	curl -X POST --data-binary @"$1" https://md.dlma.com/ > $T
+	xdg-open $T
+    fi
+}
+
 if [ -f $HOME/.localrc ]; then
     source $HOME/.localrc
 fi
