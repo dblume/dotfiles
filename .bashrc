@@ -73,7 +73,7 @@ md() {
     if [[ $sys_name == Darwin* ]]; then
         T=$(mktemp $TMPDIR$(uuidgen).html)
         curl -s -X POST --data-binary @"$1" https://md.dlma.com/ > $T
-        open -a /Applications/Safari.app $T
+        open $T
     elif [[ $sys_name == CYGWIN* ]]; then
         T=$(mktemp --suffix=.html)
         curl -s -X POST --data-binary @"$1" https://md.dlma.com/ > $T
