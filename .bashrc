@@ -69,20 +69,21 @@ alias clip="expand | cut -b1-\$COLUMNS"
 alias https='http --default-scheme=https'
 
 md() {
-    local sys_name=$(uname -s)
+    declare -r sys_name=$(uname -s)
     if [[ $sys_name == Darwin* ]]; then
-        T=$(mktemp $TMPDIR$(uuidgen).html)
+        declare -r T=$(mktemp $TMPDIR$(uuidgen).html)
         curl -s -X POST --data-binary @"$1" https://md.dlma.com/ > $T
         open $T
     elif [[ $sys_name == CYGWIN* ]]; then
-        T=$(mktemp --suffix=.html)
+        declare -r T=$(mktemp --suffix=.html)
         curl -s -X POST --data-binary @"$1" https://md.dlma.com/ > $T
         cygstart $T
     else
-        T=$(mktemp --suffix=.html)
+        declare -r T=$(mktemp --suffix=.html)
         curl -s -X POST --data-binary @"$1" https://md.dlma.com/ > $T
         xdg-open $T
     fi
+    rm $T
 }
 
 if [ -f $HOME/.localrc ]; then
