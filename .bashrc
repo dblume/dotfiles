@@ -83,7 +83,6 @@ md() {
         curl -s -X POST --data-binary @"$1" https://md.dlma.com/ > $T
         xdg-open $T
     fi
-    rm $T
 }
 
 if [ -f $HOME/.localrc ]; then
