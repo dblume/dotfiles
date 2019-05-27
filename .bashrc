@@ -82,6 +82,7 @@ md() {
         declare -r T=$(mktemp --suffix=.html)
         curl -s -X POST --data-binary @"$1" https://md.dlma.com/ > $T
         xdg-open $T
+        echo "rm \"$T\" >/dev/null 2>&1" | at now + 2 minutes
     fi
 }
 
