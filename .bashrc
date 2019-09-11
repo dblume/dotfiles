@@ -86,6 +86,10 @@ md() {
     fi
 }
 
+# https://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
+HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
+
 if [ -f $HOME/.localrc ]; then
     source $HOME/.localrc
 fi
