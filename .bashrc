@@ -8,7 +8,7 @@ export PROMPT_DIRTRIM=4
 if [[ -n $SSH_CLIENT ]]; then
     export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93"; else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\h:\w$\[\e[0m\] '
 else
-    export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93"; else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;248m\]\w$\[\e[0m\] '
+    export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93"; else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\w$\[\e[0m\] '
 fi
 
 set -o vi
