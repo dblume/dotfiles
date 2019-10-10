@@ -5,6 +5,7 @@
 	email = david.blume@gmail.com
 [diff]
 	tool = vimdiff
+	noprefix = true
 [difftool]
 	prompt = false
 [push]
