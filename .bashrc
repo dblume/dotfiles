@@ -51,6 +51,7 @@ export CSCOPE_EDITOR=vim
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias vim-='vim +"setl buftype=nofile" -'
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
@@ -86,9 +87,16 @@ md() {
     fi
 }
 
+concept() {
+    apropos -s 7 . | awk '!/iso|latin/ {print $1}' | shuf -n 1 | xargs man 7
+}
+
 # https://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
 HISTCONTROL=ignoredups:erasedups
 HISTIGNORE="&:ls:[bf]g:exit:pwd:clear"
+#HISTFILESIZE=2000
+#HISTSIZE=2000
+# [ $(wc -l < $HOME/.bash_history) -gt 950 ] && echo "David, your .bash_history is over 950 lines. Consider updating your .bashrc."
 shopt -s histappend
 
 if [ -f $HOME/.localrc ]; then
