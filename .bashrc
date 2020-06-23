@@ -52,6 +52,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias vim-='vim +"setl buftype=nofile" -'
+alias tmux='tmux -2'
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
@@ -88,7 +89,8 @@ md() {
 }
 
 concept() {
-    apropos -s 7 . | awk '!/iso|latin/ {print $1}' | shuf -n 1 | xargs man 7
+    # apropos -s 7 . | awk '!/iso|latin/ {print $1}' | shuf -n 1 | xargs man 7
+    apropos -s 7 . | awk '!/iso|latin/ {print $1}' | shuf -n 1 | pee "xargs echo man 7" "xargs man 7"
 }
 
 # https://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
