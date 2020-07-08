@@ -46,11 +46,10 @@ See [config.dlma.com](http://config.dlma.com) for more.
         1. [pathogen](https://github.com/tpope/vim-pathogen), the Vim plugin manager.
         2. [vim-airline](https://github.com/vim-airline/vim-airline), for a better Vim statusline.
         3. [bbye for :Bdelete](https://github.com/moll/vim-bbye), to delete buffers without affecting windows.
-        4. [nerdtree](https://github.com/scrooloose/nerdtree), a better filesystem tree-view explorer.
-        5. [taglist](http://www.vim.org/scripts/script.php?script_id=273), a ctags tree-view explorer.
-        6. [file-line](http://www.vim.org/scripts/script.php?script_id=2184), to open file:line as from a compiler error.
-        7. [visual-star-search](http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html), so * and # work in visual mode too.
-        8. Assorted favorite colors like [desert](https://github.com/dblume/desert.vim).
+        4. [taglist](http://www.vim.org/scripts/script.php?script_id=273), a ctags tree-view explorer.
+        5. [file-line](http://www.vim.org/scripts/script.php?script_id=2184), to open file:line as from a compiler error.
+        6. [visual-star-search](http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html), so * and # work in visual mode too.
+        7. Assorted favorite colors like [desert](https://github.com/dblume/desert.vim).
 3. .gitconfig and .gitignore
 4. .tmux.conf
 5. .inputrc, for a [partially matched command history traversal](http://askubuntu.com/questions/59846/bash-history-search-partial-up-arrow/59855#59855).
