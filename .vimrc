@@ -1,4 +1,4 @@
-" Version 2018-10-07.1 - Don't set textwidth. I like to hit Return on my own.
+" Version 2020-07-08.1 - Use built-in netrw instead of NERDTree
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -118,7 +118,25 @@ nmap <leader>p :set invpaste paste?<cr>
 " Control+p to paste onto next line
 nmap <C-p> :pu<cr>
 
-nmap <leader>e :NERDTreeToggle %:p:h<cr>  " install nerdtree (e for Explore)
+" Make netrw's Lexplore behave like NERDTreeToggle
+let g:NetrwIsOpen=0
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout " . i 
+            endif
+            let i-=1
+        endwhile
+        let g:NetrwIsOpen=0
+    else
+        let g:NetrwIsOpen=1
+        silent Lexplore %:p:h
+    endif
+endfunction
+nmap <leader>e :call ToggleNetrw()<cr>
+
 nmap <leader>l :TlistToggle<cr>           " install taglist
 nmap <leader>bd :Bdelete<cr>              " install vim-bbye
 
@@ -295,8 +313,15 @@ endif
 " Cygwin64 won't let you choose it. Launch Cygwin64 as follows:
 " C:\cygwin64\bin\mintty.exe -i /Cygwin-Terminal.ico -o Font="Roboto Mono for Powerline" -
 
-" When using vim-powerline
-let g:Powerline_symbols = 'fancy'
+" Settings that make netrw more like NERDTree
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+" let g:netrw_winsize = -28 (for absolute width)
+let g:netrw_winsize = 35
+" sort is affecting only: directories on the top, files below
+let g:netrw_sort_sequence = '[\/]$,*'
 
 " When using vim-airline
 let g:airline_powerline_fonts = 1
