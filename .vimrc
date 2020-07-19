@@ -125,7 +125,7 @@ function! ToggleNetrw()
         let i = bufnr("$")
         while (i >= 1)
             if (getbufvar(i, "&filetype") == "netrw")
-                silent exe "bwipeout " . i 
+                silent exe "bwipeout " . i
             endif
             let i-=1
         endwhile
@@ -325,6 +325,11 @@ let g:netrw_sort_sequence = '[\/]$,*'
 
 " When using vim-airline
 let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.whitespace = '✖'
+let g:airline_symbols.linenr = 'Ξ'
 let g:airline_theme = 'powerlineish'
 let g:airline#extensions#wordcount#enabled = 0
 " let g:airline_exclude_filetypes = []
