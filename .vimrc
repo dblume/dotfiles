@@ -59,6 +59,9 @@ if has('gui_running') " Didn't work: if &term != 'builtin_gui'
   endif
   highlight StatusLine   ctermfg=17 ctermbg=Gray " override scheme (overridden by powerline)
   highlight StatusLineNC ctermfg=20 ctermbg=LightGray" override scheme
+  if has('win32')
+    set guifont=DejaVu_Sans_Mono_for_Powerline:h10:cANSI:qDRAFT
+  endif
   set lines=50 columns=100
 else
   " Dark backgrounds for tty experiences
