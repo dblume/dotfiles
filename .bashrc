@@ -29,6 +29,8 @@ if [[ $(uname -s) == CYGWIN* ]]; then
     add_to_path /usr/lib/lapack
     export GIT_SSH=/cygdrive/c/cygwin64/bin/ssh
     ulimit -n 1024 # for "duplicity"
+elif [[ -n "${WSL_DISTRO_NAME}" ]]; then
+    export BROWSER=/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe
 fi
 
 # change the color of directories in the ls command
@@ -83,8 +85,13 @@ md() {
     else
         declare -r T=$(mktemp --suffix=.html)
         curl -s -X POST --data-binary @"$1" https://md.dlma.com/ > $T
-        xdg-open $T
-        echo "rm \"$T\" >/dev/null 2>&1" | at now + 2 minutes
+        if [[ -z "${WSL_DISTRO_NAME}" ]]; then
+            xdg-open $T
+            echo "rm \"$T\" >/dev/null 2>&1" | at now + 2 minutes
+        else
+            # Set BROWSER to your web browser's path
+            "$BROWSER" $(realpath --relative-to=$PWD $T)
+        fi
     fi
 }
 
