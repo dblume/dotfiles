@@ -90,6 +90,14 @@ if [ ! -d $HOME/.vim_undo ]; then
     ((DRY_RUN==0)) && mkdir -p $HOME/.vim_undo
 fi
 
+# I have device local secrets in .localrc and a github secret in .gitconfig.local
+for i in ".gitconfig.local" ".localrc"
+do
+    if [ ! -f $HOME/"$i" ]; then
+        echo Consider copying $i from a similar acct. \(\'touch \"\$HOME/$i\"\' to hide this msg.\)
+    fi
+done
+
 if [ $DRY_RUN -eq 0 ]; then
     echo Your old dotfiles are backed up to $backup_dir
     echo Done. Check http://config.dlma.com for more.
