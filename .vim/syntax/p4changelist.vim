@@ -23,7 +23,7 @@ syn match Type "^Files:"
 syn match Error "^ \+"
 
 " Code review bits
-syn match PreProc "#review"
+syn match PreProc "#review\(-[0-9]\+\)\?"
 syn match String '\s\+@[a-z]\+'
 
 " File operations
