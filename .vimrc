@@ -336,6 +336,3 @@ let g:airline_symbols.linenr = 'Ξ'
 let g:airline_theme = 'powerlineish'
 let g:airline#extensions#wordcount#enabled = 0
 " let g:airline_exclude_filetypes = []
-
-" Install Pathogen for this next call to work
-call pathogen#infect()
