@@ -121,21 +121,20 @@ nmap <leader>p :set invpaste paste?<cr>
 " Control+p to paste onto next line
 nmap <C-p> :pu<cr>
 
-" Make netrw's Lexplore behave like NERDTreeToggle
+" Make netrw's Explore behave a little like NERDTreeToggle
+" http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
 let g:NetrwIsOpen=0
 function! ToggleNetrw()
     if g:NetrwIsOpen
-        let i = bufnr("$")
-        while (i >= 1)
+        for i in range(1, bufnr("$"))
             if (getbufvar(i, "&filetype") == "netrw")
-                silent exe "bwipeout " . i
+                silent exe "Bwipeout " . i
             endif
-            let i-=1
-        endwhile
+        endfor
         let g:NetrwIsOpen=0
     else
         let g:NetrwIsOpen=1
-        silent Lexplore %:p:h
+        silent Explore %:p:h
     endif
 endfunction
 nmap <leader>e :call ToggleNetrw()<cr>
