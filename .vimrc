@@ -123,19 +123,16 @@ nmap <C-p> :pu<cr>
 
 " Make netrw's Explore behave a little like NERDTreeToggle
 " http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
-let g:NetrwIsOpen=0
 function! ToggleNetrw()
-    if g:NetrwIsOpen
-        for i in range(1, bufnr("$"))
-            if (getbufvar(i, "&filetype") == "netrw")
-                silent exe "Bwipeout " . i
-            endif
-        endfor
-        let g:NetrwIsOpen=0
-    else
-        let g:NetrwIsOpen=1
-        silent Explore %:p:h
-    endif
+  if bufwinnr("NetrwTreeListing") > 0
+    for i in range(1, bufnr("$"))
+      if (getbufvar(i, "&filetype") == "netrw")
+        silent exe "Bwipeout " . i
+        return
+      endif
+    endfor
+  endif
+  silent Explore %:p:h
 endfunction
 nmap <leader>e :call ToggleNetrw()<cr>
 
@@ -318,7 +315,7 @@ endif
 " Settings that make netrw more like NERDTree
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
+" let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 " let g:netrw_winsize = -28 (for absolute width)
 let g:netrw_winsize = 35
