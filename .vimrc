@@ -127,12 +127,12 @@ function! ToggleNetrw()
   if bufwinnr("NetrwTreeListing") > 0
     for i in range(1, bufnr("$"))
       if (getbufvar(i, "&filetype") == "netrw")
-        silent exe "Bwipeout " . i
+        silent exe "bwipeout " . i
         return
       endif
     endfor
   endif
-  silent Explore %:p:h
+  silent Vexplore %:p:h
 endfunction
 nmap <leader>e :call ToggleNetrw()<cr>
 
@@ -315,10 +315,11 @@ endif
 " Settings that make netrw more like NERDTree
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-" let g:netrw_browse_split = 4
+let g:netrw_browse_split = 4
 let g:netrw_altv = 1
-" let g:netrw_winsize = -28 (for absolute width)
-let g:netrw_winsize = 35
+" set g:netrw_winsize to negative for absolute width, positive for relative
+let g:netrw_winsize = -36
+" let g:netrw_winsize = 35
 " sort is affecting only: directories on the top, files below
 let g:netrw_sort_sequence = '[\/]$,*'
 
