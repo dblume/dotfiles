@@ -1,4 +1,4 @@
-" Version 2020-07-08.1 - Use built-in netrw instead of NERDTree
+" Version 2021-04-27.1 - Prefer local cscope.out database
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -304,7 +304,15 @@ endif
 if has("cscope")
     set cscopetag  " Use both cscope and ctag for 'ctrl-]'
     set csto=1     " 0=cscope first; 1=ctags first
-    set cscopeverbose
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+    " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+    set csverb
 endif
 
 " I use Roboto Mono from https://github.com/powerline/fonts
