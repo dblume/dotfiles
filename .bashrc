@@ -100,6 +100,27 @@ concept() {
     apropos -s 7 . | awk '!/iso|latin/ {print $1}' | shuf -n 1 | pee "xargs echo man 7" "xargs man 7"
 }
 
+venv() {
+    # From https://twitter.com/gvanrossum/status/1319328122618048514
+    if [ -n "$1" ]; then
+        VENV=~/venv-$1
+        if [ -f $VENV/bin/activate ]; then
+            if hash deactivate 2>/dev/null; then
+                deactivate
+            fi
+            source $VENV/bin/activate
+        else
+            echo "Creating $1 at $VENV"
+            python3 -m venv $VENV
+            source $VENV/bin/activate
+        fi
+    else
+        if hash deactivate 2>/dev/null; then
+            deactivate
+        fi
+    fi
+}
+
 # https://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
 HISTCONTROL=ignoredups:erasedups
 HISTIGNORE="&:ls:[bf]g:exit:pwd:clear"
