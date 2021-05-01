@@ -101,23 +101,16 @@ concept() {
 }
 
 venv() {
-    # From https://twitter.com/gvanrossum/status/1319328122618048514
-    if [ -n "$1" ]; then
-        VENV=./venv-$1
-        if [ -f $VENV/bin/activate ]; then
-            if hash deactivate 2>/dev/null; then
-                deactivate
-            fi
-            source $VENV/bin/activate
-        else
-            echo "Creating $1 at $VENV"
-            python3 -m venv $VENV
-            source $VENV/bin/activate
+    # Inspired by https://twitter.com/gvanrossum/status/1319328122618048514
+    if hash deactivate 2>/dev/null; then
+        deactivate
+    fi
+    if [[ $1 ]]; then
+        if [ ! -f $1/bin/activate ]; then
+            echo "Creating with: python3 -m venv $1"
+            python3 -m venv $1
         fi
-    else
-        if hash deactivate 2>/dev/null; then
-            deactivate
-        fi
+        source $1/bin/activate
     fi
 }
 
