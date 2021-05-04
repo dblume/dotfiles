@@ -338,6 +338,14 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.whitespace = '✖'
 let g:airline_symbols.linenr = 'Ξ'
+let g:airline_symbols.maxlinenr = ''
+
+" If no "...for Powerline" font is available, uncomment these four:
+"let g:airline_left_sep = '▌'
+"let g:airline_right_sep = '▐'
+"let g:airline_left_alt_sep = '|'
+"let g:airline_right_alt_sep = '|'
+
 let g:airline_theme = 'powerlineish'
 let g:airline#extensions#wordcount#enabled = 0
 " let g:airline_exclude_filetypes = []
