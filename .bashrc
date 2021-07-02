@@ -62,6 +62,18 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # Add to PATH only if not already in PATH.
 add_to_path $HOME/bin
 
+# For interactive shells ('i' in $-), disable stty flow control (ctrl+s,ctrl+q)
+case "$-" in
+*i*)
+  stty start ''
+  stty stop  ''
+  stty -ixon # disable XON/XOFF flow control
+  stty ixoff # enable sending (to app) of start/stop characters
+  stty ixany # let any character restart output, not only start character
+  ;;
+*) ;;
+esac
+
 alias findinpyfiles="find . -name \*.py -print0 | xargs -0 grep -nI"
 alias findinchppfiles="find . -type f \( -name \*.[ch]pp -or -name \*.[ch] \) -print0 | xargs -0 grep -nI"
 alias findincppfiles="find . -type f \( -name \*.cpp -or -name \*.c \) -print0 | xargs -0 grep -nI"
