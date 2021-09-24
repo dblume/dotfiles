@@ -1,4 +1,4 @@
-" Version 2021-04-27.1 - Prefer local cscope.out database
+" Version 2021-09-24.1 - Sort Quickfix list by filename
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -314,6 +314,22 @@ if has("cscope")
     endif
     set csverb
 endif
+
+" From https://stackoverflow.com/questions/15393301/how-to-automatically-sort-quickfix-entries-by-line-text-in-vim
+" :grep term %
+" :grep -r term path/
+" :cw
+" :ccl (or C-w,q)
+autocmd! QuickfixCmdPost * call SortQuickfix('QfStrCmp')
+
+function! SortQuickfix(fn)
+    call setqflist(sort(getqflist(), a:fn), 'r')
+endfunction
+
+function! QfStrCmp(e1, e2)
+    let [t1, t2] = [bufname(a:e1.bufnr), bufname(a:e2.bufnr)]
+    return t1 <# t2 ? -1 : t1 ==# t2 ? 0 : 1
+endfunction
 
 " I use Roboto Mono from https://github.com/powerline/fonts
 " On iTerm2, Preferences -> Profiles -> Text -> Font
