@@ -20,10 +20,10 @@ if true ; then
     # I like 023 or 030 for the git branch color. See https://i.stack.imgur.com/UQVe5.png
     if [[ -n $SSH_CLIENT ]]; then
         export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93";
-                      else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\h:\w\[\e[38;5;030m\]$(__git_ps1 " ⊸%s")\[\e[38;5;242m\]$\[\e[0m\] '
+                      else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\h:\w\[\e[38;5;030m\]$(__git_ps1 " %s")\[\e[38;5;242m\]$\[\e[0m\] '
     else
         export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93";
-                      else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\w\[\e[38;5;030m\]$(__git_ps1 " ⊸%s")\[\e[38;5;242m\]$\[\e[0m\] '
+                      else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\w\[\e[38;5;030m\]$(__git_ps1 " %s")\[\e[38;5;242m\]$\[\e[0m\] '
     fi
 else
     export PROMPT_DIRTRIM=4
