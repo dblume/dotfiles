@@ -4,26 +4,39 @@ if [[ $(uname -s) != Darwin* ]] && [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-# Some devices may not have __git_ps1, so fake it
 if ! $(declare -F __git_ps1 >/dev/null); then
-    __git_ps1() {
-        local fmt="${1:- (%s)}"
-        local branch=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-        if [ -n "$branch" ]; then
-            printf "$fmt" "$branch"
-        fi
-    }
+    # Try to source a file with __git_ps1
+    if [[ -e /usr/lib/git-core/git-sh-prompt ]]; then
+            . /usr/lib/git-core/git-sh-prompt
+    elif [[ -e /usr/share/git-core/contrib/completion/git-prompt.sh ]]; then
+            . /usr/share/git-core/contrib/completion/git-prompt.sh
+    fi
+
+    # Still no __git_ps1? Fake it.
+    if ! $(declare -F __git_ps1 >/dev/null); then
+        __git_ps1() {
+            local fmt="${1:- (%s)}"
+            local branch=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+            if [ -n "$branch" ]; then
+                printf "$fmt" "$branch"
+            fi
+        }
+    fi
 fi
 
+GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWDIRTYSTATE="true"
+
+# Experimenting with git branch in PS1. Turn off by setting to false.
 if true ; then
     export PROMPT_DIRTRIM=1
     # I like 023 or 030 for the git branch color. See https://i.stack.imgur.com/UQVe5.png
     if [[ -n $SSH_CLIENT ]]; then
         export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93";
-                      else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\h:\w\[\e[38;5;030m\]$(__git_ps1 " %s")\[\e[38;5;242m\]$\[\e[0m\] '
+                      else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\h:\w$(__git_ps1 " \[\e[38;5;030m\]%s\[\e[38;5;242m\]")$\[\e[0m\] '
     else
         export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93";
-                      else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\w\[\e[38;5;030m\]$(__git_ps1 " %s")\[\e[38;5;242m\]$\[\e[0m\] '
+                      else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\w$(__git_ps1 " \[\e[38;5;030m\]%s\[\e[38;5;242m\]")$\[\e[0m\] '
     fi
 else
     export PROMPT_DIRTRIM=4
