@@ -7,7 +7,7 @@ fi
 # Some devices may not have __git_ps1, so fake it
 if ! $(declare -F __git_ps1 >/dev/null); then
     __git_ps1() {
-        local fmt="${1:-%s}"
+        local fmt="${1:- (%s)}"
         local branch=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
         if [ -n "$branch" ]; then
             printf "$fmt" "$branch"
