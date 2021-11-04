@@ -7,9 +7,11 @@ fi
 if ! $(declare -F __git_ps1 >/dev/null); then
     # Try to source a file with __git_ps1
     if [[ -e /usr/lib/git-core/git-sh-prompt ]]; then
-            . /usr/lib/git-core/git-sh-prompt
+        . /usr/lib/git-core/git-sh-prompt
     elif [[ -e /usr/share/git-core/contrib/completion/git-prompt.sh ]]; then
-            . /usr/share/git-core/contrib/completion/git-prompt.sh
+        . /usr/share/git-core/contrib/completion/git-prompt.sh
+    elif [[ $(uname -s) == Darwin* ]] && [[ -f $(brew --prefix git)/etc/bash_completion.d/git-prompt.sh ]]; then
+        . $(brew --prefix git)/etc/bash_completion.d/git-prompt.sh
     fi
 
     # Still no __git_ps1? Fake it.
