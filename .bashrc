@@ -12,6 +12,9 @@ if ! $(declare -F __git_ps1 >/dev/null); then
         . /usr/share/git-core/contrib/completion/git-prompt.sh
     elif [[ $(uname -s) == Darwin* ]] && [[ -f $(brew --prefix git)/etc/bash_completion.d/git-prompt.sh ]]; then
         . $(brew --prefix git)/etc/bash_completion.d/git-prompt.sh
+    elif [[ -f $HOME/.git-prompt.sh ]]; then
+        # wget -O ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+        . $HOME/.git-prompt.sh
     fi
 
     # Still no __git_ps1? Fake it.
