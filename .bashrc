@@ -16,11 +16,17 @@ if ! $(declare -F __git_ps1 >/dev/null); then
 
     # Still no __git_ps1? Fake it.
     if ! $(declare -F __git_ps1 >/dev/null); then
+        # By icetan at https://stackoverflow.com/a/35513635/9181
+        # Ex. to test if in a git repo: "rtrav .git $PWD"
+        rtrav() { [ -e "$2"/"$1" ] || { [ "$2" != / ] && rtrav "$1" $(dirname "$2"); } }
+
         __git_ps1() {
-            local fmt="${1:- (%s)}"
-            local branch=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-            if [ -n "$branch" ]; then
-                printf -- "$fmt" "$branch"
+            if rtrav .git "$PWD"; then
+                local fmt="${1:- (%s)}"
+                local branch=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+                if [ -n "$branch" ]; then
+                    printf -- "$fmt" "$branch"
+                fi
             fi
         }
     fi
@@ -28,6 +34,7 @@ fi
 
 GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWDIRTYSTATE="true"
+GIT_PS1_STATESEPARATOR=""
 
 # Experimenting with git branch in PS1. Turn off by setting to false.
 if true ; then
@@ -142,7 +149,7 @@ md() {
             echo "rm \"$T\" >/dev/null 2>&1" | at now + 2 minutes
         else
             # Set BROWSER to your web browser's path
-            "$BROWSER" $(realpath --relative-to=$PWD $T)
+            "$BROWSER" '\\wsl$/Ubuntu'$T
         fi
     fi
 }
