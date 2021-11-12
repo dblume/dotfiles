@@ -355,7 +355,9 @@ endif
 let g:airline_symbols.whitespace = '✖'
 let g:airline_symbols.linenr = 'Ξ'
 let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.readonly = '●'
+" If using a powerline font, don't override .readonly. Otherwise pick one.
+"let g:airline_symbols.readonly = '◆'
+"let g:airline_symbols.readonly = '🔒'
 
 " If no "...for Powerline" font is available, uncomment these four:
 let g:airline_left_sep = '▌'
