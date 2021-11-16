@@ -52,4 +52,7 @@ cscope.out
 cscope.in.out
 cscope.po.out
 
+### Gdb ###
+.gdb_history
+
 .gitconfig.local
