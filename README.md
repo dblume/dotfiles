@@ -6,8 +6,8 @@ in new user home directories.
 ### Getting the project
 
 You can get a copy of this project by clicking on the
-[ZIP](http://git.dlma.com/dotfiles.git/zipball/master)
-or [TAR](http://git.dlma.com/dotfiles.git/tarball/master) buttons
+[ZIP](http://git.dlma.com/dotfiles.git/zipball/main)
+or [TAR](http://git.dlma.com/dotfiles.git/tarball/main) buttons
 near the top right of the GitList web page.
 
 With an account, you can clone from the origin with:
@@ -20,7 +20,7 @@ If you're not cloning the repo, then run the following:
 
     ~$ mkdir dotfiles
     ~$ cd dotfiles
-    dotfiles$ curl -L http://git.dlma.com/dotfiles.git/tarball/master > dotfiles.tar
+    dotfiles$ curl -L http://git.dlma.com/dotfiles.git/tarball/main > dotfiles.tar
     dotfiles$ tar -xvf dotfiles.tar
     dotfiles$ rm dotfiles.tar
 
@@ -65,5 +65,5 @@ See [config.dlma.com](http://config.dlma.com) for more.
 
 ### License
 
-This software uses the [MIT license](http://git.dlma.com/dotfiles.git/blob/master/LICENSE.txt).
+This software uses the [MIT license](http://git.dlma.com/dotfiles.git/blob/main/LICENSE.txt).
 
