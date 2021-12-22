@@ -148,7 +148,7 @@ md() {
         declare -r T=$(mktemp --suffix=.html)
         curl -s -X POST --data-binary @"$1" https://md.dlma.com/ > $T
         if [[ -z "${WSL_DISTRO_NAME}" ]]; then
-            xdg-open $T
+            gio open $T
             echo "rm \"$T\" >/dev/null 2>&1" | at now + 2 minutes
         else
             # Set BROWSER to your web browser's path
