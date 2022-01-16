@@ -81,6 +81,7 @@ if [[ $(uname -s) == CYGWIN* ]]; then
     ulimit -n 1024 # for "duplicity"
 elif [[ -n "${WSL_DISTRO_NAME}" ]]; then
     export BROWSER=/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe
+    alias pbcopy='tee <&0 | /mnt/c/Windows/System32/clip.exe'
 fi
 
 # change the color of directories in the ls command
