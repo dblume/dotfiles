@@ -39,26 +39,22 @@ GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWDIRTYSTATE="true"
 GIT_PS1_STATESEPARATOR=""
 
-# Experimenting with git branch in PS1. Turn off by setting to false.
-if true ; then
-    export PROMPT_DIRTRIM=1
-    # I like 023 or 030 for the git branch color. See https://i.stack.imgur.com/UQVe5.png
-    if [[ -n $SSH_CLIENT ]]; then
-        export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93";
-                      else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\h:\w$(__git_ps1 " \[\e[38;5;030m\]%s\[\e[38;5;242m\]")$\[\e[0m\] '
-    else
-        export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93";
-                      else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\w$(__git_ps1 " \[\e[38;5;030m\]%s\[\e[38;5;242m\]")$\[\e[0m\] '
-    fi
+# Trim everything before the dash, then trim everything after the colon.
+SHORT_DOCKER_VER=${DOCKER_VER#*-}
+SHORT_DOCKER_VER="🐳 \e[0;36m${SHORT_DOCKER_VER%:*}"
+
+export PROMPT_DIRTRIM=2
+# I like 023 or 030 for the git branch color. See https://i.stack.imgur.com/UQVe5.png
+if [[ -n $SSH_CLIENT ]]; then
+    export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93";
+                  else echo -e "\[\e[31m\]\xe2\x9c\x97";
+                  fi)$(if [ -n "$DOCKER_VER" ]; then echo -e " $SHORT_DOCKER_VER";
+                  fi) \[\e[38;5;242m\]\h:\w$(__git_ps1 " \[\e[38;5;030m\]%s\[\e[38;5;242m\]")$\[\e[0m\] '
 else
-    export PROMPT_DIRTRIM=4
-    if [[ -n $SSH_CLIENT ]]; then
-        export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93";
-                      else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\h:\w$\[\e[0m\] '
-    else
-        export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93";
-                      else echo -e "\[\e[31m\]\xe2\x9c\x97"; fi) \[\e[38;5;242m\]\w$\[\e[0m\] '
-    fi
+    export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93";
+                  else echo -e "\[\e[31m\]\xe2\x9c\x97";
+                  fi)$(if [ -n "$DOCKER_VER" ]; then echo -e " $SHORT_DOCKER_VER";
+                  fi) \[\e[38;5;242m\]\w$(__git_ps1 " \[\e[38;5;030m\]%s\[\e[38;5;242m\]")$\[\e[0m\] '
 fi
 
 set -o vi
