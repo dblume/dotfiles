@@ -1,0 +1,8 @@
+# These are the top-level requirements I always seem to need.
+# To generate "requirements.txt", install pip-tools:
+#
+#     (venv) $ python3 -m pip install pip-tools
+#     (venv) $ pip-compile requirements.in
+#
+matplotlib
+requests

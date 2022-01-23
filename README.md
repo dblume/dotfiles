@@ -54,10 +54,18 @@ See [config.dlma.com](http://config.dlma.com) for more.
 5. .inputrc, for a [partially matched command history traversal](http://askubuntu.com/questions/59846/bash-history-search-partial-up-arrow/59855#59855).
 6. .ssh/config, for a [fix for CVE-2016-0777](https://news.ycombinator.com/item?id=10901588). (Or upgrade to OpenSSH 7.1p2 released Jan 14, 2016 from http://www.openssh.com.)
 
+#### Optional manual step: Install common Python  modules
+
+If you're coming from the far future and want the latest modules, not those
+pinned to a version, `pip install` requirements.in instead of requirements.txt.
+
+    python3 -m pip install -r requirements.in
+
 #### What's not installed
 
 1. .dircolors (There are instructions in .bashrc to lighten the color of directories.)
 2. Private data like keys, get those from the USB4 bioport in the back of your neck.
+3. The commonly used Python modules described above
 
 ### Is it any good?
 
