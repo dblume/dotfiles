@@ -40,22 +40,21 @@ GIT_PS1_SHOWDIRTYSTATE="true"
 GIT_PS1_STATESEPARATOR=""
 
 # Trim everything before the dash, then trim everything after the colon.
-SHORT_DOCKER_VER=${DOCKER_VER#*-}
-SHORT_DOCKER_VER="🐳 \e[0;36m${SHORT_DOCKER_VER%:*}"
+PS1_DOCKER_VER=${DOCKER_VER#*-}
+PS1_DOCKER_VER="🐳 \e[0;36m${PS1_DOCKER_VER%:*}"
+
+# In PS1, "\h" is hostname
+if [[ -n $SSH_CLIENT ]]; then
+    PS1_HOSTNAME="$HOSTNAME:"
+else
+    PS1_HOSTNAME=
+fi
 
 export PROMPT_DIRTRIM=2
-# I like 023 or 030 for the git branch color. See https://i.stack.imgur.com/UQVe5.png
-if [[ -n $SSH_CLIENT ]]; then
-    export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93";
-                  else echo -e "\[\e[31m\]\xe2\x9c\x97";
-                  fi)$(if [ -n "$DOCKER_VER" ]; then echo -e " $SHORT_DOCKER_VER";
-                  fi) \[\e[38;5;242m\]\h:\w$(__git_ps1 " \[\e[38;5;030m\]%s\[\e[38;5;242m\]")$\[\e[0m\] '
-else
-    export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93";
-                  else echo -e "\[\e[31m\]\xe2\x9c\x97";
-                  fi)$(if [ -n "$DOCKER_VER" ]; then echo -e " $SHORT_DOCKER_VER";
-                  fi) \[\e[38;5;242m\]\w$(__git_ps1 " \[\e[38;5;030m\]%s\[\e[38;5;242m\]")$\[\e[0m\] '
-fi
+export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93";
+              else echo -e "\[\e[31m\]\xe2\x9c\x97";
+              fi)$(if [ -n "$DOCKER_VER" ]; then echo -e " $PS1_DOCKER_VER";
+              fi) \[\e[38;5;242m\]$PS1_HOSTNAME\w$(__git_ps1 " \[\e[38;5;030m\]%s\[\e[38;5;242m\]")$\[\e[0m\] '
 
 set -o vi
 
