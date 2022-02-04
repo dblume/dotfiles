@@ -52,6 +52,9 @@ cscope.out
 cscope.in.out
 cscope.po.out
 
+### macOS ###
+.DS_Store
+
 ### Gdb ###
 .gdb_history
 
