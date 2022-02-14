@@ -4,6 +4,7 @@
 [diff]
 	tool = vimdiff
 	noprefix = true
+	submodule = log
 [difftool]
 	prompt = false
 [push]
