@@ -149,6 +149,27 @@ vnoremap <leader>s :sort<cr>
 vnoremap < <gv
 vnoremap > >gv
 
+" Make <C-W>o toggle maximizing a window.
+" https://vim.fandom.com/wiki/Maximize_window_and_return_to_previous_split_structure
+nnoremap <C-W>o :call MaximizeToggle()<CR>
+function! MaximizeToggle()
+  if exists("s:maximize_session")
+    exec "source " . s:maximize_session
+    call delete(s:maximize_session)
+    unlet s:maximize_session
+    let &hidden=s:maximize_hidden_save
+    unlet s:maximize_hidden_save
+    " ColorColumn highlight gets changed. Workaround: unset it.
+    highlight clear ColorColumn
+  else
+    let s:maximize_hidden_save = &hidden
+    let s:maximize_session = tempname()
+    set hidden
+    exec "mksession! " . s:maximize_session
+    only
+  endif
+endfunction
+
 " If too many file system events are getting triggered.
 set nobackup       " ~ files
 set nowritebackup  " Don't write buff to temp, delete orig, rename temp to orig
@@ -266,39 +287,8 @@ set omnifunc=syntaxcomplete#Complete
 " set omnifunc=pythoncomplete#Complete
 " inoremap <Nul> <C-x><C-o>
 
-" This function attempts to reuse the same scratch
-" buffer over and over, so you always see output in
-" the same location in your window layout.
-function! ExecuteFileIntoScratchBuffer()
-  write
-  let f=expand("%:p")
-  let cur_win = winnr()
-  if buflisted("_vim_output")
-    exe bufwinnr("_vim_output") . "wincmd w"
-    enew
-  else
-    vnew
-    let cur_win = cur_win+1
-  endif
-  setlocal buftype=nofile
-  setlocal bufhidden=delete
-  setlocal noswapfile
-  silent file _vim_output
-  execute '.! "'.f.'"'
-  exe cur_win . "wincmd w"
-endfunc
-nmap <F5> :call ExecuteFileIntoScratchBuffer()<cr>
-
-" Execute a selection of code
-" Use Visual to select a range and then hit ctrl-h to execute it.
-if has("python")
-python << EOL
-import vim
-def EvaluateCurrentRange():
-    eval(compile('\n'.join(vim.current.range),'','exec'),globals())
-EOL
-vnoremap <C-h> :py EvaluateCurrentRange()<cr>
-endif
+" See git history for ExecuteFileIntoScratchBuffer.
+" Instead use: tmux and entr to run code after saving edits.
 
 " cscope
 if has("cscope")
