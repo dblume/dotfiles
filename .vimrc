@@ -112,8 +112,15 @@ nmap <leader>tn :tabnew
 nmap <leader>to :tabonly<cr>
 nmap <leader>tc :tabclose<cr>
 nmap <leader>tm :tabmove
-" Opens a new tab with the current buffer's path
-nmap <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+" Open current buffer in new tab. Close with C-w,c
+" https://vim.fandom.com/wiki/Maximize_window_and_return_to_previous_split_structure
+function! OpenCurrentAsNewTab()
+    let l:currentPos = getcurpos()
+    tabedit %
+    call setpos(".", l:currentPos)
+endfunction
+nmap <leader>o :call OpenCurrentAsNewTab()<CR>
 
 " pastetoggle
 nmap <leader>p :set invpaste paste?<cr>
@@ -149,9 +156,10 @@ vnoremap <leader>s :sort<cr>
 vnoremap < <gv
 vnoremap > >gv
 
+" TODO: Delete this MaximizeToggle(), use OpenCurrentAsNewTab() instead.
 " Make <C-W>o toggle maximizing a window.
 " https://vim.fandom.com/wiki/Maximize_window_and_return_to_previous_split_structure
-nnoremap <C-W>o :call MaximizeToggle()<CR>
+"nnoremap <C-W>o :call MaximizeToggle()<CR>
 function! MaximizeToggle()
   if exists("s:maximize_session")
     exec "source " . s:maximize_session
