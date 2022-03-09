@@ -116,9 +116,9 @@ nmap <leader>tm :tabmove
 " Open current buffer in new tab. Close with C-w,c
 " https://vim.fandom.com/wiki/Maximize_window_and_return_to_previous_split_structure
 function! OpenCurrentAsNewTab()
-    let l:currentPos = getcurpos()
+    let l:currentView = winsaveview()
     tabedit %
-    call setpos(".", l:currentPos)
+    call winrestview(l:currentView)
 endfunction
 nmap <leader>o :call OpenCurrentAsNewTab()<CR>
 
