@@ -1,4 +1,4 @@
-" Version 2021-09-24.1 - Sort Quickfix list by filename
+" Version 2022-03-10.1 - Use Quickfix for cscope, add OpenCurrentAsNewTab 
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -302,6 +302,8 @@ set omnifunc=syntaxcomplete#Complete
 if has("cscope")
     set cscopetag  " Use both cscope and ctag for 'ctrl-]'
     set csto=1     " 0=cscope first; 1=ctags first
+    set cscopequickfix=s-,c-,d-,i-,t-,e-,a- " cscope to quickfix window
+
     set nocsverb
     " add any database in current directory
     if filereadable("cscope.out")
