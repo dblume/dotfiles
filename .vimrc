@@ -1,4 +1,4 @@
-" Version 2022-03-10.1 - Use Quickfix for cscope, add OpenCurrentAsNewTab 
+" Version 2022-03-10.1 - Use Quickfix for cscope, add OpenCurrentAsNewTab
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -238,6 +238,7 @@ function! OpenInOtherWindow()
 endfunc
 
 nmap <silent> <leader>F :call OpenInOtherWindow()<cr>
+nmap <silent> <leader>f :call OpenInOtherWindow()<cr>
 
 if has("autocmd")
   autocmd! BufWritePost .vimrc source %           " re-source this file when saved.
