@@ -320,10 +320,17 @@ endif
 " :grep -r term path/
 " :cw
 " :ccl (or C-w,q)
-autocmd! QuickfixCmdPost * call SortQuickfix('QfStrCmp')
+autocmd! QuickfixCmdPost * call MaybeSortQuickfix('QfStrCmp')
 
-function! SortQuickfix(fn)
-    call setqflist(sort(getqflist(), a:fn), 'r')
+function! MaybeSortQuickfix(fn)
+"    exe 'normal! '  " Doesn't work. Wanted to jump back to where we were.
+    let t = getqflist({'title': 1}).title
+    " Only sort the files if cscope generated the list, not for "make" commands.
+    if stridx(t, "cs ") == 0
+        call setqflist(sort(getqflist(), a:fn), 'r')
+        call setqflist([], 'r', {'title': t})
+    endif
+    cwindow
 endfunction
 
 function! QfStrCmp(e1, e2)
