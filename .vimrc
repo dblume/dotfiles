@@ -103,7 +103,6 @@ nmap <leader>w :w!<cr>         " Fast saving
 nmap <leader>r :set relativenumber!<cr>
 nmap <leader>n :set number!<cr>
 
-
 " Useful mappings for managing tabs
 "
 nmap <leader>th <esc>:tabprevious<cr>
@@ -155,28 +154,6 @@ vnoremap <leader>s :sort<cr>
 "easier moving of code blocks
 vnoremap < <gv
 vnoremap > >gv
-
-" TODO: Delete this MaximizeToggle(), use OpenCurrentAsNewTab() instead.
-" Make <C-W>o toggle maximizing a window.
-" https://vim.fandom.com/wiki/Maximize_window_and_return_to_previous_split_structure
-"nnoremap <C-W>o :call MaximizeToggle()<CR>
-function! MaximizeToggle()
-  if exists("s:maximize_session")
-    exec "source " . s:maximize_session
-    call delete(s:maximize_session)
-    unlet s:maximize_session
-    let &hidden=s:maximize_hidden_save
-    unlet s:maximize_hidden_save
-    " ColorColumn highlight gets changed. Workaround: unset it.
-    highlight clear ColorColumn
-  else
-    let s:maximize_hidden_save = &hidden
-    let s:maximize_session = tempname()
-    set hidden
-    exec "mksession! " . s:maximize_session
-    only
-  endif
-endfunction
 
 " If too many file system events are getting triggered.
 set nobackup       " ~ files
@@ -326,8 +303,8 @@ autocmd! QuickfixCmdPost * call MaybeSortQuickfix('QfStrCmp')
 function! MaybeSortQuickfix(fn)
 "    exe 'normal! '  " Doesn't work. Wanted to jump back to where we were.
     let t = getqflist({'title': 1}).title
-    " Only sort the files if cscope generated the list, not for "make" commands.
-    if stridx(t, "cs ") == 0
+    " Only sort the files if for search-style commands, not "make".
+    if stridx(t, "cs ") == 0 || stridx(t, ":gr") == 0 || stridx(t, ":vim") == 0
         call setqflist(sort(getqflist(), a:fn), 'r')
         call setqflist([], 'r', {'title': t})
     endif
