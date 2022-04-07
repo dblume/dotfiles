@@ -34,17 +34,8 @@ inoremap jk <esc>
 " clear search highlights
 nnoremap <cr> :noh<cr><cr>
 
-" Commented out because I want tags searches to always be case sensitive.
-" Override with \c anywhere in your search.
-"set ignorecase      " If you enter all lowercase, it's case insensitive,
-"set smartcase       " if you use mixed-case terms, it's case sensitive.
-
 syntax on
 
-" If you think this is hard to read,
-" change the color of comments in vim, or
-" use another color scheme like desert or peaksea
-"
 set t_Co=256
 if v:version >= 703
   set colorcolumn=80
@@ -87,17 +78,11 @@ if has('statusline')
   set statusline=%<%f\   " Filename
   set statusline+=%w%h%m%r " Options
   "set statusline+=%{fugitive#statusline()} " Git
-  "set statusline+=\ [%{&ff}/%Y]            " filetype
-  "set statusline+=\ [%{getcwd()}]          " current dir
-  "set statusline+=\ [A=\%03.3b/H=\%02.2B]  " ASCII / Hexadecimal value of char
-  set statusline+=%=%-14.(%l,%c%V%)\ %p%%   " Right aligned file nav info
+  set statusline+=\[%{&ff}/%Y]              " filetype
+  set statusline+=%=%-12.(%l,%c%V%)\ %p%%   " Right aligned file nav info
 endif
 
 set encoding=utf-8
-
-" I don't set comma for mapleader because it's useful for reverse-finding.
-" let mapleader = ","
-" let g:mapleader = ","
 
 nmap <leader>w :w!<cr>         " Fast saving
 " I use relative number for cursor movement.
@@ -219,17 +204,16 @@ nmap <silent> <leader>F :call OpenInOtherWindow()<cr>
 nmap <silent> <leader>f :call OpenInOtherWindow()<cr>
 
 if has("autocmd")
-  autocmd! BufWritePost .vimrc source %           " re-source this file when saved.
   autocmd BufWrite *.py :call DeleteTrailingWS()  " Delete trailing whitespace
   " Don't let smartindent unindent the # character in Python files
   autocmd FileType python  inoremap # X<c-h>#
-  autocmd FileType c,cpp,python,php,brs  set expandtab  " Use spaces instead of tabs
+  autocmd FileType c,cpp,php,brs  set expandtab   " Use spaces instead of tabs
   autocmd Filetype make    setl noexpandtab       " ...not for files that use tabs.
 
   " Use the vim command %retab before applying the following
   " two with files that have 8-space tabs.
   autocmd FileType c,cpp,python,php  set tabstop=4
-  autocmd FileType c,cpp,python,php  set shiftwidth=4
+  autocmd FileType c,cpp,php  set shiftwidth=4
 
   autocmd FileType python  set foldmethod=indent  " 'za' to fold
   autocmd FileType python  set foldlevel=99
@@ -248,15 +232,8 @@ if has("autocmd")
     autocmd FocusGained * if &number | set relativenumber | endif
   endif
 
-  " Since I have the undo tree saved to disk now (see above), I might prefer to
-  " automatically save the file when focus is lost.
-  " autocmd FocusLost * silent! wa
-
-  " I'm in the habit of hitting Return myself.
-  " autocmd BufRead *.txt set textwidth=78         " Limit width of text to 78 chars
-
-  autocmd BufRead *.txt set wrap linebreak nolist  " "soft" wrap of existing lines
-  autocmd BufRead README set wrap linebreak nolist " "soft" wrap of existing lines
+  autocmd BufRead *.txt set wrap linebreak   " "soft" wrap of existing lines
+  autocmd BufRead README set wrap linebreak  " "soft" wrap of existing lines
 
   " When editing a file, always jump to the last cursor position
   autocmd BufReadPost *
@@ -273,9 +250,6 @@ set omnifunc=syntaxcomplete#Complete
 " Auto completion via ctrl-space (instead of ctrl-x ctrl-o)
 " set omnifunc=pythoncomplete#Complete
 " inoremap <Nul> <C-x><C-o>
-
-" See git history for ExecuteFileIntoScratchBuffer.
-" Instead use: tmux and entr to run code after saving edits.
 
 " cscope
 if has("cscope")
