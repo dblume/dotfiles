@@ -72,6 +72,7 @@ else
   endif
   highlight StatusLine   ctermfg=20 ctermbg=Gray " override scheme (overridden by powerline)
   highlight StatusLineNC ctermfg=17 ctermbg=DarkGray" override scheme
+  highlight MatchParen   term=reverse ctermbg=23 " 23 is more subtle than default
 endif
 " highlight Comment     term=bold ctermfg=Blue ctermbg=0 guifg=SlateBlue guibg=Black
 
