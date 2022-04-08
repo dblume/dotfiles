@@ -48,7 +48,7 @@ if has('gui_running') " Didn't work: if &term != 'builtin_gui'
   if v:version >= 703
     highlight ColorColumn ctermbg=255 guibg=#F6F6F6
   endif
-  highlight StatusLine   ctermfg=17 ctermbg=Gray " override scheme (overridden by powerline)
+  highlight StatusLine   ctermfg=17 ctermbg=Gray " override scheme
   highlight StatusLineNC ctermfg=20 ctermbg=LightGray" override scheme
   if has('win32')
     set guifont=DejaVu_Sans_Mono_for_Powerline:h10:cANSI:qDRAFT
@@ -61,11 +61,12 @@ else
   if v:version >= 703
     highlight ColorColumn ctermbg=233 guibg=Black " dark gray (or 17, dark blue)
   endif
-  highlight StatusLine   ctermfg=20 ctermbg=Gray " override scheme (overridden by powerline)
-  highlight StatusLineNC ctermfg=17 ctermbg=DarkGray" override scheme
-  highlight MatchParen   term=reverse ctermbg=23 " 23 is more subtle than default
+  highlight StatusLine   ctermfg=24 ctermbg=LightGray  " override scheme
+  highlight StatusLineNC ctermfg=236 ctermbg=Gray  " override scheme
+  highlight MatchParen   term=reverse ctermbg=23  " 23 is more subtle than default
 endif
-" highlight Comment     term=bold ctermfg=Blue ctermbg=0 guifg=SlateBlue guibg=Black
+
+" let g:loaded_airline = 1  " For testing the statusline settings above
 
 " set mouse=v     " visual mode, not working great for PuTTY
 
