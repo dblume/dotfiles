@@ -299,6 +299,15 @@ function! QfStrCmp(e1, e2)
     return t1 <# t2 ? -1 : t1 ==# t2 ? 0 : 1
 endfunction
 
+" Use ripgrep for search instead of grep
+if executable('rg')
+    " set grepprg=rg\ --vimgrep\ --hidden\ —glob '!.git'
+    set grepprg=rg
+endif
+" Navigate quickfix list with ease
+nnoremap <silent> [q :cprevious<CR>
+nnoremap <silent> ]q :cnext<CR>
+
 " I use Roboto Mono from https://github.com/powerline/fonts
 " On iTerm2, Preferences -> Profiles -> Text -> Font
 " Cygwin64 won't let you choose it. Launch Cygwin64 as follows:
