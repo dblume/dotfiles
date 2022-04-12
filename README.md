@@ -51,8 +51,10 @@ See [config.dlma.com](http://config.dlma.com) for more.
         6. Assorted favorite colors like [desert](https://github.com/dblume/desert.vim).
 3. .gitconfig and .gitignore
 4. .tmux.conf
-5. .inputrc, for a [partially matched command history traversal](http://askubuntu.com/questions/59846/bash-history-search-partial-up-arrow/59855#59855).
-6. .ssh/config, for a [fix for CVE-2016-0777](https://news.ycombinator.com/item?id=10901588). (Or upgrade to OpenSSH 7.1p2 released Jan 14, 2016 from http://www.openssh.com.)
+5. .inputrc, for vi mode and a [partially matched command history traversal](http://askubuntu.com/questions/59846/bash-history-search-partial-up-arrow/59855#59855).
+6. .editrc, for vi mode and tab word completion in macOS.
+7. .ssh/config, for a [fix for CVE-2016-0777](https://news.ycombinator.com/item?id=10901588). (Or upgrade to OpenSSH 7.1p2 released Jan 14, 2016 from http://www.openssh.com.)
+8. .ripgreprc, for ripgrep, or [rc](https://github.com/BurntSushi/ripgrep/).
 
 #### Optional manual steps for fresh setups
 

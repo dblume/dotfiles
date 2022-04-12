@@ -1,0 +1,5 @@
+--no-heading
+-n
+--max-columns=150
+--glob=!builds/
+--glob=!tags
