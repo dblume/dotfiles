@@ -287,7 +287,7 @@ function! MaybeSortQuickfix(fn)
 "    exe 'normal! '  " Doesn't work. Wanted to jump back to where we were.
     let t = getqflist({'title': 1}).title
     " Only sort the files if for search-style commands, not "make".
-    if stridx(t, "cs ") == 0 || stridx(t, ":gr") == 0 || stridx(t, ":vim") == 0
+    if stridx(t, "cs ") == 0 || stridx(t, ":gr") == 0 || stridx(t, ":vim") == 0 || stridx(t, ":rg") == 0
         call setqflist(sort(getqflist(), a:fn), 'r')
         call setqflist([], 'r', {'title': t})
     endif
