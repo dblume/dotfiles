@@ -1,5 +1,6 @@
 --no-heading
 -n
---max-columns=150
 --glob=!builds/
 --glob=!tags
+--glob=!cscope.*
+--glob=!toolchain/toolchain-roku*
