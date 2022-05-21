@@ -111,14 +111,22 @@ add_to_path $HOME/bin
 
 # For interactive shells ('i' in $-), disable stty flow control (ctrl+s,ctrl+q)
 case "$-" in
-*i*)
+ *i*)
   stty start ''
   stty stop  ''
   stty -ixon # disable XON/XOFF flow control
   stty ixoff # enable sending (to app) of start/stop characters
   stty ixany # let any character restart output, not only start character
-  ;;
-*) ;;
+
+  # set CDPATH
+  # Don't use export. Only POSIX needs it to start with ".:"
+  # This may get appended to in .localrc
+  CDPATH=$HOME
+  case :$SHELLOPTS: in
+   *:posix:*) CDPATH=.:$CDPATH ;;
+  esac
+
+ ;;
 esac
 
 alias findinpyfiles="find . -name \*.py -print0 | xargs -0 grep -nI"
