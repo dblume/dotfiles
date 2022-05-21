@@ -118,13 +118,8 @@ case "$-" in
   stty ixoff # enable sending (to app) of start/stop characters
   stty ixany # let any character restart output, not only start character
 
-  # set CDPATH
-  # Don't use export. Only POSIX needs it to start with ".:"
-  # This may get appended to in .localrc
-  CDPATH=$HOME
-  case :$SHELLOPTS: in
-   *:posix:*) CDPATH=.:$CDPATH ;;
-  esac
+  # Don't use export for CDPATH. This may get appended to in .localrc too.
+  CDPATH=.:$HOME
 
  ;;
 esac
