@@ -255,9 +255,17 @@ endif
 " See :help new-omni-completion for more.
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
-" Auto completion via ctrl-space (instead of ctrl-x ctrl-o)
-" set omnifunc=pythoncomplete#Complete
-" inoremap <Nul> <C-x><C-o>
+
+" Torn on whether I like the omni completion preview window left open or not.
+" autocmd CompleteDone * pclose
+
+" Omni completion via ctrl-space (in addition to ctrl-x ctrl-o)
+inoremap <Nul> <C-x><C-o>
+
+" Next two map j and k to C-n (next) and C-p (prev).
+" But it's affected by the 'jk to ESC' mapping above, so commented out.
+"inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
+"inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
 
 " cscope
 if has("cscope")
