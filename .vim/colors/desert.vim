@@ -53,6 +53,8 @@ hi WarningMsg	guifg=salmon
 "hi Menu
 "hi Scrollbar
 "hi Tooltip
+hi Pmenu	ctermbg=33 ctermfg=235
+hi PmenuSel	ctermbg=14 ctermfg=0
 
 " syntax highlighting groups
 hi Comment	guifg=SkyBlue
