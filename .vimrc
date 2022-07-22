@@ -10,7 +10,7 @@ set nofoldenable    " start unfolded
 set foldlevel=0
 set nowrap          " no wrapping text lines on the screen (exceptions below)
 set sidescroll=5
-set listchars+=tab:>-,precedes:<,extends:> " indicators of long lines
+set listchars+=tab:>-,precedes:<,extends:>,nbsp:· " for :set list
 
 if v:version >= 703
   " Do save the undo tree to file, but not in the local directory.
