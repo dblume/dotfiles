@@ -55,6 +55,7 @@ See [config.dlma.com](http://config.dlma.com) for more.
 6. .editrc, for vi mode and tab word completion in macOS.
 7. .ssh/config, for a [fix for CVE-2016-0777](https://news.ycombinator.com/item?id=10901588). (Or upgrade to OpenSSH 7.1p2 released Jan 14, 2016 from http://www.openssh.com.)
 8. .ripgreprc, for ripgrep, or [rc](https://github.com/BurntSushi/ripgrep/).
+9. .gdbinit
 
 #### Optional manual steps for fresh setups
 
