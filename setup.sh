@@ -2,7 +2,7 @@
 set -eu -o pipefail # See: https://sipb.mit.edu/doc/safe-shell/
 
 declare -r SCRIPT_NAME=$(basename "$BASH_SOURCE")
-declare -r backup_dir=$HOME/backup_of_dotfiles_`date "+%Y-%m-%d"`
+declare -r backup_dir=$HOME/backup_of_dotfiles_$(date "+%Y-%m-%d_%H%M%S")
 declare -a dotfiles=(".bashrc" ".bash_profile" ".vimrc" ".editrc" ".gitconfig"
                      ".gitignore" ".inputrc" ".tmux.conf" ".ssh/config" ".ripgreprc"
                      ".gdbinit")
