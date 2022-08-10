@@ -48,7 +48,8 @@ See [config.dlma.com](http://config.dlma.com) for more.
         3. [taglist](http://www.vim.org/scripts/script.php?script_id=273), a ctags tree-view explorer.
         4. [file-line](http://www.vim.org/scripts/script.php?script_id=2184), to open file:line as from a compiler error.
         5. [visual-star-search](http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html), so * and # work in visual mode too.
-        6. Assorted favorite colors like [desert](https://github.com/dblume/desert.vim).
+        6. [vim-rooter](https://github.com/airblade/vim-rooter), automatically find and set root project directory
+        7. Assorted favorite colors like [desert](https://github.com/dblume/desert.vim).
 3. .gitconfig and .gitignore
 4. .tmux.conf
 5. .inputrc, for vi mode and a [partially matched command history traversal](http://askubuntu.com/questions/59846/bash-history-search-partial-up-arrow/59855#59855).

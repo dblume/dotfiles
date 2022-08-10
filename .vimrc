@@ -353,3 +353,6 @@ let g:airline_right_alt_sep = '|'
 let g:airline_theme = 'powerlineish'
 let g:airline#extensions#wordcount#enabled = 0
 " let g:airline_exclude_filetypes = []
+
+" Experimenting with vim-rooter
+let g:rooter_patterns = ['.git', 'Makefile', 'builds/']
