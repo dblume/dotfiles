@@ -98,13 +98,22 @@ nmap <leader>r :set relativenumber!<cr>
 nmap <leader>n :set number!<cr>
 
 " Useful mappings for managing tabs
-"
+" First two are dubious. Use gT and gt.
 nmap <leader>th <esc>:tabprevious<cr>
 nmap <leader>tl <esc>:tabnext<cr>
 nmap <leader>tn :tabnew
 nmap <leader>to :tabonly<cr>
 nmap <leader>tc :tabclose<cr>
 nmap <leader>tm :tabmove
+nmap <leader>1 1gt
+nmap <leader>2 2gt
+nmap <leader>3 3gt
+nmap <leader>4 4gt
+nmap <leader>5 5gt
+nmap <leader>6 6gt
+nmap <leader>7 7gt
+nmap <leader>8 8gt
+nmap <leader>9 9gt
 
 " Open current buffer in new tab. Close with C-w,c
 " https://vim.fandom.com/wiki/Maximize_window_and_return_to_previous_split_structure
