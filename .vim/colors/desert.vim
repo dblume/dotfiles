@@ -55,6 +55,9 @@ hi WarningMsg	guifg=salmon
 "hi Tooltip
 hi Pmenu	ctermbg=33 ctermfg=235
 hi PmenuSel	ctermbg=14 ctermfg=0
+hi TabLineSel	ctermfg=white ctermbg=239
+hi TabLine	ctermfg=247 ctermbg=237
+hi TabLineFill	ctermfg=235
 
 " syntax highlighting groups
 hi Comment	guifg=SkyBlue
