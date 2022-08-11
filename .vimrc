@@ -98,9 +98,8 @@ nmap <leader>r :set relativenumber!<cr>
 nmap <leader>n :set number!<cr>
 
 " Useful mappings for managing tabs
-" First two are dubious. Use gT and gt.
-nmap <leader>th <esc>:tabprevious<cr>
-nmap <leader>tl <esc>:tabnext<cr>
+" Tab Previous: gT or C-PageUp
+" Tab Next: gt or C-PageDown
 nmap <leader>tn :tabnew
 nmap <leader>to :tabonly<cr>
 nmap <leader>tc :tabclose<cr>
