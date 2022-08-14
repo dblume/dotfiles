@@ -53,11 +53,6 @@ hi WarningMsg	guifg=salmon
 "hi Menu
 "hi Scrollbar
 "hi Tooltip
-hi Pmenu	ctermbg=33 ctermfg=235
-hi PmenuSel	ctermbg=14 ctermfg=0
-hi TabLineSel	ctermfg=white ctermbg=239
-hi TabLine	ctermfg=247 ctermbg=237
-hi TabLineFill	ctermfg=235
 
 " syntax highlighting groups
 hi Comment	guifg=SkyBlue
@@ -108,6 +103,11 @@ hi Underlined	cterm=underline ctermfg=5
 hi Ignore	cterm=bold ctermfg=7
 hi Ignore	ctermfg=darkgrey
 hi Error	cterm=bold ctermfg=7 ctermbg=1
+hi Pmenu	ctermbg=33 ctermfg=235
+hi PmenuSel	ctermbg=14 ctermfg=0
+hi TabLineSel	ctermfg=white ctermbg=239
+hi TabLine	ctermfg=247 ctermbg=237
+hi TabLineFill	ctermfg=235
 
 
 "vim: sw=4
