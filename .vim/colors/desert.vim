@@ -81,7 +81,7 @@ hi Question	ctermfg=green
 hi StatusLine	cterm=bold,reverse
 hi StatusLineNC cterm=reverse
 hi VertSplit	cterm=reverse
-hi Title	ctermfg=5
+hi Title	ctermfg=74
 hi Visual	cterm=reverse
 hi VisualNOS	cterm=bold,underline
 hi WarningMsg	ctermfg=1
@@ -94,12 +94,12 @@ hi DiffText     term=reverse ctermbg=cyan ctermfg=black
 hi DiffDelete   term=reverse ctermbg=52 ctermfg=black
 hi Comment	ctermfg=darkcyan
 hi Constant	ctermfg=brown
-hi Special	ctermfg=5
+hi Special	ctermfg=74
 hi Identifier	ctermfg=6
 hi Statement	ctermfg=3
-hi PreProc	ctermfg=5
+hi PreProc	ctermfg=74
 hi Type		ctermfg=2
-hi Underlined	cterm=underline ctermfg=5
+hi Underlined	cterm=underline ctermfg=74
 hi Ignore	cterm=bold ctermfg=7
 hi Ignore	ctermfg=darkgrey
 hi Error	cterm=bold ctermfg=7 ctermbg=1
