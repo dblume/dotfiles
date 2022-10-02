@@ -364,3 +364,5 @@ let g:airline#extensions#wordcount#enabled = 0
 
 " Experimenting with vim-rooter
 let g:rooter_patterns = ['.git', 'Makefile', 'builds/']
+let g:rooter_cd_cmd = 'lcd'
+let g:rooter_manual_only = 1
