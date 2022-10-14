@@ -9,6 +9,7 @@
 	prompt = false
 [push]
 	default = simple
+	autoSetupRemote = true
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
@@ -22,5 +23,7 @@
 	defaultBranch = main
 [fetch]
 	prune = true
+[merge]
+	tool = vimdiff
 [include]
 	path = ~/.gitconfig.local
