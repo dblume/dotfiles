@@ -4,7 +4,7 @@ if [[ $(uname -s) != Darwin* ]] && [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-if ! $(declare -F __git_ps1 >/dev/null); then
+if [[ -v PS1 ]] && ! $(declare -F __git_ps1 >/dev/null); then
     # Try to source a file with __git_ps1
     if [[ -e /usr/lib/git-core/git-sh-prompt ]]; then
         . /usr/lib/git-core/git-sh-prompt
