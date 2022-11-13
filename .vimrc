@@ -253,7 +253,7 @@ if has("autocmd")
 
   " When editing a file, always jump to the last cursor position
   autocmd BufReadPost *
-  \ if &ft != "p4changelist" && line("'\"") > 0 && line ("'\"") <= line("$") |
+  \ if &ft != "p4changelist" && &ft != "gitcommit" && line("'\"") > 0 && line ("'\"") <= line("$") |
   \   exe "normal! g'\"" |
   \ endif
 endif
