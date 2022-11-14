@@ -2,5 +2,6 @@
 --line-number
 --glob=!tags
 --glob=!cscope.*
+--glob=!*.yuv
 --glob=!**/platforms/Roku{4,TV,X64}
 --glob=!toolchain/toolchain-roku*
