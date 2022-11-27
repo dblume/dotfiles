@@ -57,6 +57,7 @@ See [config.dlma.com](http://config.dlma.com) for more.
 7. .ssh/config, for a [fix for CVE-2016-0777](https://news.ycombinator.com/item?id=10901588). (Or upgrade to OpenSSH 7.1p2 released Jan 14, 2016 from http://www.openssh.com.)
 8. .ripgreprc, for ripgrep, or [rc](https://github.com/BurntSushi/ripgrep/).
 9. .gdbinit
+10. .config/gitui/key\_bindings.ron, for vim key bindings in [gitui](https://github.com/extrawurst/gitui).
 
 #### Optional manual steps for fresh setups
 

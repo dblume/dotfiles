@@ -5,7 +5,7 @@ declare -r SCRIPT_NAME=$(basename "$BASH_SOURCE")
 declare -r backup_dir=$HOME/backup_of_dotfiles_$(date "+%Y-%m-%d_%H%M%S")
 declare -a dotfiles=(".bashrc" ".bash_profile" ".vimrc" ".editrc" ".gitconfig"
                      ".gitignore" ".inputrc" ".tmux.conf" ".ssh/config" ".ripgreprc"
-                     ".gdbinit")
+                     ".gdbinit" ".config/gitui/key_bindings.ron")
 declare -i DRY_RUN=0
 
 ## exit the shell (with status 2) after printing the message
@@ -55,7 +55,7 @@ do
         fi
     else
         echo "$i" will be added to HOME.
-        ((DRY_RUN==0)) && cp "$i" $HOME/"$i"
+        ((DRY_RUN==0)) && mkdir -p $HOME/$(dirname "$i") && cp "$i" $HOME/"$i"
     fi
 done
 
