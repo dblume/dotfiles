@@ -92,7 +92,8 @@ endif
 
 set encoding=utf-8
 
-nmap <leader>w :w!<cr>         " Fast saving
+" Fast saving
+nmap <leader>w :w!<cr>
 " I use relative number for cursor movement.
 nmap <leader>r :set relativenumber!<cr>
 nmap <leader>n :set number!<cr>
@@ -144,10 +145,14 @@ function! ToggleNetrw()
 endfunction
 nmap <leader>e :call ToggleNetrw()<cr>
 
-let Tlist_GainFocus_On_ToggleOpen = 1     " Jump to taglist window on open
-let Tlist_Exit_OnlyWindow = 1             " if you are the last, kill yourself
-nmap <leader>l :TlistToggle<cr>           " install taglist
-nmap <leader>bd :Bdelete<cr>              " install vim-bbye
+" install taglist
+let Tlist_GainFocus_On_ToggleOpen = 1  " Jump to taglist window on open
+let Tlist_Exit_OnlyWindow = 1          " if you are the last, kill yourself
+let Tlist_Close_On_Select = 1          " Close taglist window on select
+nmap <leader>l :TlistToggle<cr>
+
+" install vim-bbye
+nmap <leader>bd :Bdelete<cr>
 
 " Visual mode mappings
 """
