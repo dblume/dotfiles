@@ -144,6 +144,8 @@ function! ToggleNetrw()
 endfunction
 nmap <leader>e :call ToggleNetrw()<cr>
 
+let Tlist_GainFocus_On_ToggleOpen = 1     " Jump to taglist window on open
+let Tlist_Exit_OnlyWindow = 1             " if you are the last, kill yourself
 nmap <leader>l :TlistToggle<cr>           " install taglist
 nmap <leader>bd :Bdelete<cr>              " install vim-bbye
 
