@@ -58,9 +58,15 @@ export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93";
 
 set -o vi
 
-add_to_path() {
+append_to_path() {
     if [ -d "$1" ] && [[ ! $PATH =~ (^|:)$1(:|$) ]]; then
         PATH+=:$1
+    fi
+}
+
+prepend_to_path() {
+    if [ -d "$1" ] && [[ ! $PATH =~ (^|:)$1(:|$) ]]; then
+        PATH=$1:$PATH
     fi
 }
 
@@ -71,7 +77,7 @@ add_to_path() {
 if [[ $(uname -s) == CYGWIN* ]]; then
     PATH=/usr/local/bin:/usr/bin:$PATH
     PATH=${PATH//":/usr/local/bin:/usr/bin"/} # delete any instances in middle
-    add_to_path /usr/lib/lapack
+    append_to_path /usr/lib/lapack
     export GIT_SSH=/cygdrive/c/cygwin64/bin/ssh
     ulimit -n 1024 # for "duplicity"
 elif [[ -n "${WSL_DISTRO_NAME}" ]]; then
@@ -107,7 +113,7 @@ alias tmux='tmux -2u'
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Add to PATH only if not already in PATH.
-add_to_path $HOME/bin
+append_to_path $HOME/bin
 
 # For interactive shells ('i' in $-), disable stty flow control (ctrl+s,ctrl+q)
 case "$-" in

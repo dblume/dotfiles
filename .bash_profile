@@ -15,5 +15,7 @@ if [[ $(uname -s) == Darwin* ]]; then
         alias ctags="$(brew --prefix)/bin/ctags"
     fi
     # Set default names for GNU grep, sed and find
-    PATH="/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/findutils/libexec/gnubin:$PATH"
+    prepend_to_path /usr/local/opt/grep/libexec/gnubin
+    prepend_to_path /usr/local/opt/gnu-sed/libexec/gnubin
+    prepend_to_path /usr/local/opt/findutils/libexec/gnubin
 fi
