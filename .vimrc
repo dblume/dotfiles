@@ -28,8 +28,10 @@ nnoremap j gj
 nnoremap k gk
 
 " From Steve Losh: http://learnvimscriptthehardway.stevelosh.com/chapters/10.html
-" Map jk to ESC in insert mode
-inoremap jk <esc>
+" Map jk to ESC in insert mode (except when navigating popup menu)
+inoremap <expr> jk pumvisible() ? '' : '<esc>'
+inoremap <expr> j pumvisible() ? '<Down>' : 'j'
+inoremap <expr> k pumvisible() ? '<Up>' : 'k'
 
 " https://stevelosh.com/blog/2010/09/coming-home-to-vim/#s3-why-i-came-back-to-vim
 nnoremap <leader>v <C-w>v<C-w>l
@@ -276,11 +278,6 @@ set omnifunc=syntaxcomplete#Complete
 
 " Omni completion via ctrl-space (in addition to ctrl-x ctrl-o)
 inoremap <Nul> <C-x><C-o>
-
-" Next two map j and k to C-n (next) and C-p (prev).
-" But it's affected by the 'jk to ESC' mapping above, so commented out.
-"inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
-"inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
 
 " cscope
 if has("cscope")
