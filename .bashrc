@@ -112,8 +112,9 @@ alias tmux='tmux -2u'
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Add to PATH only if not already in PATH.
+# Add to PATH only if not already in PATH. .cargo/bin for rustc
 append_to_path $HOME/bin
+append_to_path $HOME/.cargo/bin
 
 # For interactive shells ('i' in $-), disable stty flow control (ctrl+s,ctrl+q)
 case "$-" in
