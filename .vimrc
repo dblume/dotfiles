@@ -259,6 +259,7 @@ if has("autocmd")
 
   autocmd BufRead *.txt set wrap linebreak   " "soft" wrap of existing lines
   autocmd BufRead README set wrap linebreak  " "soft" wrap of existing lines
+  autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
 
   " When editing a file, always jump to the last cursor position
   autocmd BufReadPost *
