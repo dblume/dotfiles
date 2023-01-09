@@ -70,13 +70,19 @@ prepend_to_path() {
     fi
 }
 
+remove_from_path() {
+    # N.B. It'll remove all instances of $1, so ensure it's a unique pathname
+    PATH=${PATH//"$1"/}
+}
+
 # if this is a CygWin .bashrc, then set CygWin's commands first in PATH
 # because link.exe and find.exe exist in Windows's path.
 # Add /usr/lib/lapack at the end so python's numpy can find lapack_lite
 # (Note: BSD bash, used by OS X doesn't have the "substr" test for expr.)
 if [[ $(uname -s) == CYGWIN* ]]; then
-    PATH=/usr/local/bin:/usr/bin:$PATH
-    PATH=${PATH//":/usr/local/bin:/usr/bin"/} # delete any instances in middle
+    prepend_to_path /usr/bin
+    prepend_to_path /usr/local/bin
+    remove_from_path ":/usr/local/bin:/usr/bin"
     append_to_path /usr/lib/lapack
     export GIT_SSH=/cygdrive/c/cygwin64/bin/ssh
     ulimit -n 1024 # for "duplicity"
