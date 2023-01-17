@@ -40,6 +40,12 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" https://levelup.gitconnected.com/7-surprising-vim-tricks-that-will-save-you-hours-b158d23fe9b7
+nnoremap <leader>d "_d
+nnoremap <leader>D "_D
+nnoremap <leader>c "_c
+nnoremap <leader>C "_C
+
 " clear search highlights
 nnoremap <cr> :noh<cr><cr>
 
