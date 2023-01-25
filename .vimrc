@@ -260,9 +260,9 @@ if has("autocmd")
   autocmd FileType c,cpp nmap <buffer> <leader>s :call SwitchSourceHeader()<cr>
   autocmd FileType c,cpp set foldmethod=syntax
 
-  " autocmd FileType roku :let g:airline_extensions = []
-  " autocmd FileType roku :let g:airline_section_warning = airline#section#create([])
-  autocmd FileType roku :let g:airline#extensions#whitespace#enabled = 0
+  " autocmd FileType rokulog :let g:airline_extensions = []
+  " autocmd FileType rokulog :let g:airline_section_warning = airline#section#create([])
+  autocmd FileType rokulog :let g:airline#extensions#whitespace#enabled = 0
 
   if v:version >= 703
     " I toggle out of relative number when Vim's focus is lost, because
