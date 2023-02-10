@@ -41,18 +41,18 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " https://levelup.gitconnected.com/7-surprising-vim-tricks-that-will-save-you-hours-b158d23fe9b7
-nnoremap d "_d
-nnoremap D "_D
-nnoremap c "_c
-nnoremap C "_C
-nnoremap x "_x
-nnoremap X "_X
-nnoremap <leader>d d
-nnoremap <leader>D D
-nnoremap <leader>c c
-nnoremap <leader>C C
-nnoremap <leader>x x
-nnoremap <leader>X X
+"nnoremap d "_d
+"nnoremap D "_D
+"nnoremap c "_c
+"nnoremap C "_C
+"nnoremap x "_x
+"nnoremap X "_X
+"nnoremap <leader>d d
+"nnoremap <leader>D D
+"nnoremap <leader>c c
+"nnoremap <leader>C C
+"nnoremap <leader>x x
+"nnoremap <leader>X X
 
 " clear search highlights
 nnoremap <cr> :noh<cr><cr>
@@ -139,6 +139,10 @@ function! OpenCurrentAsNewTab()
     call winrestview(l:currentView)
 endfunction
 nmap <leader>o :call OpenCurrentAsNewTab()<CR>
+
+" git blame (uses # instead of % for file)
+" Delete this line when you install https://github.com/tpope/vim-fugitive
+command Blame tabnew | r! git blame #
 
 " pastetoggle
 nmap <leader>p :set invpaste paste?<cr>
