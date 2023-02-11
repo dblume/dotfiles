@@ -140,9 +140,39 @@ function! OpenCurrentAsNewTab()
 endfunction
 nmap <leader>o :call OpenCurrentAsNewTab()<CR>
 
-" git blame (uses # instead of % for file)
-" Delete this line when you install https://github.com/tpope/vim-fugitive
-command Blame tabnew | r! git blame #
+" git blame, show, and diff
+" Delete these functions when you install https://github.com/tpope/vim-fugitive
+function! GitBlame()
+    let l:fname = expand('%:t')
+    exec 'tabnew | r! git blame ' . shellescape(expand('%'))
+    setl buftype=nofile
+    exec 'silent :file git blame ' . l:fname
+endfunction
+command Blame :call GitBlame()
+
+function! GitShow()
+    let l:hash = expand('<cword>')
+    exec 'tabnew | r! git show ' . l:hash
+    setl buftype=nofile
+    0d_
+    exec 'silent :file git show ' . l:hash
+endfunction
+command Show :call GitShow()
+
+function! GitDiff()
+    let l:fname = expand('%:t')
+    let l:buf = winbufnr(0)
+    exec ':tabnew | r! git show HEAD:$(git rev-parse --show-prefix)' . l:fname
+    setl buftype=nofile
+    0d_
+    exec 'silent :file git show HEAD:' . l:fname
+    exec 'vert sb '.l:buf
+    windo diffthis
+    setl buftype=nofile
+    wincmd r
+    wincmd l
+endfunction
+command Diff :call GitDiff()
 
 " pastetoggle
 nmap <leader>p :set invpaste paste?<cr>
