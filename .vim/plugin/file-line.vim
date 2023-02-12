@@ -22,6 +22,8 @@ function! s:gotoline()
 		return
 	endif
 
+	" Don't commit this change. Just testing vimrc Diff command.
+
 	let file_name = names[1]
 	let line_num  = names[2] == ''? '0' : names[2]
 	let  col_num  = names[3] == ''? '0' : names[3]

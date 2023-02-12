@@ -160,7 +160,7 @@ endfunction
 command Show :call GitShow()
 
 function! GitDiff()
-    let l:fname = expand('%:t')
+    let l:fname = expand('%:.')
     let l:buf = winbufnr(0)
     exec ':tabnew | r! git show HEAD:$(git rev-parse --show-prefix)' . l:fname
     setl buftype=nofile
@@ -419,3 +419,7 @@ let g:airline#extensions#wordcount#enabled = 0
 let g:rooter_patterns = ['.git', 'Makefile', 'builds/']
 let g:rooter_cd_cmd = 'lcd'
 let g:rooter_manual_only = 1
+
+" In some environments, Vim starts in replace mode:
+" https://superuser.com/questions/1284561/why-is-vim-starting-in-replace-mode
+" set t_u7=
