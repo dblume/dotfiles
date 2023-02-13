@@ -162,10 +162,19 @@ command Show :call GitShow()
 function! GitDiff()
     let l:fname = expand('%:.')
     let l:buf = winbufnr(0)
-    exec ':tabnew | r! git show HEAD:$(git rev-parse --show-prefix)' . l:fname
+    let l:commit = 'HEAD'
+
+    " If the buffer is not different then repo, then diff HEAD vs file's previous commit
+    let l:o = system("git status --porcelain | grep " . l:fname)
+    if v:shell_error != 0
+        let l:commit = system('git log -2 --pretty=format:"%h" -- ' . l:fname . ' | tail -n 1')
+    endif
+
+    " Bug if l:filename includes ".."
+    exec ':tabnew | r! git show ' . l:commit . ':$(git rev-parse --show-prefix)' . l:fname
     setl buftype=nofile
     0d_
-    exec 'silent :file git show HEAD:' . l:fname
+    exec 'silent :file git show '.l:commit.':' . l:fname
     exec 'vert sb '.l:buf
     windo diffthis
     setl buftype=nofile
@@ -173,6 +182,14 @@ function! GitDiff()
     wincmd l
 endfunction
 command Diff :call GitDiff()
+
+function! GitLog()
+    let l:fname = expand('%:t')
+    exec 'tabnew | r! git log1 -- ' . shellescape(expand('%'))
+    setl buftype=nofile
+    exec 'silent :file git log1 ' . l:fname
+endfunction
+command Log :call GitLog()
 
 " pastetoggle
 nmap <leader>p :set invpaste paste?<cr>
