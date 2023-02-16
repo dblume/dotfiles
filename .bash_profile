@@ -14,12 +14,12 @@ if [[ $(uname -s) == Darwin* ]]; then
     if [[ -n $ITERM_PROFILE && -z $SSH_CLIENT && -f "${HOME}/tips.txt" ]]; then
         cat "${HOME}/tips.txt"
     fi
-    if [[ -n $CDPATH && -f $(brew --prefix)/etc/bash_completion ]]; then
+    if [[ -n $CDPATH && -f $HOMEBREW_PREFIX/etc/bash_completion ]]; then
         # brew install bash-completion (for $CDPATH completion)
-        source $(brew --prefix)/etc/bash_completion
+        source $HOMEBREW_PREFIX/etc/bash_completion
     fi
-    if [[ -f $(brew --prefix)/bin/ctags ]]; then
-        alias ctags="$(brew --prefix)/bin/ctags"
+    if [[ -f $HOMEBREW_PREFIX/bin/ctags ]]; then
+        alias ctags="$HOMEBREW_PREFIX/bin/ctags"
     fi
     # Set default names for GNU grep, sed and find
     prepend_to_path $HOMEBREW_PREFIX/opt/grep/libexec/gnubin
