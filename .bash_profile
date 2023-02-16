@@ -2,6 +2,10 @@
 
 if [ -f "${HOME}/.bashrc" ]; then
     if [[ $(uname -s) == Darwin* ]]; then
+        # Mac M1 installs into /opt/homebrew/; Intel Mac installs into /usr/local/
+        if [ -d "/opt/homebrew/bin/" ] && [[ ! $PATH =~ (^|:)/opt/homebrew/bin/(:|$) ]]; then
+            PATH+=:/opt/homebrew/bin/
+        fi
         command -v brew >/dev/null 2>&1 && eval "$(brew shellenv)"
     fi
     source "${HOME}/.bashrc"
@@ -18,19 +22,7 @@ if [[ $(uname -s) == Darwin* ]]; then
         alias ctags="$(brew --prefix)/bin/ctags"
     fi
     # Set default names for GNU grep, sed and find
-    if [[ -d "/usr/local/opt/grep/libexec/gnubin" ]]; then  # old path
-        prepend_to_path /usr/local/opt/grep/libexec/gnubin
-    elif [[ -d "/opt/homebrew/opt/grep/libexec/gnubin" ]]; then
-        prepend_to_path /opt/homebrew/opt/grep/libexec/gnubin
-    fi
-    if [[ -d "/usr/local/opt/gnu-sed/libexec/gnubin" ]]; then  # old path
-        prepend_to_path /usr/local/opt/gnu-sed/libexec/gnubin
-    elif [[ -d "/opt/homebrew/opt/gnu-sed/libexec/gnubin" ]]; then
-        prepend_to_path /opt/homebrew/opt/gnu-sed/libexec/gnubin
-    fi
-    if [[ -d "/usr/local/opt/findutils/libexec/gnubin" ]]; then  # old path
-        prepend_to_path /usr/local/opt/findutils/libexec/gnubin
-    elif [[ -d "/opt/homebrew/opt/findutils/libexec/gnubin" ]]; then
-        prepend_to_path /opt/homebrew/opt/findutils/libexec/gnubin
-    fi
+    prepend_to_path $HOMEBREW_PREFIX/opt/grep/libexec/gnubin
+    prepend_to_path $HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin
+    prepend_to_path $HOMEBREW_PREFIX/opt/findutils/libexec/gnubin
 fi
