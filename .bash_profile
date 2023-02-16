@@ -2,7 +2,7 @@
 
 if [ -f "${HOME}/.bashrc" ]; then
     if [[ $(uname -s) == Darwin* ]]; then
-        eval "$(/opt/homebrew/bin/brew shellenv)"
+        command -v brew >/dev/null 2>&1 && eval "$(brew shellenv)"
     fi
     source "${HOME}/.bashrc"
 fi
