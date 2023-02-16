@@ -1,6 +1,9 @@
 # ~/.bash_profile: executed by bash for login shells.
 
 if [ -f "${HOME}/.bashrc" ]; then
+    if [[ $(uname -s) == Darwin* ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
     source "${HOME}/.bashrc"
 fi
 if [[ $(uname -s) == Darwin* ]]; then
@@ -15,7 +18,19 @@ if [[ $(uname -s) == Darwin* ]]; then
         alias ctags="$(brew --prefix)/bin/ctags"
     fi
     # Set default names for GNU grep, sed and find
-    prepend_to_path /usr/local/opt/grep/libexec/gnubin
-    prepend_to_path /usr/local/opt/gnu-sed/libexec/gnubin
-    prepend_to_path /usr/local/opt/findutils/libexec/gnubin
+    if [[ -d "/usr/local/opt/grep/libexec/gnubin" ]]; then  # old path
+        prepend_to_path /usr/local/opt/grep/libexec/gnubin
+    elif [[ -d "/opt/homebrew/opt/grep/libexec/gnubin" ]]; then
+        prepend_to_path /opt/homebrew/opt/grep/libexec/gnubin
+    fi
+    if [[ -d "/usr/local/opt/gnu-sed/libexec/gnubin" ]]; then  # old path
+        prepend_to_path /usr/local/opt/gnu-sed/libexec/gnubin
+    elif [[ -d "/opt/homebrew/opt/gnu-sed/libexec/gnubin" ]]; then
+        prepend_to_path /opt/homebrew/opt/gnu-sed/libexec/gnubin
+    fi
+    if [[ -d "/usr/local/opt/findutils/libexec/gnubin" ]]; then  # old path
+        prepend_to_path /usr/local/opt/findutils/libexec/gnubin
+    elif [[ -d "/opt/homebrew/opt/findutils/libexec/gnubin" ]]; then
+        prepend_to_path /opt/homebrew/opt/findutils/libexec/gnubin
+    fi
 fi
