@@ -6,8 +6,7 @@ set autoindent      " Copy indent from current line when starting a new line
 set smartindent     " Do smart auto indenting when starting  new line
 set smarttab        " Honor 'shiftwidth', 'tabstop' or 'softtabstop'
 set hlsearch        " highlight all matches for previous search
-set nofoldenable    " start unfolded
-set foldlevel=0
+set foldlevel=99
 set nowrap          " no wrapping text lines on the screen (exceptions below)
 set sidescroll=5
 set listchars+=tab:>-,precedes:<,extends:>,nbsp:· " for :set list
@@ -306,7 +305,6 @@ if has("autocmd")
   autocmd FileType c,cpp,php  set shiftwidth=4
 
   autocmd FileType python  set foldmethod=indent  " 'za' to fold
-  autocmd FileType python  set foldlevel=99
 
   autocmd FileType c,cpp nmap <buffer> <leader>s :call SwitchSourceHeader()<cr>
   autocmd FileType c,cpp set foldmethod=syntax
