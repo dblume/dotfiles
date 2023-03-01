@@ -25,4 +25,5 @@ if [[ $(uname -s) == Darwin* ]]; then
     prepend_to_path $HOMEBREW_PREFIX/opt/grep/libexec/gnubin
     prepend_to_path $HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin
     prepend_to_path $HOMEBREW_PREFIX/opt/findutils/libexec/gnubin
+    prepend_to_path $HOMEBREW_PREFIX/opt/gawk/libexec/gnubin
 fi
