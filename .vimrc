@@ -56,6 +56,10 @@ nnoremap <C-l> <C-w>l
 " clear search highlights
 nnoremap <cr> :noh<cr><cr>
 
+" tab switches to previous/next buffer
+nnoremap <Tab> :bp<cr>
+nnoremap <S-Tab> :bn<cr>
+
 syntax on
 
 set t_Co=256
