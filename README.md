@@ -55,9 +55,10 @@ See [config.dlma.com](http://config.dlma.com) for more.
 5. .inputrc, for vi mode and a [partially matched command history traversal](http://askubuntu.com/questions/59846/bash-history-search-partial-up-arrow/59855#59855).
 6. .editrc, for vi mode and tab word completion in macOS.
 7. .ssh/config, for a [fix for CVE-2016-0777](https://news.ycombinator.com/item?id=10901588). (Or upgrade to OpenSSH 7.1p2 released Jan 14, 2016 from http://www.openssh.com.)
-8. .ripgreprc, for ripgrep, or [rc](https://github.com/BurntSushi/ripgrep/).
+8. .ripgreprc, for ripgrep, or [rg](https://github.com/BurntSushi/ripgrep/).
 9. .gdbinit
-10. .config/gitui/key\_bindings.ron, for vim key bindings in [gitui](https://github.com/extrawurst/gitui).
+10. .visidatarc, to hide [visidata's](https://www.visidata.org/) menu at the top, for the old school UI.
+11. .config/gitui/key\_bindings.ron, for vim key bindings in [gitui](https://github.com/extrawurst/gitui).
 
 #### Optional manual steps for fresh setups
 
