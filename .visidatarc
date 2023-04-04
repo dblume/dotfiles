@@ -1,1 +1,3 @@
 options.disp_menu = False
+options.mouse_interval = 0 # disables the mouse-click
+options.scroll_incr = 0    # disables the scroll wheel
