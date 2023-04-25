@@ -146,8 +146,10 @@ nmap <leader>o :call OpenCurrentAsNewTab()<CR>
 " git blame, show, and diff
 " Delete these functions when you install https://github.com/tpope/vim-fugitive
 function! GitBlame()
+    let l:currentView = winsaveview()
     let l:fname = expand('%:t')
     exec 'tabnew | r! git blame ' . shellescape(expand('%'))
+    call winrestview(l:currentView)
     setl buftype=nofile
     exec 'silent :file git blame ' . l:fname
 endfunction
