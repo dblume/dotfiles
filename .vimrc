@@ -143,24 +143,37 @@ function! OpenCurrentAsNewTab()
 endfunction
 nmap <leader>o :call OpenCurrentAsNewTab()<CR>
 
-" git blame, show, and diff
+" git blame, show, diff and log
 " Delete these functions when you install https://github.com/tpope/vim-fugitive
 function! GitBlame()
+    let l:hash = expand('<cword>')
     let l:currentView = winsaveview()
-    let l:fname = expand('%:t')
-    exec 'tabnew | r! git blame ' . shellescape(expand('%'))
+    " If in a Blame window already, do blame for previous commit
+    if l:hash =~ '^[0-9a-f]\{8,40}$' && stridx(expand('%'), ' -- ') != -1
+        let l:fname = split(expand('%'), ' -- ')[-1]
+        exec 'tabnew | r! git blame ' . l:hash . '^ -- ' . shellescape(l:fname)
+        exec 'silent :file git blame ' . l:hash . '^ -- ' . l:fname
+    else
+        let l:fname = expand('%')
+        exec 'tabnew | r! git blame -- ' . shellescape(l:fname)
+        exec 'silent :file git blame -- ' . l:fname
+    endif
+    0d_
     call winrestview(l:currentView)
     setl buftype=nofile
-    exec 'silent :file git blame ' . l:fname
 endfunction
 command Blame :call GitBlame()
 
 function! GitShow()
     let l:hash = expand('<cword>')
-    exec 'tabnew | r! git show ' . l:hash
-    setl buftype=nofile
-    0d_
-    exec 'silent :file git show ' . l:hash
+    if l:hash =~ '^[0-9a-f]\{8,40}$'
+        exec 'tabnew | r! git show ' . l:hash
+        setl buftype=nofile
+        0d_
+        exec 'silent :file git show ' . l:hash
+    else
+        echo l:hash . ' is not a git hash.'
+    endif
 endfunction
 command Show :call GitShow()
 
@@ -192,6 +205,7 @@ function! GitLog()
     let l:fname = expand('%:t')
     exec 'tabnew | r! git log1 -- ' . shellescape(expand('%'))
     setl buftype=nofile
+    0d_
     exec 'silent :file git log1 ' . l:fname
 endfunction
 command Log :call GitLog()
