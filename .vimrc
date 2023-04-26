@@ -1,4 +1,4 @@
-" Version 2022-03-10.1 - Use Quickfix for cscope, add OpenCurrentAsNewTab
+" Version 2023-04-26.1 - Harmonize the git commands for common recipes
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -149,7 +149,7 @@ function! GitBlame()
     let l:hash = expand('<cword>')
     let l:currentView = winsaveview()
     " If in a Blame window already, do blame for previous commit
-    if l:hash =~ '^[0-9a-f]\{8,40}$' && stridx(expand('%'), ' -- ') != -1
+    if l:hash =~ '^[0-9a-f]\{7,40}$' && stridx(expand('%'), ' -- ') != -1
         let l:fname = split(expand('%'), ' -- ')[-1]
         exec 'tabnew | r! git blame ' . l:hash . '^ -- ' . shellescape(l:fname)
         exec 'silent :file git blame ' . l:hash . '^ -- ' . l:fname
@@ -165,12 +165,19 @@ endfunction
 command Blame :call GitBlame()
 
 function! GitShow()
+    let l:fname = expand('%')
     let l:hash = expand('<cword>')
-    if l:hash =~ '^[0-9a-f]\{8,40}$'
+    if l:hash =~ '^[0-9a-f]\{7,40}$'
+        if stridx(l:fname, ' -- ') != -1
+            let l:fname = split(l:fname, ' -- ')[-1]
+	endif
+	" Have Show show all the affected files, so don't actually use  "--"
+        " exec 'tabnew | r! git show ' . l:hash . ' -- ' . shellescape(l:fname)
         exec 'tabnew | r! git show ' . l:hash
         setl buftype=nofile
         0d_
-        exec 'silent :file git show ' . l:hash
+	" We lie here (' -- ') to have a filename the other git commands can use.
+        exec 'silent :file git show ' . l:hash . ' -- ' . l:fname
     else
         echo l:hash . ' is not a git hash.'
     endif
@@ -181,19 +188,34 @@ function! GitDiff()
     let l:fname = expand('%:.')
     let l:buf = winbufnr(0)
     let l:commit = 'HEAD'
+    let l:hash = expand('<cword>')
 
-    " If the buffer is not different then repo, then diff HEAD vs file's previous commit
-    let l:o = system("git status --porcelain | grep " . l:fname)
-    if v:shell_error != 0
-        let l:commit = system('git log -2 --pretty=format:"%h" -- ' . l:fname . ' | tail -n 1')
+    " If the current word is a hash, then diff that vs. previous
+    if l:hash =~ '^[0-9a-f]\{7,40}$' && stridx(expand('%'), ' -- ') != -1
+        let l:fname = split(expand('%'), ' -- ')[-1]
+        exec ':tabnew | silent r! git show ' . l:hash . '^:$(git rev-parse --show-prefix)' . shellescape(l:fname)
+        setl buftype=nofile
+        0d_
+        exec 'silent :file git show '.l:hash .'^:' . l:fname
+
+        exec 'vne | silent r! git show ' . l:hash . ':$(git rev-parse --show-prefix)' . shellescape(l:fname)
+        setl buftype=nofile
+        exec 'silent :file git show '.l:hash.':' . l:fname
+        0d_
+    else
+        " If the buffer is not different then repo, then diff HEAD vs file's previous commit
+        let l:o = system("git status --porcelain | grep " . l:fname)
+        if v:shell_error != 0
+            let l:commit = system('git log -2 --pretty=format:"%h" -- ' . l:fname . ' | tail -n 1')
+        endif
+    
+        " Bug if l:filename includes ".."
+        exec ':tabnew | r! git show ' . l:commit . ':$(git rev-parse --show-prefix)' . l:fname
+        setl buftype=nofile
+        0d_
+        exec 'silent :file git show '.l:commit.':' . l:fname
+        exec 'vert sb '.l:buf
     endif
-
-    " Bug if l:filename includes ".."
-    exec ':tabnew | r! git show ' . l:commit . ':$(git rev-parse --show-prefix)' . l:fname
-    setl buftype=nofile
-    0d_
-    exec 'silent :file git show '.l:commit.':' . l:fname
-    exec 'vert sb '.l:buf
     windo diffthis
     setl buftype=nofile
     wincmd r
@@ -202,11 +224,11 @@ endfunction
 command Diff :call GitDiff()
 
 function! GitLog()
-    let l:fname = expand('%:t')
-    exec 'tabnew | r! git log1 -- ' . shellescape(expand('%'))
+    let l:fname = expand('%')
+    exec 'tabnew | r! git log1 -- ' . shellescape(l:fname)
     setl buftype=nofile
     0d_
-    exec 'silent :file git log1 ' . l:fname
+    exec 'silent :file git log1 -- ' . l:fname
 endfunction
 command Log :call GitLog()
 
