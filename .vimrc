@@ -170,13 +170,13 @@ function! GitShow()
     if l:hash =~ '^[0-9a-f]\{7,40}$'
         if stridx(l:fname, ' -- ') != -1
             let l:fname = split(l:fname, ' -- ')[-1]
-	endif
-	" Have Show show all the affected files, so don't actually use  "--"
+        endif
+        " Have Show show all the affected files, so don't actually use  "--"
         " exec 'tabnew | r! git show ' . l:hash . ' -- ' . shellescape(l:fname)
         exec 'tabnew | r! git show ' . l:hash
         setl buftype=nofile
         0d_
-	" We lie here (' -- ') to have a filename the other git commands can use.
+        " We lie here (' -- ') to have a filename the other git commands can use.
         exec 'silent :file git show ' . l:hash . ' -- ' . l:fname
     else
         echo l:hash . ' is not a git hash.'
@@ -208,7 +208,7 @@ function! GitDiff()
         if v:shell_error != 0
             let l:commit = system('git log -2 --pretty=format:"%h" -- ' . l:fname . ' | tail -n 1')
         endif
-    
+
         " Bug if l:filename includes ".."
         exec ':tabnew | r! git show ' . l:commit . ':$(git rev-parse --show-prefix)' . l:fname
         setl buftype=nofile
