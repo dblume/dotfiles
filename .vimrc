@@ -164,25 +164,31 @@ function! GitBlame()
 endfunction
 command Blame :call GitBlame()
 
-function! GitShow()
+function! GitShow(commit_or_file)
     let l:fname = expand('%')
     let l:hash = expand('<cword>')
     if l:hash =~ '^[0-9a-f]\{7,40}$'
         if stridx(l:fname, ' -- ') != -1
             let l:fname = split(l:fname, ' -- ')[-1]
         endif
-        " Have Show show all the affected files, so don't actually use  "--"
-        " exec 'tabnew | r! git show ' . l:hash . ' -- ' . shellescape(l:fname)
-        exec 'tabnew | r! git show ' . l:hash
+        if a:commit_or_file != "file"
+            " Have Show show all the affected files, so don't actually use  "--"
+            " exec 'tabnew | r! git show ' . l:hash . ' -- ' . shellescape(l:fname)
+            exec 'tabnew | r! git show ' . l:hash
+            " We lie here (' -- ') to have a filename the other git commands can use.
+            exec 'silent :file git show ' . l:hash . ' -- ' . l:fname
+        else
+            exec 'tabnew | r! git show ' . l:hash . ':' . shellescape(l:fname)
+            exec 'silent :file git show ' . l:hash . ':' . l:fname
+        endif
         setl buftype=nofile
         0d_
-        " We lie here (' -- ') to have a filename the other git commands can use.
-        exec 'silent :file git show ' . l:hash . ' -- ' . l:fname
     else
         echo l:hash . ' is not a git hash.'
     endif
 endfunction
-command Show :call GitShow()
+command Show :call GitShow("commit")
+command ShowFile :call GitShow("file")
 
 function! GitDiff()
     let l:fname = expand('%:.')
