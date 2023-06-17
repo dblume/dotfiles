@@ -231,6 +231,9 @@ command Diff :call GitDiff()
 
 function! GitLog()
     let l:fname = expand('%')
+    if stridx(l:fname, ' -- ') != -1
+        let l:fname = split(l:fname, ' -- ')[-1]
+    endif
     exec 'tabnew | r! git log1 -- ' . shellescape(l:fname)
     setl buftype=nofile
     0d_
