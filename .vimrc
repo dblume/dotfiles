@@ -166,14 +166,14 @@ function! GitBlame()
         let l:bufname = 'git blame ' . l:hash . '^ -- ' . l:fname
         if !ShowBufInNewTab(l:bufname)
             exec 'tabnew | r! git blame ' . l:hash . '^ -- ' . shellescape(l:fname)
-            exec 'silent :file ' . l:bufname
+            exec 'silent :file ' . fnameescape(l:bufname)
         endif
     else
         let l:fname = expand('%')
         let l:bufname = 'git blame -- ' . l:fname
         if !ShowBufInNewTab(l:bufname)
             exec 'tabnew | r! git blame -- ' . shellescape(l:fname)
-            exec 'silent :file ' . l:bufname
+            exec 'silent :file ' . fnameescape(l:bufname)
         endif
     endif
     0d_
@@ -196,13 +196,13 @@ function! GitShow(commit_or_file)
                 " exec 'tabnew | r! git show ' . l:hash . ' -- ' . shellescape(l:fname)
                 exec 'tabnew | r! git show ' . l:hash
                 " We lie here (' -- ') to have a filename the other git commands can use.
-                exec 'silent :file ' . l:bufname
+                exec 'silent :file ' . fnameescape(l:bufname)
             endif
         else
             let l:bufname = 'git show ' . l:hash . ':' . l:fname
             if !ShowBufInNewTab(l:bufname)
                 exec 'tabnew | r! git show ' . l:hash . ':' . shellescape(l:fname)
-                exec 'silent :file ' . l:bufname
+                exec 'silent :file ' . fnameescape(l:bufname)
             endif
         endif
         setl buftype=nofile
@@ -263,7 +263,7 @@ function! GitLog()
         exec 'tabnew | r! git log1 -- ' . shellescape(l:fname)
         setl buftype=nofile
         0d_
-        exec 'silent :file ' . l:bufname
+        exec 'silent :file ' . fnameescape(l:bufname)
     endif
 endfunction
 command Log :call GitLog()
