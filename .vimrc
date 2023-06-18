@@ -145,18 +145,36 @@ nmap <leader>o :call OpenCurrentAsNewTab()<CR>
 
 " git blame, show, diff and log
 " Delete these functions when you install https://github.com/tpope/vim-fugitive
+
+"A helper function that tries to show a buffer if it already exists
+function! ShowBufInNewTab(bufname)
+   let l:bnr = bufnr(a:bufname)
+   if l:bnr > 0
+       tabnew
+       exec 'buffer ' . l:bnr
+       return 1
+   endif
+   return 0
+endfunction
+
 function! GitBlame()
     let l:hash = expand('<cword>')
     let l:currentView = winsaveview()
-    " If in a Blame window already, do blame for previous commit
+    " If in a Blame window already, do blame for some prior commit
     if l:hash =~ '^[0-9a-f]\{7,40}$' && stridx(expand('%'), ' -- ') != -1
         let l:fname = split(expand('%'), ' -- ')[-1]
-        exec 'tabnew | r! git blame ' . l:hash . '^ -- ' . shellescape(l:fname)
-        exec 'silent :file git blame ' . l:hash . '^ -- ' . l:fname
+        let l:bufname = 'git blame ' . l:hash . '^ -- ' . l:fname
+        if !ShowBufInNewTab(l:bufname)
+            exec 'tabnew | r! git blame ' . l:hash . '^ -- ' . shellescape(l:fname)
+            exec 'silent :file ' . l:bufname
+        endif
     else
         let l:fname = expand('%')
-        exec 'tabnew | r! git blame -- ' . shellescape(l:fname)
-        exec 'silent :file git blame -- ' . l:fname
+        let l:bufname = 'git blame -- ' . l:fname
+        if !ShowBufInNewTab(l:bufname)
+            exec 'tabnew | r! git blame -- ' . shellescape(l:fname)
+            exec 'silent :file ' . l:bufname
+        endif
     endif
     0d_
     call winrestview(l:currentView)
@@ -172,14 +190,20 @@ function! GitShow(commit_or_file)
             let l:fname = split(l:fname, ' -- ')[-1]
         endif
         if a:commit_or_file != "file"
-            " Have Show show all the affected files, so don't actually use  "--"
-            " exec 'tabnew | r! git show ' . l:hash . ' -- ' . shellescape(l:fname)
-            exec 'tabnew | r! git show ' . l:hash
-            " We lie here (' -- ') to have a filename the other git commands can use.
-            exec 'silent :file git show ' . l:hash . ' -- ' . l:fname
+            let l:bufname = 'git show ' . l:hash . ' -- ' . l:fname
+            if !ShowBufInNewTab(l:bufname)
+                " Have Show show all the affected files, so don't actually use  "--"
+                " exec 'tabnew | r! git show ' . l:hash . ' -- ' . shellescape(l:fname)
+                exec 'tabnew | r! git show ' . l:hash
+                " We lie here (' -- ') to have a filename the other git commands can use.
+                exec 'silent :file ' . l:bufname
+            endif
         else
-            exec 'tabnew | r! git show ' . l:hash . ':' . shellescape(l:fname)
-            exec 'silent :file git show ' . l:hash . ':' . l:fname
+            let l:bufname = 'git show ' . l:hash . ':' . l:fname
+            if !ShowBufInNewTab(l:bufname)
+                exec 'tabnew | r! git show ' . l:hash . ':' . shellescape(l:fname)
+                exec 'silent :file ' . l:bufname
+            endif
         endif
         setl buftype=nofile
         0d_
@@ -234,10 +258,13 @@ function! GitLog()
     if stridx(l:fname, ' -- ') != -1
         let l:fname = split(l:fname, ' -- ')[-1]
     endif
-    exec 'tabnew | r! git log1 -- ' . shellescape(l:fname)
-    setl buftype=nofile
-    0d_
-    exec 'silent :file git log1 -- ' . l:fname
+    let l:bufname = 'git log1 -- ' . l:fname
+    if !ShowBufInNewTab(l:bufname)
+        exec 'tabnew | r! git log1 -- ' . shellescape(l:fname)
+        setl buftype=nofile
+        0d_
+        exec 'silent :file ' . l:bufname
+    endif
 endfunction
 command Log :call GitLog()
 
