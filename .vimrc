@@ -260,7 +260,7 @@ function! GitLog()
     endif
     let l:bufname = 'git log -- ' . l:fname
     if !ShowBufInNewTab(l:bufname)
-        exec 'tabnew | r! git log --no-color --graph --date=short --pretty="format:\%h \%ad \%s \%an \%d" -- ' . shellescape(l:fname)
+        exec 'tabnew | r! git log --no-color --graph --date=short --all --pretty="format:\%h \%ad \%s \%an \%d" -- ' . shellescape(l:fname)
         setl buftype=nofile
         0d_
         exec 'silent :file ' . fnameescape(l:bufname)
