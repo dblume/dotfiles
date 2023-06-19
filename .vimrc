@@ -226,11 +226,11 @@ function! GitDiff()
         exec ':tabnew | silent r! git show ' . l:hash . '^:$(git rev-parse --show-prefix)' . shellescape(l:fname)
         setl buftype=nofile
         0d_
-        exec 'silent :file git show '.l:hash .'^:' . l:fname
+        exec 'silent :file ' . fnameescape('git show '.l:hash .'^:'.l:fname)
 
         exec 'vne | silent r! git show ' . l:hash . ':$(git rev-parse --show-prefix)' . shellescape(l:fname)
         setl buftype=nofile
-        exec 'silent :file git show '.l:hash.':' . l:fname
+        exec 'silent :file ' . fnameescape('git show '.l:hash.':'.l:fname)
         0d_
     else
         " If the buffer is not different then repo, then diff HEAD vs file's previous commit
@@ -243,7 +243,7 @@ function! GitDiff()
         exec ':tabnew | r! git show ' . l:commit . ':$(git rev-parse --show-prefix)' . l:fname
         setl buftype=nofile
         0d_
-        exec 'silent :file git show '.l:commit.':' . l:fname
+        exec 'silent :file ' . fnameescape('git show '.l:commit.':'.l:fname)
         exec 'vert sb '.l:buf
     endif
     windo diffthis
@@ -258,9 +258,9 @@ function! GitLog()
     if stridx(l:fname, ' -- ') != -1
         let l:fname = split(l:fname, ' -- ')[-1]
     endif
-    let l:bufname = 'git log1 -- ' . l:fname
+    let l:bufname = 'git log -- ' . l:fname
     if !ShowBufInNewTab(l:bufname)
-        exec 'tabnew | r! git log1 -- ' . shellescape(l:fname)
+        exec 'tabnew | r! git log --no-color --graph --date=short --pretty="format:\%h \%ad \%s \%an \%d" -- ' . shellescape(l:fname)
         setl buftype=nofile
         0d_
         exec 'silent :file ' . fnameescape(l:bufname)
