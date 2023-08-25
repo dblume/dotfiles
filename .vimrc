@@ -253,20 +253,21 @@ function! GitDiff()
 endfunction
 command Diff :call GitDiff()
 
-function! GitLog()
+function! GitLog(flags)
     let l:fname = expand('%')
     if stridx(l:fname, ' -- ') != -1
         let l:fname = split(l:fname, ' -- ')[-1]
     endif
-    let l:bufname = 'git log -- ' . l:fname
+    let l:bufname = 'git log ' . a:flags . '-- ' . l:fname
     if !ShowBufInNewTab(l:bufname)
-        exec 'tabnew | r! git log --no-color --graph --date=short --all --pretty="format:\%h \%ad \%s \%an \%d" -- ' . shellescape(l:fname)
+        exec 'tabnew | r! git log --no-color --graph --date=short ' . a:flags . '--pretty="format:\%h \%ad \%s \%an \%d" -- ' . shellescape(l:fname)
         setl buftype=nofile
         0d_
         exec 'silent :file ' . fnameescape(l:bufname)
     endif
 endfunction
-command Log :call GitLog()
+command Logall :call GitLog('--all ')
+command Log :call GitLog('')
 
 " pastetoggle
 nmap <leader>p :set invpaste paste?<cr>
