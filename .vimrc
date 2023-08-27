@@ -375,7 +375,7 @@ if has("autocmd")
   autocmd BufWrite *.py :call DeleteTrailingWS()  " Delete trailing whitespace
   " Don't let smartindent unindent the # character in Python files
   autocmd FileType python  inoremap # X<c-h>#
-  autocmd FileType c,cpp,php,brs,sh  set expandtab  " Use spaces instead of tabs
+  autocmd FileType python,c,cpp,php,brs,sh  set expandtab  " Use spaces instead of tabs
   autocmd Filetype make    setl noexpandtab       " ...not for files that use tabs.
 
   " Use the vim command %retab before applying the following
