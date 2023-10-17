@@ -9,4 +9,6 @@ $if mode=vi
     # insert mode
     set keymap vi-insert
     "jk": vi-movement-mode
+    # (ins) or (cmd) at beginning of prompt:
+    # set show-mode-in-prompt on
 $endif
