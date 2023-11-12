@@ -5,7 +5,8 @@ declare -r SCRIPT_NAME=$(basename "$BASH_SOURCE")
 declare -r backup_dir=$HOME/backup_of_dotfiles_$(date "+%Y-%m-%d_%H%M%S")
 declare -a dotfiles=(".bashrc" ".bash_profile" ".vimrc" ".editrc" ".gitconfig"
                      ".gitignore" ".inputrc" ".tmux.conf" ".ssh/config" ".ripgreprc"
-                     ".gdbinit" ".config/gitui/key_bindings.ron" ".visidatarc")
+                     ".gdbinit" ".config/gitui/key_bindings.ron" ".visidatarc"
+                     ".config/i3/config" ".config/i3status/config")
 declare -i DRY_RUN=0
 
 ## exit the shell (with status 2) after printing the message

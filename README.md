@@ -59,6 +59,7 @@ See [config.dlma.com](http://config.dlma.com) for more.
 9. .gdbinit
 10. .visidatarc, to hide [visidata's](https://www.visidata.org/) menu at the top, for the old school UI.
 11. .config/gitui/key\_bindings.ron, for vim key bindings in [gitui](https://github.com/extrawurst/gitui).
+11. [i3](https://i3wm.org/) configs.
 
 #### Optional manual steps for fresh setups
 
