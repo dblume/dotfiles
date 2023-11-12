@@ -94,7 +94,9 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+Tab workspace back_and_forth
+#bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
 bindsym $mod+Ctrl+l workspace next
 bindsym $mod+Ctrl+h workspace prev
 bindsym $mod+Ctrl+Right workspace next
@@ -197,6 +199,10 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
+
+# To hide the window title bar
+#default_border pixel 1
+#default_floating_border pixel 4
 
 set $bg-color 	         #2f343f
 set $inactive-bg-color   #2f343f
