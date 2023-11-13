@@ -103,6 +103,10 @@ bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Shift+Ctrl+l move window to workspace next; workspace next
 bindsym $mod+Shift+Ctrl+h move window to workspace prev; workspace prev
+bindsym $mod+Shift+Ctrl+Right move window to workspace next; workspace next
+bindsym $mod+Shift+Ctrl+Left move window to workspace prev; workspace prev
+# From https://github.com/i3/i3/discussions/5536#discussioncomment-6267938
+bindsym $mod+Shift+o exec --no-startup-id i3-msg move window to workspace $($HOME/bin/i3_ws.py) && i3-msg workspace number $($HOME/bin/i3_ws.py newest)
 
 # split in horizontal orientation
 bindsym $mod+s split h
@@ -172,6 +176,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
+# https://www.reddit.com/r/i3wm/comments/uv9pyg/making_the_modshifte_exit_menu_more_useful/
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Exit now' 'i3-msg exit' -B 'Suspend' 'systemctl suspend && pkill i3-nagbar'"
 
 # resize window (you can also use the mouse for that)
@@ -204,14 +209,13 @@ bindsym $mod+r mode "resize"
 #default_border pixel 1
 #default_floating_border pixel 4
 
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
-
 # From https://github.com/bookercodes/dotfiles/blob/ubuntu/.i3/config
 # window colors
+#set $bg-color 	         #2f343f
+#set $inactive-bg-color   #2f343f
+#set $text-color          #f3f4f5
+#set $inactive-text-color #676E7D
+#set $urgent-bg-color     #E53935
 #                       border              background         text                 indicator
 #client.focused          $bg-color           $bg-color          $text-color          #00ff00
 #client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color  #00ff00
