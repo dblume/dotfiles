@@ -107,7 +107,11 @@ let g:currentmode={
     \}
 
 function! Trim_brackets(fn)
-  return trim(a:fn, "[]")
+  if v:version > 800
+    return trim(a:fn, "[]")
+  else
+    return a:fn
+  endif
 endfunction
 
 au InsertEnter * hi statusline guibg=Cyan ctermfg=26 guifg=Black ctermbg=7
