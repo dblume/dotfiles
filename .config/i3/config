@@ -247,4 +247,4 @@ bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewi
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 # sudo apt install brightnessctl playerctl feh
-exec feh --bg-scale /home/david/Pictures/chinesemoon.png
+exec feh --bg-scale $HOME/Pictures/chinesemoon.png
