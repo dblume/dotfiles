@@ -101,12 +101,16 @@ bindsym $mod+Ctrl+l workspace next
 bindsym $mod+Ctrl+h workspace prev
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
-bindsym $mod+Shift+Ctrl+l move window to workspace next; workspace next
-bindsym $mod+Shift+Ctrl+h move window to workspace prev; workspace prev
-bindsym $mod+Shift+Ctrl+Right move window to workspace next; workspace next
-bindsym $mod+Shift+Ctrl+Left move window to workspace prev; workspace prev
-# From https://github.com/i3/i3/discussions/5536#discussioncomment-6267938
-bindsym $mod+Shift+o exec --no-startup-id i3-msg move window to workspace $($HOME/bin/i3_ws.py) && i3-msg workspace number $($HOME/bin/i3_ws.py newest)
+#bindsym $mod+Shift+Ctrl+l move window to workspace next; workspace next
+#bindsym $mod+Shift+Ctrl+h move window to workspace prev; workspace prev
+#bindsym $mod+Shift+Ctrl+Right move window to workspace next; workspace next
+#bindsym $mod+Shift+Ctrl+Left move window to workspace prev; workspace prev
+# Consider https://github.com/i3/i3/discussions/5536#discussioncomment-6267938
+bindsym $mod+Shift+o exec --no-startup-id i3-msg move window to workspace $($HOME/bin/i3_avail_ws.py) && i3-msg workspace number $($HOME/bin/i3_ws.py newest)
+bindsym $mod+Shift+Ctrl+l exec --no-startup-id i3-msg move window to workspace $($HOME/bin/i3_ws.py) && i3-msg workspace number $($HOME/bin/i3_ws.py newest)
+bindsym $mod+Shift+Ctrl+h exec --no-startup-id i3-msg move window to workspace $($HOME/bin/i3_ws.py) && i3-msg workspace number $($HOME/bin/i3_ws.py newest)
+bindsym $mod+Shift+Ctrl+Right exec --no-startup-id i3-msg move window to workspace $($HOME/bin/i3_ws.py) && i3-msg workspace number $($HOME/bin/i3_ws.py newest)
+bindsym $mod+Shift+Ctrl+Left exec --no-startup-id i3-msg move window to workspace $($HOME/bin/i3_ws.py) && i3-msg workspace number $($HOME/bin/i3_ws.py newest)
 
 # split in horizontal orientation
 bindsym $mod+s split h
