@@ -1,4 +1,4 @@
-" Version 2023-04-26.1 - Harmonize the git commands for common recipes
+" Version 2023-11-13.1 - Prep to stop using vim-airline
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -38,20 +38,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
-" https://levelup.gitconnected.com/7-surprising-vim-tricks-that-will-save-you-hours-b158d23fe9b7
-"nnoremap d "_d
-"nnoremap D "_D
-"nnoremap c "_c
-"nnoremap C "_C
-"nnoremap x "_x
-"nnoremap X "_X
-"nnoremap <leader>d d
-"nnoremap <leader>D D
-"nnoremap <leader>c c
-"nnoremap <leader>C C
-"nnoremap <leader>x x
-"nnoremap <leader>X X
 
 " clear search highlights
 nnoremap <cr> :noh<cr><cr>
@@ -99,15 +85,50 @@ endif
 set tags=tags;/
 
 set history=50
-set ruler
-if has('statusline')
-  set laststatus=2
-  set statusline=%<%f\   " Filename
-  set statusline+=%w%h%m%r " Options
-  "set statusline+=%{fugitive#statusline()} " Git
-  set statusline+=\[%{&ff}/%Y]              " filetype
-  set statusline+=%=%-12.(%l,%c%V%)\ %p%%   " Right aligned file nav info
-endif
+set laststatus=2
+
+function! StatuslineGit()
+  let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+  return strlen(l:branchname) > 0 ? ' | branch:'.l:branchname : ''
+endfunction
+
+"    \ '' : 'S·BLOCK',
+let g:currentmode={
+    \ 'n'  : 'NORMAL',
+    \ 'v'  : 'VISUAL',
+    \ 'V'  : 'V·LINE',
+    \ '' : 'V·BLOCK',
+    \ 's'  : 'SELECT',
+    \ 'S'  : 'S·LINE',
+    \ 'i'  : 'INSERT',
+    \ 'R'  : 'REPLACE',
+    \ 'Rv' : 'V·REPLACE',
+    \ 'c'  : 'COMMAND',
+    \}
+
+function! Trim_brackets(fn)
+  return trim(a:fn, "[]")
+endfunction
+
+au InsertEnter * hi statusline guibg=Cyan ctermfg=26 guifg=Black ctermbg=7
+au InsertLeave * hi StatusLine term=bold,reverse cterm=bold,reverse ctermfg=24 ctermbg=7 guifg=black guibg=#c2bfa5
+
+set statusline=
+set statusline+=\ %{g:currentmode[mode()]}
+set statusline+=%{&paste?'\ \ ·\ PASTE':''}
+"set statusline+=%{StatuslineGit()}
+set statusline+=\ \|\ %f
+set statusline+=%m\ 
+set statusline+=%r\ 
+set statusline+=%=
+set statusline+=%h
+set statusline+=\ %{Trim_brackets(&filetype)}\ 
+set statusline+=%#StatusLineNC#
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ \|\ %p%%\ Ξ
+set statusline+=\ %l/%L\ :\ %c
+set statusline+=\ 
 
 set encoding=utf-8
 
