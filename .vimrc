@@ -60,8 +60,8 @@ if has('gui_running') " Didn't work: if &term != 'builtin_gui'
   if v:version >= 703
     highlight ColorColumn ctermbg=255 guibg=#F6F6F6
   endif
-  highlight StatusLine   ctermfg=17 ctermbg=Gray " override scheme
-  highlight StatusLineNC ctermfg=20 ctermbg=LightGray" override scheme
+  highlight statusline   ctermfg=17 ctermbg=Gray " override scheme
+  highlight statuslineNC ctermfg=20 ctermbg=LightGray" override scheme
   if has('win32')
     set guifont=DejaVu_Sans_Mono_for_Powerline:h10:cANSI:qDRAFT
   endif
@@ -73,12 +73,15 @@ else
   if v:version >= 703
     highlight ColorColumn ctermbg=233 guibg=Black " dark gray (or 17, dark blue)
   endif
-  highlight StatusLine   ctermfg=24 ctermbg=LightGray  " override scheme
-  highlight StatusLineNC ctermfg=236 ctermbg=Gray  " override scheme
+  highlight statusline   ctermfg=24 ctermbg=250  " override scheme
+  highlight statuslineNC ctermfg=236 ctermbg=Gray  " override scheme
   highlight MatchParen   term=reverse ctermbg=23  " 23 is more subtle than default
 endif
 
-" let g:loaded_airline = 1  " For testing the statusline settings above
+au InsertEnter * hi statusline guibg=Cyan ctermfg=19 guifg=Black ctermbg=248
+au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=24 ctermbg=250 guifg=black guibg=#c2bfa5
+
+let g:loaded_airline = 1  " For testing the statusline settings above
 
 " set mouse=v     " visual mode, not working great for PuTTY
 
@@ -113,9 +116,6 @@ function! Trim_brackets(fn)
     return a:fn
   endif
 endfunction
-
-au InsertEnter * hi statusline guibg=Cyan ctermfg=26 guifg=Black ctermbg=7
-au InsertLeave * hi StatusLine term=bold,reverse cterm=bold,reverse ctermfg=24 ctermbg=7 guifg=black guibg=#c2bfa5
 
 set statusline=
 set statusline+=\ %{g:currentmode[mode()]}
