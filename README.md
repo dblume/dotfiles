@@ -43,7 +43,6 @@ See [config.dlma.com](http://config.dlma.com) for more.
     1. .vimrc
     2. An empty .vim\_undo directory
     3. .vim with the following plugins:
-        1. [vim-airline](https://github.com/vim-airline/vim-airline), for a better Vim statusline.
         2. [bbye for :Bdelete](https://github.com/moll/vim-bbye), to delete buffers without affecting windows.
         3. [taglist](http://www.vim.org/scripts/script.php?script_id=273), a ctags tree-view explorer.
         4. [file-line](http://www.vim.org/scripts/script.php?script_id=2184), to open file:line as from a compiler error.

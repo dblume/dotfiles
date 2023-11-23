@@ -1,4 +1,4 @@
-" Version 2023-11-13.1 - Prep to stop using vim-airline
+" Version 2023-11-22.1 - Stop using vim-airline
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -80,8 +80,6 @@ endif
 
 au InsertEnter * hi statusline guibg=Cyan ctermfg=25 guifg=Black ctermbg=248
 au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=24 ctermbg=250 guifg=black guibg=#c2bfa5
-
-let g:loaded_airline = 1  " For testing the statusline settings above
 
 " set mouse=v     " visual mode, not working great for PuTTY
 
@@ -413,10 +411,6 @@ if has("autocmd")
   autocmd FileType c,cpp nmap <buffer> <leader>s :call SwitchSourceHeader()<cr>
   autocmd FileType c,cpp set foldmethod=syntax
 
-  " autocmd FileType rokulog :let g:airline_extensions = []
-  " autocmd FileType rokulog :let g:airline_section_warning = airline#section#create([])
-  autocmd FileType rokulog :let g:airline#extensions#whitespace#enabled = 0
-
   if v:version >= 703
     " I toggle out of relative number when Vim's focus is lost, because
     " if I'm not editing, then I may be referring to errors with line numbers.
@@ -511,28 +505,6 @@ let g:netrw_winsize = -36
 " let g:netrw_winsize = 35
 " sort is affecting only: directories on the top, files below
 let g:netrw_sort_sequence = '[\/]$,*'
-
-" When using vim-airline
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_symbols.whitespace = '✖'
-let g:airline_symbols.linenr = 'Ξ'
-let g:airline_symbols.maxlinenr = ''
-" If using a powerline font, don't override .readonly. Otherwise pick one.
-"let g:airline_symbols.readonly = '◆'
-"let g:airline_symbols.readonly = '🔒'
-
-" If no "...for Powerline" font is available, uncomment these four:
-let g:airline_left_sep = '▌'
-let g:airline_right_sep = '▐'
-let g:airline_left_alt_sep = '|'
-let g:airline_right_alt_sep = '|'
-
-let g:airline_theme = 'powerlineish'
-let g:airline#extensions#wordcount#enabled = 0
-" let g:airline_exclude_filetypes = []
 
 " Experimenting with vim-rooter
 let g:rooter_patterns = ['.git', 'Makefile', 'builds/']
