@@ -78,7 +78,7 @@ else
   highlight MatchParen   term=reverse ctermbg=23  " 23 is more subtle than default
 endif
 
-au InsertEnter * hi statusline guibg=Cyan ctermfg=25 guifg=Black ctermbg=248
+au InsertEnter * hi statusline guibg=Cyan ctermfg=20 guifg=Black ctermbg=248
 au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=24 ctermbg=250 guifg=black guibg=#c2bfa5
 
 " set mouse=v     " visual mode, not working great for PuTTY
