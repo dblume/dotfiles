@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 set -eu -o pipefail # See: https://sipb.mit.edu/doc/safe-shell/
 
-declare -r SCRIPT_NAME=$(basename "${BASH_SOURCE[0]}")
+declare -r script_name=$(basename "${BASH_SOURCE[0]}")
 declare -r backup_dir="$HOME"/backup_of_dotfiles_$(date "+%Y-%m-%d_%H%M%S")
 declare -a dotfiles=(".bashrc" ".bash_profile" ".vimrc" ".editrc" ".gitconfig"
                      ".gitignore" ".inputrc" ".tmux.conf" ".ssh/config" ".ripgreprc"
                      ".gdbinit" ".config/gitui/key_bindings.ron" ".visidatarc"
                      ".config/i3/config" ".config/i3status/config"
                      ".config/dunst/dunstrc")
-declare -i DRY_RUN=0
+declare -i dry_run=0
 
 ## exit the shell (with status 2) after printing the message
 usage() {
     echo "\
-$SCRIPT_NAME -hn
+$script_name -hn
     -h      Print this help text
     -n      Perform a dry run, to see what'll change
 "
@@ -25,13 +25,13 @@ while getopts "hn" OPTION
 do
   case $OPTION in
     h) usage;;
-    n) DRY_RUN=1;;
+    n) dry_run=1;;
     \?) usage;;
   esac
 done
 
 if [ ! -d "${backup_dir}"/.ssh ]; then
-    ((DRY_RUN==0)) && mkdir -p "${backup_dir}"/.ssh
+    ((dry_run==0)) && mkdir -p "${backup_dir}"/.ssh
 fi
 
 # Move original dot files to backup
@@ -41,7 +41,7 @@ do
         if ! cmp --silent "$HOME"/"$i" "$i" ; then
             echo "$i" will be changed as follows:
             diff "$HOME"/"$i" "$i" || true
-            if [ $DRY_RUN -eq 0 ]; then
+            if [ $dry_run -eq 0 ]; then
                 mv "$HOME"/"$i" "${backup_dir}"/"$i"
                 # Consider using symbolic links instead
                 # so pulling updates automatically apply
@@ -57,12 +57,12 @@ do
         fi
     else
         echo "$i" will be added to HOME.
-        ((DRY_RUN==0)) && mkdir -p "$HOME"/"$(dirname "$i")" && cp "$i" "$HOME"/"$i"
+        ((dry_run==0)) && mkdir -p "$HOME"/"$(dirname "$i")" && cp "$i" "$HOME"/"$i"
     fi
 done
 
 if ! diff -qr "$HOME"/.vim .vim > /dev/null ; then
-    if [ $DRY_RUN -eq 0 ]; then
+    if [ $dry_run -eq 0 ]; then
         if [ -d "$HOME"/.vim ]; then
             mv "$HOME"/.vim "${backup_dir}"
         fi
@@ -90,7 +90,7 @@ fi
 
 # Make a directory for vim undo
 if [ ! -d "$HOME"/.vim_undo ]; then
-    ((DRY_RUN==0)) && mkdir -p "$HOME"/.vim_undo
+    ((dry_run==0)) && mkdir -p "$HOME"/.vim_undo
 fi
 
 # I have device local secrets in .localrc and a github secret in .gitconfig.local
@@ -101,7 +101,7 @@ do
     fi
 done
 
-if [ $DRY_RUN -eq 0 ]; then
+if [ $dry_run -eq 0 ]; then
     echo Your old dotfiles are backed up to "${backup_dir}"
     echo Done. Check http://config.dlma.com for more.
 else
