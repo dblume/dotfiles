@@ -89,8 +89,8 @@ hi WildMenu	ctermfg=0 ctermbg=3
 hi Folded	ctermfg=darkgrey ctermbg=NONE
 hi FoldColumn	ctermfg=darkgrey ctermbg=NONE
 hi DiffAdd      term=reverse ctermbg=28 ctermfg=254
-hi DiffChange   term=reverse ctermbg=darkcyan ctermfg=black
-hi DiffText     term=reverse ctermbg=cyan ctermfg=black
+hi DiffChange   term=reverse ctermbg=236 ctermfg=250
+hi DiffText     term=reverse ctermbg=23 ctermfg=254
 hi DiffDelete   term=reverse ctermbg=52 ctermfg=black
 hi Comment	ctermfg=darkcyan
 hi Constant	ctermfg=brown
