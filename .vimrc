@@ -180,6 +180,18 @@ function! ShowBufInNewTab(bufname)
    return 0
 endfunction
 
+"A helper function that tries to show a buffer if it already exists
+function! ShowBufInNewSplit(bufname)
+   let l:bnr = bufnr(a:bufname)
+   if l:bnr > 0
+"       bo vne
+       vne
+       exec 'buffer ' . l:bnr
+       return 1
+   endif
+   return 0
+endfunction
+
 function! GitBlame()
     let l:hash = expand('<cword>')
     let l:currentView = winsaveview()
@@ -260,19 +272,47 @@ function! GitDiff()
     let l:buf = winbufnr(0)
     let l:commit = 'HEAD'
     let l:hash = expand('<cword>')
+    let l:currentView = winsaveview()
 
     " If the current word is a hash, then diff that vs. previous
     if l:hash =~ '^[0-9a-f]\{7,40}$' && stridx(expand('%'), ' -- ') != -1
         let l:fname = split(expand('%'), ' -- ')[-1]
-        exec ':tabnew | silent r! git show ' . l:hash . '^:$(git rev-parse --show-prefix)' . shellescape(l:fname)
-        setl buftype=nofile
-        0d_
-        exec 'silent :file ' . fnameescape('git show '.l:hash .'^:'.l:fname)
+        let l:bufname = 'git show ' . l:hash . '^:' . l:fname
+        if !ShowBufInNewTab(l:bufname)
+            exec ':tabnew | silent r! git show ' . l:hash . '^:$(git rev-parse --show-prefix)' . shellescape(l:fname)
+            setl buftype=nofile
+            0d_
+            exec 'silent :file ' . fnameescape(l:bufname)
+	endif
 
-        exec 'vne | silent r! git show ' . l:hash . ':$(git rev-parse --show-prefix)' . shellescape(l:fname)
-        setl buftype=nofile
-        exec 'silent :file ' . fnameescape('git show '.l:hash.':'.l:fname)
-        0d_
+        let l:bufname = 'git show ' . l:hash . ':' . l:fname
+        if !ShowBufInNewSplit(l:bufname)
+            exec 'vne | silent r! git show ' . l:hash . ':$(git rev-parse --show-prefix)' . shellescape(l:fname)
+            setl buftype=nofile
+            exec 'silent :file ' . fnameescape(l:bufname)
+            0d_
+        endif
+    elseif stridx(expand('%'), ':') != -1
+        " If we're in a 'git show' buffer, then extract fname and hash from there
+        let l:fname_parts = split(l:fname, ':')
+        let l:fname = l:fname_parts[-1]
+        let l:hash = split(l:fname_parts[0], ' ')[-1]
+	" TODO: Below few lines are identical to above, so remove dupes.
+        let l:bufname = 'git show ' . l:hash . '^:' . l:fname
+        if !ShowBufInNewTab(l:bufname)
+            exec ':tabnew | silent r! git show ' . l:hash . '^:$(git rev-parse --show-prefix)' . shellescape(l:fname)
+            setl buftype=nofile
+            0d_
+            exec 'silent :file ' . fnameescape(l:bufname)
+	endif
+
+        let l:bufname = 'git show ' . l:hash . ':' . l:fname
+        if !ShowBufInNewSplit(l:bufname)
+            exec 'vne | silent r! git show ' . l:hash . ':$(git rev-parse --show-prefix)' . shellescape(l:fname)
+            setl buftype=nofile
+            exec 'silent :file ' . fnameescape(l:bufname)
+            0d_
+        endif
     else
         " If the buffer is not different then repo, then diff HEAD vs file's previous commit
         let l:o = system("git status --porcelain | grep " . l:fname)
@@ -280,13 +320,17 @@ function! GitDiff()
             let l:commit = system('git log -2 --pretty=format:"%h" -- ' . l:fname . ' | tail -n 1')
         endif
 
+        let l:bufname = 'git show ' . l:commit . ':' . l:fname
         " Bug if l:filename includes ".."
-        exec ':tabnew | r! git show ' . l:commit . ':$(git rev-parse --show-prefix)' . l:fname
-        setl buftype=nofile
-        0d_
-        exec 'silent :file ' . fnameescape('git show '.l:commit.':'.l:fname)
+        if !ShowBufInNewTab(l:bufname)
+            exec ':tabnew | r! git show ' . l:commit . ':$(git rev-parse --show-prefix)' . l:fname
+            setl buftype=nofile
+            0d_
+            exec 'silent :file ' . fnameescape(l:bufname)
+        endif
         exec 'vert sb '.l:buf
     endif
+    call winrestview(l:currentView)
     windo diffthis
     setl buftype=nofile
     wincmd r
@@ -298,6 +342,8 @@ function! GitLog(flags)
     let l:fname = expand('%')
     if stridx(l:fname, ' -- ') != -1
         let l:fname = split(l:fname, ' -- ')[-1]
+    elseif stridx(l:fname, ':') != -1
+        let l:fname = split(l:fname, ':')[-1]
     endif
     let l:bufname = 'git log ' . a:flags . '-- ' . l:fname
     if !ShowBufInNewTab(l:bufname)
