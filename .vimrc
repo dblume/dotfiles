@@ -193,10 +193,25 @@ function! GitBlame()
         endif
     else
         let l:fname = expand('%')
-        let l:bufname = 'git blame -- ' . l:fname
-        if !ShowBufInNewTab(l:bufname)
-            exec 'tabnew | r! git blame -- ' . shellescape(l:fname)
-            exec 'silent :file ' . fnameescape(l:bufname)
+        let l:hash = ''
+        " Show fnames will have ':' in them.
+        if stridx(l:fname, ':') != -1
+            let l:fname_parts = split(l:fname, ':')
+            let l:fname = l:fname_parts[-1]
+            let l:hash = split(l:fname_parts[0], ' ')[-1]
+        endif
+        if strlen(l:hash)
+            let l:bufname = 'git blame ' . l:hash . ' -- ' . l:fname
+            if !ShowBufInNewTab(l:bufname)
+                exec 'tabnew | r! git blame ' . l:hash . ' -- ' . shellescape(l:fname)
+                exec 'silent :file ' . fnameescape(l:bufname)
+            endif
+        else
+            let l:bufname = 'git blame -- ' . l:fname
+            if !ShowBufInNewTab(l:bufname)
+                exec 'tabnew | r! git blame -- ' . shellescape(l:fname)
+                exec 'silent :file ' . fnameescape(l:bufname)
+            endif
         endif
     endif
     0d_
@@ -221,15 +236,18 @@ function! GitShow(commit_or_file)
                 " We lie here (' -- ') to have a filename the other git commands can use.
                 exec 'silent :file ' . fnameescape(l:bufname)
             endif
+            0d_
         else
+            let l:currentView = winsaveview()
             let l:bufname = 'git show ' . l:hash . ':' . l:fname
             if !ShowBufInNewTab(l:bufname)
                 exec 'tabnew | r! git show ' . l:hash . ':' . shellescape(l:fname)
                 exec 'silent :file ' . fnameescape(l:bufname)
             endif
+            0d_
+            call winrestview(l:currentView)
         endif
         setl buftype=nofile
-        0d_
     else
         echo l:hash . ' is not a git hash.'
     endif
