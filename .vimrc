@@ -1,4 +1,4 @@
-" Version 2023-11-22.1 - Stop using vim-airline
+" Version 2023-12-15.1 - Stop using vim-airline
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -10,6 +10,7 @@ set foldlevel=99
 set nowrap          " no wrapping text lines on the screen (exceptions below)
 set sidescroll=5
 set listchars+=tab:>-,precedes:<,extends:>,nbsp:· " for :set list
+set iskeyword+=-    " Add - to list of non-word-breaking chars.
 
 if v:version >= 703
   " Do save the undo tree to file, but not in the local directory.
