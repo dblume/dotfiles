@@ -339,23 +339,29 @@ function! GitDiff()
 endfunction
 command Diff :call GitDiff()
 
-function! GitLog(flags)
+function! GitLog(...)
     let l:fname = expand('%')
     if stridx(l:fname, ' -- ') != -1
         let l:fname = split(l:fname, ' -- ')[-1]
     elseif stridx(l:fname, ':') != -1
         let l:fname = split(l:fname, ':')[-1]
     endif
-    let l:bufname = 'git log ' . a:flags . '-- ' . l:fname
+    let l:args = a:1
+    if strlen(l:args)
+        " Add a space to the end
+	let l:args = l:args . " "
+    endif
+    let l:bufname = 'git log ' . l:args . '-- ' . l:fname
     if !ShowBufInNewTab(l:bufname)
-        exec 'tabnew | r! git log --no-color --graph --date=short ' . a:flags . '--pretty="format:\%h \%ad \%s \%an \%d" -- ' . shellescape(l:fname)
+        exec 'tabnew | r! git log --no-color --graph --date=short ' . l:args . '--pretty="format:\%h \%ad \%s \%an \%d" -- ' . shellescape(l:fname)
         setl buftype=nofile
         0d_
         exec 'silent :file ' . fnameescape(l:bufname)
     endif
 endfunction
-command Logall :call GitLog('--all ')
-command Log :call GitLog('')
+
+" Handy arguments are --all, --merges, --date-order, --first-parent, --ancestry-path
+command -nargs=* Log :call GitLog(<q-args>)
 
 " pastetoggle
 nmap <leader>p :set invpaste paste?<cr>
