@@ -94,8 +94,8 @@ function! StatuslineGit()
   return strlen(l:branchname) > 0 ? ' | branch:'.l:branchname : ''
 endfunction
 
-"    \ '' : 'S·BLOCK',
-let g:currentmode={
+function! Current_mode()
+  let l:currentmode={
     \ 'n'  : 'NORMAL',
     \ 'v'  : 'VISUAL',
     \ 'V'  : 'V·LINE',
@@ -103,11 +103,13 @@ let g:currentmode={
     \ 's'  : 'SELECT',
     \ 'S'  : 'S·LINE',
     \ 'i'  : 'INSERT',
-    \ 'r'  : 'replace',
+    \ 'r'  : 'I·REPLACE',
     \ 'R'  : 'REPLACE',
     \ 'Rv' : 'V·REPLACE',
     \ 'c'  : 'COMMAND',
     \}
+    return get(l:currentmode, mode(), mode())
+endfunction
 
 function! Trim_brackets(fn)
   if v:version > 800
@@ -117,22 +119,20 @@ function! Trim_brackets(fn)
   endif
 endfunction
 
-set statusline=
-set statusline+=\ %{g:currentmode[mode()]}
+set statusline=\ %{Current_mode()}
 set statusline+=%{&paste?'\ \ ·\ PASTE':''}
 "set statusline+=%{StatuslineGit()}
 set statusline+=\ \|\ %f
-set statusline+=%m\ 
-set statusline+=%r\ 
-set statusline+=%=
+set statusline+=%m
+set statusline+=\ %r
+set statusline+=\ %=
 set statusline+=%h
-set statusline+=\ %{Trim_brackets(&filetype)}\ 
-set statusline+=%#StatusLineNC#
+set statusline+=\ %{Trim_brackets(&filetype)}
+set statusline+=\ %#StatusLineNC#
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\[%{&fileformat}\]
 set statusline+=\ \|\ %p%%\ Ξ
-set statusline+=\ %l/%L\ :\ %c
-set statusline+=\ 
+set statusline+=\ %l/%L\ :\ %c\ 
 
 set encoding=utf-8
 
