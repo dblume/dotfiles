@@ -122,7 +122,7 @@ endfunction
 set statusline=\ %{Current_mode()}
 set statusline+=%{&paste?'\ \ ·\ PASTE':''}
 "set statusline+=%{StatuslineGit()}
-set statusline+=\ \|\ %f
+set statusline+=\ │\ %f
 set statusline+=%m
 set statusline+=\ %r
 set statusline+=\ %=
@@ -131,7 +131,7 @@ set statusline+=\ %{Trim_brackets(&filetype)}
 set statusline+=\ %#StatusLineNC#
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\[%{&fileformat}\]
-set statusline+=\ \|\ %p%%\ Ξ
+set statusline+=\ │\ %p%%\ =
 set statusline+=\ %l/%L\ :\ %c\ 
 
 set encoding=utf-8
