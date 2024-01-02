@@ -248,3 +248,6 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection c
 
 # sudo apt install brightnessctl playerctl feh
 exec feh --bg-scale $HOME/Pictures/chinesemoon.png
+
+# From https://askubuntu.com/questions/1262791/multiple-monitors-with-i3-window-manager
+#exec --nostartup-id xrandr --output DP-0 --left-of DP-2 &
