@@ -1,26 +1,24 @@
 # David Blume's dotfiles
 
-These are some of David Blume's dot files to be installed
-in new user home directories.
+These are some of David Blume's dot files to be installed in new user
+home directories.
 
-### Getting the project
+### Download the project
 
-You can get a copy of this project by clicking on the
-[ZIP](https://git.dlma.com/dotfiles.git/zipball/main)
-or [TAR](https://git.dlma.com/dotfiles.git/tarball/main) buttons
-near the top right of the GitList web page.
+There are two remote repos:
 
-With an account, you can clone from the origin with:
+- **[git.dlma.com](https://git.dlma.com/dotfiles.git)**: Click Download and
+  select Download ZIP or Download TAR.
+- **[GitHub](https://github.com/dblume/dotfiles)**: Click the green Code button
+  and select Local -> Download ZIP
 
-    git clone ssh://USERNAME@dlma.com/~/git/dotfiles.git
+### Install from CLI
 
-### Installation
-
-If you're not cloning the repo, then run the following:
+Run the following:
 
     ~$ mkdir dotfiles
     ~$ cd dotfiles
-    dotfiles$ curl -L https://git.dlma.com/dotfiles.git/tarball/main > dotfiles.tar
+    dotfiles$ curl -L https://git.dlma.com/dotfiles.git/archive/HEAD.tar > dotfiles.tar
     dotfiles$ tar -xvf dotfiles.tar
     dotfiles$ rm dotfiles.tar
 
@@ -28,11 +26,11 @@ Then, when you run `setup.sh`, it'll backup your changed files to `backup_of_dot
 and replace them with the ones here. You can perform a **dry run** to see which files will
 be changed by passing the "-n" parameter.
 
-    dotfiles$ ./setup.sh -n
+    ./setup.sh -n
 
 If you approve of the changes, then just run `setup.sh`
 
-    dotfiles$ ./setup.sh
+    ./setup.sh
 
 See [config.dlma.com](http://config.dlma.com) for more.
 
