@@ -148,9 +148,10 @@ esac
 
 alias clip="expand | cut -b1-\$COLUMNS"
 
-# I'm often interested in the most recently changed file
-#alias lh="ls -lt | head -\$((\$(tput lines)*2/3))"
-alias lh="ls -lt | head -\$((\$LINES*2/3))"
+# I'm often interested in just the most recently changed file
+lh() {
+    ls --color=always -ltq "$@" | head -$(($LINES*2/3)) | tail --lines=+2
+}
 
 # For httpie: https://github.com/jakubroztocil/httpie#installation
 alias https='http --default-scheme=https'
