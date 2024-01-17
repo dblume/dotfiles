@@ -5,6 +5,7 @@
 # The following line should contain a sharp s:
 # ß
 # If the above line is not correctly displayed, fix your editor first!
+# https://fontawesome.com/v4/cheatsheet/
 
 general {
         colors = true
@@ -12,6 +13,7 @@ general {
 }
 
 #order += "ipv6"
+order += "path_exists reboot_req"
 order += "wireless _first_"
 order += "volume master"
 #order += "ethernet _first_"
@@ -20,6 +22,13 @@ order += "battery all"
 #order += "load"
 #order += "memory"
 order += "tztime local"
+
+path_exists reboot_req {
+	path = "/var/run/reboot-required"
+	format = " Reboot required"
+	format_down = ""
+	color_good = "#aaaaff"
+}
 
 wireless _first_ {
         format_up = "%quality on %essid %ip"
