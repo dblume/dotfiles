@@ -143,12 +143,14 @@ case "$-" in
  ;;
 esac
 
-alias findinpyfiles="find . -name \*.py -print0 | xargs -0 grep -nI"
-alias findinchppfiles="find . -type f \( -name \*.[ch]pp -or -name \*.[ch] \) -print0 | xargs -0 grep -nI"
-alias findincppfiles="find . -type f \( -name \*.cpp -or -name \*.c \) -print0 | xargs -0 grep -nI"
-alias findinhppfiles="find . -type f \( -name \*.hpp -or -name \*.h \) -print0 | xargs -0 grep -nI"
+# Keeping as an example, but haven't used since ripgrep
+#alias findinchppfiles="find . -type f \( -name \*.[ch]pp -or -name \*.[ch] \) -print0 | xargs -0 grep -nI"
 
 alias clip="expand | cut -b1-\$COLUMNS"
+
+# I'm often interested in the most recently changed file
+#alias lh="ls -lt | head -\$((\$(tput lines)*2/3))"
+alias lh="ls -lt | head -\$((\$LINES*2/3))"
 
 # For httpie: https://github.com/jakubroztocil/httpie#installation
 alias https='http --default-scheme=https'
