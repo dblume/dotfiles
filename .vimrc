@@ -11,6 +11,7 @@ set nowrap          " no wrapping text lines on the screen (exceptions below)
 set sidescroll=5
 set listchars+=tab:>-,precedes:<,extends:>,nbsp:· " for :set list
 set iskeyword+=-    " Add - to list of non-word-breaking chars.
+set incsearch       " Navigate to matched strings while typing. Toggle: :set is!
 
 if v:version >= 703
   " Do save the undo tree to file, but not in the local directory.
