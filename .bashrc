@@ -149,8 +149,13 @@ esac
 alias clip="expand | cut -b1-\$COLUMNS"
 
 # I'm often interested in just the most recently changed file
+# N.B. If changing -l to -1, remove tail, because "total" line is only for -l
 lh() {
-    ls --color=always -ltq "$@" | head -$(($LINES/3)) | tail --lines=+2
+#    ls --color=always -1tqh "$@" | head -$(($LINES/3))
+    ls --color=always -ltqh "$@" | head -$(($LINES/3)) | tail --lines=+2
+    if [ $(ls -1 | wc -l) -gt $(($LINES/3)) ]; then
+        echo ...
+    fi
 }
 
 # For httpie: https://github.com/jakubroztocil/httpie#installation
