@@ -150,7 +150,7 @@ alias clip="expand | cut -b1-\$COLUMNS"
 
 # I'm often interested in just the most recently changed file
 lh() {
-    ls --color=always -ltq "$@" | head -$(($LINES*2/3)) | tail --lines=+2
+    ls --color=always -ltq "$@" | head -$(($LINES/3)) | tail --lines=+2
 }
 
 # For httpie: https://github.com/jakubroztocil/httpie#installation
