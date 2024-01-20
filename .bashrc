@@ -153,9 +153,17 @@ alias clip="expand | cut -b1-\$COLUMNS"
 lh() {
 #    ls --color=always -1tqh "$@" | head -$(($LINES/3))
     ls --color=always -ltqh "$@" | head -$(($LINES/3)) | tail --lines=+2
-    if [ $(ls -1 | wc -l) -gt $(($LINES/3)) ]; then
+    if [ $(ls -1 "$@" | wc -l) -gt $(($LINES/3)) ]; then
         echo ...
     fi
+}
+
+# lh = "ls | head" (newest at top), lt = "ls | tail" (newest at the bottom)
+lt() {
+    if [ $(ls -1 "$@" | wc -l) -gt $(($LINES/3)) ]; then
+        echo ...
+    fi
+    ls --color=always -rltqh "$@" | tail --lines=$(($LINES/3))
 }
 
 # For httpie: https://github.com/jakubroztocil/httpie#installation
