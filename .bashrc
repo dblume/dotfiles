@@ -151,19 +151,24 @@ alias clip="expand | cut -b1-\$COLUMNS"
 # I'm often interested in just the most recently changed file
 # N.B. If changing -l to -1, remove tail, because "total" line is only for -l
 lh() {
-#    ls --color=always -1tqh "$@" | head -$(($LINES/3))
-    ls --color=always -ltqh "$@" | head -$(($LINES/3)) | tail --lines=+2
-    if [ $(ls -1 "$@" | wc -l) -gt $(($LINES/3)) ]; then
+    if [[ $(uname -s) != Darwin* ]]; then
+        readonly color_always="--color=always"
+    fi
+    ls $color_always -ltqh "$@" | head -$(($LINES/4)) | tail -n +2
+    if [ $(ls -1 "$@" | wc -l) -gt $(($LINES/4)) ]; then
         echo ...
     fi
 }
 
 # lh = "ls | head" (newest at top), lt = "ls | tail" (newest at the bottom)
 lt() {
-    if [ $(ls -1 "$@" | wc -l) -gt $(($LINES/3)) ]; then
+    if [ $(ls -1 "$@" | wc -l) -gt $(($LINES/4)) ]; then
         echo ...
     fi
-    ls --color=always -rltqh "$@" | tail --lines=$(($LINES/3))
+    if [[ $(uname -s) != Darwin* ]]; then
+        readonly color_always="--color=always"
+    fi
+    ls $color_always -rltqh "$@" | tail -n $(($LINES/4))
 }
 
 # For httpie: https://github.com/jakubroztocil/httpie#installation
