@@ -152,7 +152,7 @@ alias clip="expand | cut -b1-\$COLUMNS"
 # N.B. If changing -l to -1, remove tail, because "total" line is only for -l
 lh() {
     if [[ $(uname -s) != Darwin* ]]; then
-        readonly color_always="--color=always"
+        local -r color_always="--color=always"
     fi
     ls $color_always -ltqh "$@" | head -$(($LINES/4)) | tail -n +2
     if [ $(ls -1 "$@" | wc -l) -gt $(($LINES/4)) ]; then
@@ -166,7 +166,7 @@ lt() {
         echo ...
     fi
     if [[ $(uname -s) != Darwin* ]]; then
-        readonly color_always="--color=always"
+        local -r color_always="--color=always"
     fi
     ls $color_always -rltqh "$@" | tail -n $(($LINES/4))
 }
