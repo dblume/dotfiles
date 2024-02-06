@@ -34,5 +34,7 @@
 	conflictstyle = diff3
 [tag]
 	sort = -creatordate 
+[grep]
+	lineNumber = true
 [include]
 	path = ~/.gitconfig.local
