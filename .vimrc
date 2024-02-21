@@ -12,6 +12,7 @@ set sidescroll=5
 set listchars+=tab:>-,precedes:<,extends:>,nbsp:· " for :set list
 set iskeyword+=-    " Add - to list of non-word-breaking chars.
 set incsearch       " Navigate to matched strings while typing. Toggle: :set is!
+set scrolloff=0     " EC2 defaults to 5. Set explicitly to be consistent
 
 if v:version >= 703
   " Do save the undo tree to file, but not in the local directory.
