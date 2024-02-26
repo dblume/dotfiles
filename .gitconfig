@@ -36,5 +36,7 @@
 	sort = -creatordate 
 [grep]
 	lineNumber = true
+[commit]
+	verbose = true
 [include]
 	path = ~/.gitconfig.local
