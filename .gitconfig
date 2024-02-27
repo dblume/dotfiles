@@ -5,6 +5,7 @@
 	tool = vimdiff
 	noprefix = true
 	submodule = log
+	algorithm = histogram
 [difftool]
 	prompt = false
 [color "blame"]
