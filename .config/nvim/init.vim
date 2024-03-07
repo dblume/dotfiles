@@ -52,7 +52,7 @@ syntax on
 
 set t_Co=256
 if v:version >= 703
-"  set colorcolumn=80
+  set colorcolumn=80
 endif
 if has('gui_running') " Didn't work: if &term != 'builtin_gui'
   " Light backgrounds for GUI experiences
