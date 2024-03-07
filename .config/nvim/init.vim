@@ -56,10 +56,6 @@ else
   " Dark backgrounds for tty experiences
   set background=dark
   colorscheme nvim_desert
-  highlight ColorColumn ctermbg=233 guibg=Black " dark gray (or 17, dark blue)
-  highlight statusline   ctermfg=24 ctermbg=250  " override scheme
-  highlight statuslineNC ctermfg=236 ctermbg=Gray  " override scheme
-  highlight MatchParen   term=reverse ctermbg=23  " 23 is more subtle than default
 endif
 
 au InsertEnter * hi statusline guibg=Cyan ctermfg=20 guifg=Black ctermbg=248

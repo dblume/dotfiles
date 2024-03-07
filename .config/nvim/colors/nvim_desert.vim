@@ -19,7 +19,7 @@ if version > 580
 	syntax reset
     endif
 endif
-let g:colors_name="desert"
+let g:colors_name="nvim_desert"
 
 hi Normal	guifg=White guibg=grey20
 
@@ -109,5 +109,9 @@ hi TabLineSel	ctermfg=white ctermbg=239
 hi TabLine	ctermfg=247 ctermbg=237
 hi TabLineFill	ctermfg=235
 
+hi ColorColumn ctermbg=233 guibg=Black " dark gray (or 17, dark blue)
+hi statusline   ctermfg=24 ctermbg=250  " override scheme
+hi statuslineNC ctermfg=236 ctermbg=Gray  " override scheme
+hi MatchParen   term=reverse ctermbg=23  " 23 is more subtle than default
 
 "vim: sw=4
