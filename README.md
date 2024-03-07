@@ -49,9 +49,8 @@ See [config.dlma.com](http://config.dlma.com) for more.
         6. Assorted favorite colors like [desert](https://github.com/dblume/desert.vim).
 3. Neovim resources
     1. .config/nvim/init.vim
-    2. An empty .nvim\_undo directory
-    3. .config/nvim/colors/nvim\_desert.vim
-    4. .local/share/nvim/site/plugin/ plugins
+    2. .config/nvim/colors/nvim\_desert.vim
+    3. .local/share/nvim/site/plugin/ plugins
 4. .gitconfig and .gitignore
 5. .tmux.conf
 6. .inputrc, for vi mode and a [partially matched command history traversal](http://askubuntu.com/questions/59846/bash-history-search-partial-up-arrow/59855#59855).

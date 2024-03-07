@@ -106,12 +106,9 @@ else
     echo No change to the .local/share/nvim/site/plugin/ directories.
 fi
 
-# Make a directory for vim and neovim undo
+# Make a directory for vim undo
 if [ ! -d "$HOME"/.vim_undo ]; then
     ((dry_run==0)) && mkdir -p "$HOME"/.vim_undo
-fi
-if [ ! -d "$HOME"/.nvim_undo ]; then
-    ((dry_run==0)) && mkdir -p "$HOME"/.nvim_undo
 fi
 
 # I have device local secrets in .localrc and a github secret in .gitconfig.local

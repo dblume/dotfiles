@@ -48,20 +48,14 @@ nnoremap <cr> :noh<cr><cr>
 nnoremap <Tab> :bp<cr>
 nnoremap <S-Tab> :bn<cr>
 
-syntax on
-
 set t_Co=256
-if v:version >= 703
-  set colorcolumn=80
-endif
+set colorcolumn=80
 if has('gui_running') " Didn't work: if &term != 'builtin_gui'
   " Light backgrounds for GUI experiences
   set background=light
   " colorscheme peaksea
   colorscheme tolerable
-  if v:version >= 703
-    highlight ColorColumn ctermbg=255 guibg=#F6F6F6
-  endif
+  highlight ColorColumn ctermbg=255 guibg=#F6F6F6
   highlight statusline   ctermfg=17 ctermbg=Gray " override scheme
   highlight statuslineNC ctermfg=20 ctermbg=LightGray" override scheme
   if has('win32')
@@ -72,9 +66,7 @@ else
   " Dark backgrounds for tty experiences
   set background=dark
   colorscheme nvim_desert
-  if v:version >= 703
-    highlight ColorColumn ctermbg=233 guibg=Black " dark gray (or 17, dark blue)
-  endif
+  highlight ColorColumn ctermbg=233 guibg=Black " dark gray (or 17, dark blue)
   highlight statusline   ctermfg=24 ctermbg=250  " override scheme
   highlight statuslineNC ctermfg=236 ctermbg=Gray  " override scheme
   highlight MatchParen   term=reverse ctermbg=23  " 23 is more subtle than default
@@ -83,12 +75,13 @@ endif
 au InsertEnter * hi statusline guibg=Cyan ctermfg=20 guifg=Black ctermbg=248
 au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=24 ctermbg=250 guifg=black guibg=#c2bfa5
 
-" set mouse=v     " visual mode, not working great for PuTTY
+" May want to "set mouse=" See https://neovim.io/doc/user/vim_diff.html#_default-mouse
+" set mouse=v  " visual mode, not great in PuTTY, neovim defaults to nvi
 
+" Consider neovim default "./tags;,tags"
 set tags=tags;/
 
-set history=50
-set laststatus=2
+set history=500
 
 function! StatuslineGit()
   let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
@@ -134,8 +127,6 @@ set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\[%{&fileformat}\]
 set statusline+=\ │\ %p%%\ =
 set statusline+=\ %l/%L\ :\ %c\ 
-
-set encoding=utf-8
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -214,9 +205,6 @@ set nobackup       " ~ files
 set nowritebackup  " Don't write buff to temp, delete orig, rename temp to orig
 set noswapfile     " .swp files
 
-" Allow tags to open another buffer even if this one is modified
-set hidden
-
 " Switch between source and header files
 function! SwitchSourceHeader()
   let s:ext  = expand("%:e")
@@ -288,12 +276,10 @@ if has("autocmd")
   autocmd FileType c,cpp nmap <buffer> <leader>s :call SwitchSourceHeader()<cr>
   autocmd FileType c,cpp set foldmethod=syntax
 
-  if v:version >= 703
-    " I toggle out of relative number when Vim's focus is lost, because
-    " if I'm not editing, then I may be referring to errors with line numbers.
-    autocmd FocusLost * if &relativenumber | set number | endif
-    autocmd FocusGained * if &number | set relativenumber | endif
-  endif
+  " I toggle out of relative number when Vim's focus is lost, because
+  " if I'm not editing, then I may be referring to errors with line numbers.
+  autocmd FocusLost * if &relativenumber | set number | endif
+  autocmd FocusGained * if &number | set relativenumber | endif
 
   autocmd BufRead *.txt set wrap linebreak   " "soft" wrap of existing lines
   autocmd BufRead README set wrap linebreak  " "soft" wrap of existing lines
