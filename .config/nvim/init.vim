@@ -1,10 +1,6 @@
-" Version 2024-03-06.1 - Original, with many bugs
+" Version 2024-03-07.1 - First misc fixes
 set bs=2            " allow backspacing over everything in insert mode
-set wildmenu        " Allows command-line completion with tab
-set autoindent      " Copy indent from current line when starting a new line
 set smartindent     " Do smart auto indenting when starting  new line
-set smarttab        " Honor 'shiftwidth', 'tabstop' or 'softtabstop'
-set hlsearch        " highlight all matches for previous search
 set foldlevel=99
 set nowrap          " no wrapping text lines on the screen (exceptions below)
 set sidescroll=5
@@ -12,13 +8,7 @@ set listchars+=tab:>-,precedes:<,extends:>,nbsp:· " for :set list
 set iskeyword+=-    " Add - to list of non-word-breaking chars.
 set scrolloff=0     " EC2 defaults to 5. Set explicitly to be consistent
 set notermguicolors " Only needed for neovim while I port my color schemes
-
-if v:version >= 703
-  " Do save the undo tree to file, but not in the local directory.
-  " Don't forget to mkdir ~/.nvim_undo
-  set undodir=~/.nvim_undo,.
-  set undofile        " undo even after closing and reopening a file
-endif
+set undofile        " undo even after closing and reopening a file
 
 " The following two lines set the use of perl regex, aka "very magic"
 nnoremap / /\v
