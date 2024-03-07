@@ -7,7 +7,8 @@ declare -a dotfiles=(".bashrc" ".bash_profile" ".vimrc" ".editrc" ".gitconfig"
                      ".gitignore" ".inputrc" ".tmux.conf" ".ssh/config" ".ripgreprc"
                      ".gdbinit" ".config/gitui/key_bindings.ron" ".visidatarc"
                      ".config/i3/config" ".config/i3status/config"
-                     ".config/dunst/dunstrc")
+                     ".config/dunst/dunstrc" ".config/nvim/init.vim"
+                     ".config/nvim/colors/nvim_desert.vim")
 declare -i dry_run=0
 
 ## exit the shell (with status 2) after printing the message
@@ -88,9 +89,29 @@ else
     echo No change to the .vim/ directories.
 fi
 
-# Make a directory for vim undo
+# TODO: Neovim's plugins go in ~/.local/share/nvim/site/plugin/
+# https://neovim.io/doc/user/usr_05.html
+if ! diff -qr "$HOME"/.local/share/nvim/site/plugin .local/share/nvim/site/plugin > /dev/null ; then
+    if [ $dry_run -eq 0 ]; then
+        if [ -d "$HOME"/.local/share/nvim/site/plugin/ ]; then
+                mkdir -p "${backup_dir}"/.local/share/nvim/site/plugin
+                mv "$HOME"/.local/share/nvim/site/plugin/* "${backup_dir}"/.local/share/nvim/site/plugin/
+        else
+            mkdir -p "$HOME"/.local/share/nvim/site/plugin
+        fi
+        cp -r .local/share/nvim/site/plugin/* "$HOME"/.local/share/nvim/site/plugin/
+    fi
+    echo Check the plugins in .local/share/nvim/site/plugin/
+else
+    echo No change to the .local/share/nvim/site/plugin/ directories.
+fi
+
+# Make a directory for vim and neovim undo
 if [ ! -d "$HOME"/.vim_undo ]; then
     ((dry_run==0)) && mkdir -p "$HOME"/.vim_undo
+fi
+if [ ! -d "$HOME"/.nvim_undo ]; then
+    ((dry_run==0)) && mkdir -p "$HOME"/.nvim_undo
 fi
 
 # I have device local secrets in .localrc and a github secret in .gitconfig.local
