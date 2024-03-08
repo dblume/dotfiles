@@ -9,6 +9,8 @@ set iskeyword+=-    " Add - to list of non-word-breaking chars.
 set scrolloff=0     " EC2 defaults to 5. Set explicitly to be consistent
 set notermguicolors " Only needed for neovim while I port my color schemes
 set undofile        " undo even after closing and reopening a file
+set noshowcmd       " Show size of selected area in visual mode on last line
+set noruler         " Show coordinates on status line
 
 " The following two lines set the use of perl regex, aka "very magic"
 nnoremap / /\v
