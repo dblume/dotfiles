@@ -63,8 +63,8 @@ if has('gui_running') " Didn't work: if &term != 'builtin_gui'
   if v:version >= 703
     highlight ColorColumn ctermbg=255 guibg=#F6F6F6
   endif
-  highlight statusline   ctermfg=17 ctermbg=Gray " override scheme
-  highlight statuslineNC ctermfg=20 ctermbg=LightGray" override scheme
+  highlight statusline   ctermfg=17 ctermbg=Gray  " override scheme
+  highlight statuslineNC ctermfg=20 ctermbg=LightGray  " override scheme
   if has('win32')
     set guifont=DejaVu_Sans_Mono_for_Powerline:h10:cANSI:qDRAFT
   endif
