@@ -114,6 +114,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias vim-='vim +"setl buftype=nofile" -'
+alias nvim-='nvim +"setl buftype=nofile" -'
 alias tmux='tmux -2u'
 alias nvimdiff='nvim -d'
 
@@ -171,6 +172,8 @@ lt() {
     fi
     ls $color_always -rltqh "$@" | tail -n $(($LINES/4))
 }
+# Just so I don't have to use two hands
+alias ly=lt
 
 # For httpie: https://github.com/jakubroztocil/httpie#installation
 alias https='http --default-scheme=https'
