@@ -11,6 +11,7 @@ set notermguicolors " Only needed for neovim while I port my color schemes
 set undofile        " undo even after closing and reopening a file
 set noshowcmd       " Show size of selected area in visual mode on last line
 set noruler         " Show coordinates on status line
+set hidden          " Don't abandon Scratch buffer when hidden.
 
 " The following two lines set the use of perl regex, aka "very magic"
 nnoremap / /\v
