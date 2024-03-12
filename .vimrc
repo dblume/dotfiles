@@ -49,6 +49,9 @@ nnoremap <cr> :noh<cr><cr>
 nnoremap <Tab> :bp<cr>
 nnoremap <S-Tab> :bn<cr>
 
+" Use yy to yank a whole line, use Y to yank to end of line like C and D
+nnoremap Y y$
+
 syntax on
 
 set t_Co=256
