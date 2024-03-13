@@ -7,8 +7,7 @@ declare -a dotfiles=(".bashrc" ".bash_profile" ".vimrc" ".editrc" ".gitconfig"
                      ".gitignore" ".inputrc" ".tmux.conf" ".ssh/config" ".ripgreprc"
                      ".gdbinit" ".config/gitui/key_bindings.ron" ".visidatarc"
                      ".config/i3/config" ".config/i3status/config"
-                     ".config/dunst/dunstrc" ".config/nvim/init.vim"
-                     ".config/nvim/colors/nvim_desert.vim")
+                     ".config/dunst/dunstrc")
 declare -i dry_run=0
 
 ## exit the shell (with status 2) after printing the message
@@ -62,49 +61,45 @@ do
     fi
 done
 
-if ! diff -qr "$HOME"/.vim .vim > /dev/null ; then
-    if [ $dry_run -eq 0 ]; then
-        if [ -d "$HOME"/.vim ]; then
-            mv "$HOME"/.vim "${backup_dir}"
+update_dir () {
+    if ! diff -qr "$HOME"/"$1" "$1" > /dev/null ; then
+        local parentdir="$(dirname "$1")"
+
+        if [ $dry_run -eq 0 ]; then
+            if [ -d "$HOME"/"$1" ]; then
+                mkdir -p "${backup_dir}"/"$parentdir"
+                mv "$HOME"/"$1" "${backup_dir}"/"$parentdir"
+            else
+                mkdir -p "$HOME"/"$parentdir"
+            fi
+            cp -RL "$1" "$HOME"/"$parentdir"
+            if [ -d "${backup_dir}"/"$1" ]; then
+                # Copy back proprietary file types (ex. ftdetect/my.vim), if any.
+                # Print only the files that got moved back into ~/"$1"
+                cp -RLnv "${backup_dir}"/"$1" "$HOME"/"$parentdir" | grep " -> " | cut -d " " -f3 | \
+                    xargs -I{} sh -c "test -f {} && echo Restored {}" || true
+            fi
         fi
-        cp -r .vim "$HOME"
-        if [ -d "${backup_dir}"/.vim ]; then
-            # Copy back proprietary file types (ex. ftdetect/my.vim), if any.
-            # Print only the files that got moved back into ~/.vim
-            cp -rnv "${backup_dir}"/.vim "$HOME" | grep " -> " | cut -d " " -f3 | \
-                xargs -I{} sh -c "test -f {} && echo Restored {}" || true
-        fi
-    fi
-    if [[ -d "${backup_dir}"/.vim ]]; then
-        if ! diff -qr "$backup_dir/.vim" "$HOME/.vim" ; then
-            echo "# diff -qr \"$backup_dir/.vim\" \"$HOME/.vim\""
-            echo
+        if [[ -d "${backup_dir}"/"$1" ]]; then
+            if ! diff -qr "$backup_dir"/"$1" "$HOME"/"$1" ; then
+                echo "# diff -qr \"$backup_dir/$1\" \"$HOME/$1\""
+                echo
+            else
+                echo No change to the "$1"/ directories after restoring proprietary files.
+            fi
         else
-            echo No change to the .vim/ directories after restoring proprietary files.
+            echo No "${backup_dir}"/"$1"/ from which to restore proprietary files \(yet\).
         fi
     else
-        echo No "${backup_dir}"/.vim/ from which to restore proprietary files \(yet\).
+        echo No change to the "$1"/ directories.
     fi
-else
-    echo No change to the .vim/ directories.
-fi
+}
 
-# TODO: Neovim's plugins go in ~/.local/share/nvim/site/plugin/
+update_dir ".vim"
+update_dir ".config/nvim"
+# Neovim's plugins go in ~/.local/share/nvim/site/plugin/
 # https://neovim.io/doc/user/usr_05.html
-if ! diff -qr "$HOME"/.local/share/nvim/site/plugin .local/share/nvim/site/plugin > /dev/null ; then
-    if [ $dry_run -eq 0 ]; then
-        if [ -d "$HOME"/.local/share/nvim/site/plugin/ ]; then
-                mkdir -p "${backup_dir}"/.local/share/nvim/site/plugin
-                mv "$HOME"/.local/share/nvim/site/plugin/* "${backup_dir}"/.local/share/nvim/site/plugin/
-        else
-            mkdir -p "$HOME"/.local/share/nvim/site/plugin
-        fi
-        cp -r .local/share/nvim/site/plugin/* "$HOME"/.local/share/nvim/site/plugin/
-    fi
-    echo Check the plugins in .local/share/nvim/site/plugin/
-else
-    echo No change to the .local/share/nvim/site/plugin/ directories.
-fi
+update_dir ".local/share/nvim/site/plugin"
 
 # Make a directory for vim undo
 if [ ! -d "$HOME"/.vim_undo ]; then
