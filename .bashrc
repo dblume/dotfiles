@@ -114,7 +114,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias tmux='tmux -2u'
-if [ -f /usr/bin/nvim ]; then
+if command -v nvim &> /dev/null; then
     alias vim='nvim'
     alias vim-='nvim +"setl buftype=nofile" -'
     alias vimdiff='nvim -d'
