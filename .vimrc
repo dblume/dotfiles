@@ -91,11 +91,11 @@ au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=24 c
 
 set tags=tags;/
 
-set history=50
+set history=500
 set laststatus=2
 
 function! StatuslineGit()
-  let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+  let l:branchname = system("git -C " . expand('%:p:h') . " rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
   return strlen(l:branchname) > 0 ? ' | branch:'.l:branchname : ''
 endfunction
 
