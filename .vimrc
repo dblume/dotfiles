@@ -303,11 +303,13 @@ if has("autocmd")
   autocmd BufRead README set wrap linebreak  " "soft" wrap of existing lines
   autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
 
-  " When editing a file, always jump to the last cursor position
+  " When editing a file, always jump to the last cursor position...
   autocmd BufReadPost *
-  \ if &ft != "p4changelist" && &ft != "gitcommit" && line("'\"") > 0 && line ("'\"") <= line("$") |
+  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
   \   exe "normal! g'\"" |
   \ endif
+  " ...except for gitcommit where we always want to start at the top
+  autocmd FileType gitcommit exe "normal! gg"
 
   autocmd BufNewFile,BufReadPost * let b:git_branch = GitBranch()
   autocmd BufEnter * let b:git_branch = GitBranch()
