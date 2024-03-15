@@ -72,7 +72,7 @@ set tags=tags;/
 
 set history=500
 
-function! StatuslineGit()
+function! GitBranch()
   let l:branchname = system("git -C " . expand('%:p:h') . " rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
   return strlen(l:branchname) > 0 ? '  │ '.l:branchname : ''
 endfunction
@@ -104,7 +104,7 @@ endfunction
 
 set statusline=\ %{Current_mode()}
 set statusline+=%{&paste?'\ \ ·\ PASTE':''}
-"set statusline+=%{StatuslineGit()}
+set statusline+=%{b:git_branch}
 set statusline+=\ │\ %f
 set statusline+=%m
 set statusline+=\ %r
@@ -279,6 +279,9 @@ if has("autocmd")
   \ if &ft != "p4changelist" && &ft != "gitcommit" && line("'\"") > 0 && line ("'\"") <= line("$") |
   \   exe "normal! g'\"" |
   \ endif
+
+  autocmd BufNewFile,BufReadPost * let b:git_branch = GitBranch()
+  autocmd BufEnter * let b:git_branch = GitBranch()
 endif
 
 " This requires vim to be compiled with +python
