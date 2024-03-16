@@ -296,7 +296,7 @@ set omnifunc=syntaxcomplete#Complete
 " autocmd CompleteDone * pclose
 
 " Omni completion via ctrl-space (in addition to ctrl-x ctrl-o)
-inoremap <Nul> <C-x><C-o>
+inoremap <C-Space> <C-x><C-o>
 
 " cscope
 if has("cscope")
