@@ -6,12 +6,18 @@ home directories.
 ### Preview
 
 Here's a screen capture showing tmux, vim, and the shell preparing to run entr.
-(Because tmux+vim+entr is a great IDE.)
+(Because [tmux+vim+entr is a great IDE](https://twitter.com/search?q=tmux%20vim%20entr&src=typed_query).)
 
-This gives you an opportunity to see things like the tmux status line, 
-the vim status line, and a vim popup menu.
+My vim config is light weight: no nerd fonts, no statusline plugin, no plugin
+manager, no file manager, etc. Yet it's full featured in that the status line
+shows nearly all the info of Powerline, and uses the built-in plugin manager
+and powers-up netrw, the built-in file explorer. It includes about five
+essential plugins.
 
-![tmux\_vim\_entr.png](https://dblume.github.io/images/tmux_vim_entr.png)
+The screen cap shows the tmux status line, the vim status line, taglist, and
+a vim popup menu.
+
+![tmux\_vim\_entr.png](https://dblume.github.io/images/tmux_vim_entr_wide_14pt.png)
 
 ### Download the project
 
