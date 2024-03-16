@@ -3,6 +3,16 @@
 These are some of David Blume's dot files to be installed in new user
 home directories.
 
+### Preview
+
+Here's a screen capture showing tmux, vim, and the shell preparing to run entr.
+(Because tmux+vim+entr is a great IDE.)
+
+This gives you an opportunity to see things like the tmux status line, 
+the vim status line, and a vim popup menu.
+
+![tmux\_vim\_entr.png](https://dblume.github.io/images/tmux_vim_entr.png)
+
 ### Download the project
 
 There are two remote repos:
