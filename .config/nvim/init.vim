@@ -114,8 +114,8 @@ set statusline+=\ %{Trim_brackets(&filetype)}
 set statusline+=\ %#StatusLineNC#
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\[%{&fileformat}\]
-set statusline+=\ │\ %p%%\ =
-set statusline+=\ %l/%L\ :\ %c\ 
+set statusline+=\ │\ %p%%\ of
+set statusline+=\ %L\ 
 
 " Fast saving
 nmap <leader>w :w!<cr>
