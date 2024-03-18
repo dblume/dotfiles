@@ -1,4 +1,4 @@
-" Version 2023-12-15.1 - Stop using vim-airline
+" Version 2024-03-17.1 - status line color tweak
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -80,11 +80,11 @@ else
     highlight ColorColumn ctermbg=233 guibg=Black " dark gray (or 17, dark blue)
   endif
   highlight statusline   ctermfg=24 ctermbg=250  " override scheme
-  highlight statuslineNC ctermfg=236 ctermbg=Gray  " override scheme
+  highlight statuslineNC ctermfg=237 ctermbg=Gray  " override scheme
   highlight MatchParen   term=reverse ctermbg=23  " 23 is more subtle than default
 endif
 
-au InsertEnter * hi statusline guibg=Cyan ctermfg=20 guifg=Black ctermbg=248
+au InsertEnter * hi statusline guibg=Cyan ctermfg=26 guifg=Black ctermbg=248
 au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=24 ctermbg=250 guifg=black guibg=#c2bfa5
 
 " set mouse=v     " visual mode, not working great for PuTTY

@@ -111,7 +111,7 @@ hi TabLineFill	ctermfg=235
 
 hi ColorColumn  cterm=NONE ctermbg=233 guibg=Black " dark gray (or 17, dark blue)
 hi statusline   ctermfg=24 ctermbg=250  " override scheme
-hi statuslineNC ctermfg=236 ctermbg=Gray  " override scheme
+hi statuslineNC ctermfg=237 ctermbg=Gray  " override scheme
 hi MatchParen   term=reverse ctermbg=23  " 23 is more subtle than default
 
 "vim: sw=4
