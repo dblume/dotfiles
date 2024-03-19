@@ -271,10 +271,12 @@ if has("autocmd")
   autocmd FileType c,cpp nmap <buffer> <leader>s :call SwitchSourceHeader()<cr>
   autocmd FileType c,cpp set foldmethod=syntax
 
-  " I toggle out of relative number when Vim's focus is lost, because
-  " if I'm not editing, then I may be referring to errors with line numbers.
-  autocmd FocusLost * if &relativenumber | set number | endif
-  autocmd FocusGained * if &number | set relativenumber | endif
+" https://jeffkreeftmeijer.com/vim-number/
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+augroup END
 
   autocmd BufRead *.txt set wrap linebreak   " "soft" wrap of existing lines
   autocmd BufRead README set wrap linebreak  " "soft" wrap of existing lines
