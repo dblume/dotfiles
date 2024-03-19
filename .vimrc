@@ -14,6 +14,7 @@ set iskeyword+=-    " Add - to list of non-word-breaking chars.
 set incsearch       " Navigate to matched strings while typing. Toggle: :set is!
 set scrolloff=0     " EC2 defaults to 5. Set explicitly to be consistent
 set formatoptions+=j " Delete comment character when joining commented lines.
+set ttimeoutlen=100 " Affects Esc key, not leader.
 
 if v:version >= 703
   " Do save the undo tree to file, but not in the local directory.
@@ -312,10 +313,10 @@ augroup END
 
   " When editing a file, always jump to the last cursor position...
   autocmd BufReadPost *
-  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+  \ if &ft != "gitcommit" && line("'\"") > 0 && line ("'\"") <= line("$") |
   \   exe "normal! g'\"" |
   \ endif
-  " ...except for gitcommit where we always want to start at the top
+  " ...except for gitcommit where we always want to start at the top (nvim)
   autocmd FileType gitcommit exe "normal! gg"
 
   autocmd BufNewFile,BufReadPost *
