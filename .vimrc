@@ -99,6 +99,13 @@ function! GitBranch()
   return strlen(l:branchname) > 0 ? '  │ '.l:branchname : ''
 endfunction
 
+function! EncodingAndFormat()
+  if (len(&fileencoding) && &fileencoding != 'utf-8') || &fileformat != 'unix'
+    return &fileencoding?&fileencoding:&encoding .'['. &fileformat . '] │ '
+  endif
+  return ''
+endfunction
+
 function! Current_mode()
   let l:currentmode={
     \ 'n'  : 'NORMAL',
@@ -134,9 +141,8 @@ set statusline+=\ %=
 set statusline+=%h
 set statusline+=\ %{Trim_brackets(&filetype)}
 set statusline+=\ %#StatusLineNC#
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ │\ %p%%\ of
+set statusline+=\ %{b:enc_fmt}
+set statusline+=%p%%\ of
 set statusline+=\ %L\ 
 
 set encoding=utf-8
@@ -311,8 +317,12 @@ if has("autocmd")
   " ...except for gitcommit where we always want to start at the top
   autocmd FileType gitcommit exe "normal! gg"
 
-  autocmd BufNewFile,BufReadPost * let b:git_branch = GitBranch()
-  autocmd BufEnter * let b:git_branch = GitBranch()
+  autocmd BufNewFile,BufReadPost *
+  \ let b:git_branch = GitBranch() |
+  \ let b:enc_fmt = EncodingAndFormat()
+  autocmd BufEnter *
+  \ let b:git_branch = GitBranch() |
+  \ let b:enc_fmt = EncodingAndFormat()
 endif
 
 " This requires vim to be compiled with +python
