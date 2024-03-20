@@ -61,7 +61,7 @@ else
   colorscheme nvim_desert
 endif
 
-au InsertEnter * hi statusline guibg=Cyan ctermfg=26 guifg=Black ctermbg=248
+au InsertEnter * hi statusline guibg=Cyan ctermfg=25 guifg=Black ctermbg=248
 au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=23 ctermbg=250 guifg=black guibg=#c2bfa5
 
 " May want to "set mouse=" See https://neovim.io/doc/user/vim_diff.html#_default-mouse
