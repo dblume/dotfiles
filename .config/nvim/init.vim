@@ -359,6 +359,10 @@ endif
 nnoremap <silent> [q :cprevious<CR>
 nnoremap <silent> ]q :cnext<CR>
 
+" From `:help :DiffOrig`.
+command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
+    \ | diffthis | wincmd p | diffthis
+
 " I use Roboto Mono from https://github.com/powerline/fonts
 " On iTerm2, Preferences -> Profiles -> Text -> Font
 " Cygwin64 won't let you choose it. Launch Cygwin64 as follows:
