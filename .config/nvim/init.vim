@@ -84,6 +84,13 @@ function! EncodingAndFormat()
   return ''
 endfunction
 
+function! OnRuler()
+  if &ruler
+    return '│ '.line('.').':'.col('.').' '
+  endif
+  return ''
+endfunction
+
 function! Current_mode()
   let l:currentmode={
     \ 'n'  : 'NORMAL',
@@ -122,6 +129,7 @@ set statusline+=\ %#StatusLineNC#
 set statusline+=\ %{b:enc_fmt}
 set statusline+=%p%%\ of
 set statusline+=\ %L\ 
+set statusline+=%{OnRuler()}
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -360,8 +368,10 @@ nnoremap <silent> [q :cprevious<CR>
 nnoremap <silent> ]q :cnext<CR>
 
 " From `:help :DiffOrig`.
-command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
+if exists(":DiffOrig") != 2
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
     \ | diffthis | wincmd p | diffthis
+endif
 
 " I use Roboto Mono from https://github.com/powerline/fonts
 " On iTerm2, Preferences -> Profiles -> Text -> Font
