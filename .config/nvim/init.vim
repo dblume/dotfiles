@@ -13,10 +13,6 @@ set noshowcmd       " Show size of selected area in visual mode on last line
 set noruler         " Show coordinates on status line
 set hidden          " Don't abandon Scratch buffer when hidden.
 
-" The following two lines set the use of perl regex, aka "very magic"
-nnoremap / /\v
-vnoremap / /\v
-
 " Make j and k move to the next row, not file line
 nnoremap j gj
 nnoremap k gk
@@ -67,6 +63,11 @@ au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=23 c
 " May want to "set mouse=" See https://neovim.io/doc/user/vim_diff.html#_default-mouse
 " set mouse=v  " visual mode, not great in PuTTY, neovim defaults to nvi
 
+" Make c-] show a list of tags, or jump straight if only single tag
+nnoremap <c-]> g<c-]>
+vnoremap <c-]> g<c-]>
+nnoremap g<c-]> <c-]>
+vnoremap g<c-]> <c-]>
 " Consider neovim default "./tags;,tags"
 set tags=tags;/
 

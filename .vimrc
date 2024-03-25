@@ -24,10 +24,6 @@ if v:version >= 703
   set undofile        " undo even after closing and reopening a file
 endif
 
-" The following two lines set the use of perl regex, aka "very magic"
-nnoremap / /\v
-vnoremap / /\v
-
 " Make j and k move to the next row, not file line
 nnoremap j gj
 nnoremap k gk
