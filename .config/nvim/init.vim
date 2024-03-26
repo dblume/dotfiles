@@ -12,6 +12,7 @@ set undofile        " undo even after closing and reopening a file
 set noshowcmd       " Show size of selected area in visual mode on last line
 set noruler         " Show coordinates on status line
 set hidden          " Don't abandon Scratch buffer when hidden.
+set cursorline      " For CursorLineNR formatting similar to pre 8.0.
 
 " Make j and k move to the next row, not file line
 nnoremap j gj
@@ -60,8 +61,8 @@ endif
 au InsertEnter * hi statusline guibg=Cyan ctermfg=25 guifg=Black ctermbg=248
 au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=23 ctermbg=250 guifg=black guibg=#c2bfa5
 
-" May want to "set mouse=" See https://neovim.io/doc/user/vim_diff.html#_default-mouse
-" set mouse=v  " visual mode, not great in PuTTY, neovim defaults to nvi
+" See https://neovim.io/doc/user/vim_diff.html#_default-mouse
+set mouse=  " neovim defaults to nvi
 
 " Make c-] show a list of tags, or jump straight if only single tag
 nnoremap <c-]> g<c-]>
