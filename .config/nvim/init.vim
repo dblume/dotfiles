@@ -12,7 +12,7 @@ set undofile        " undo even after closing and reopening a file
 set noshowcmd       " Show size of selected area in visual mode on last line
 set noruler         " Show coordinates on status line
 set hidden          " Don't abandon Scratch buffer when hidden.
-set cursorline      " For CursorLineNR formatting similar to pre 8.0.
+"set cursorline     " For CursorLineNR formatting similar to pre 8.0.
 set culopt=number   " Otherwise diff views have an underline. neovim issue 9800
 
 " Make j and k move to the next row, not file line
@@ -307,6 +307,9 @@ augroup END
   autocmd BufEnter *
   \ let b:git_branch = GitBranch() |
   \ let b:enc_fmt = EncodingAndFormat()
+
+  " I only use a cursorline style for the number column
+  autocmd OptionSet number,relativenumber if v:option_new | set cursorline | endif
 endif
 
 " This requires vim to be compiled with +python
