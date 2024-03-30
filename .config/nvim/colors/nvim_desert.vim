@@ -5,11 +5,15 @@ hi Normal       ctermbg=233 ctermfg=254
 hi EndOfBuffer  ctermbg=235
 
 hi Constant     ctermfg=130
-hi DiffDelete   ctermfg=231 ctermbg=52 guifg=#ffffff guibg=#af5faf
 hi LineNr       ctermfg=3 guifg=#eeee00
 hi TabLineSel   ctermbg=white ctermfg=239
 hi TabLine      ctermbg=247 ctermfg=237
 hi TabLineFill  ctermbg=235
+hi Folded       ctermfg=228 ctermbg=237
+hi FoldColumn   ctermfg=228 ctermbg=237
+hi DiffDelete   ctermfg=236 ctermbg=52
+hi DiffChange   ctermfg=231 ctermbg=239
+hi DiffText     ctermfg=254 ctermbg=30
 
 hi ColorColumn  cterm=NONE ctermbg=234 guibg=Black " dark gray (or 17, dark blue)
 hi statusline   cterm=bold,reverse ctermfg=23 ctermbg=250  " override scheme
