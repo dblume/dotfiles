@@ -4,7 +4,7 @@ set smartindent     " Do smart auto indenting when starting  new line
 set foldlevel=99
 set nowrap          " no wrapping text lines on the screen (exceptions below)
 set sidescroll=5
-set listchars+=tab:>-,precedes:<,extends:>,nbsp:· " for :set list
+set listchars+=tab:>-,precedes:<,extends:>,nbsp:·,eol:\\u21b5 " for :set list
 set iskeyword+=-    " Add - to list of non-word-breaking chars.
 set scrolloff=0     " EC2 defaults to 5. Set explicitly to be consistent
 set notermguicolors " Only needed for neovim while I port my color schemes
