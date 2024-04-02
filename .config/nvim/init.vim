@@ -191,6 +191,7 @@ nmap <leader>e :call ToggleNetrw()<cr>
 let Tlist_GainFocus_On_ToggleOpen = 1  " Jump to taglist window on open
 let Tlist_Exit_OnlyWindow = 1          " if you are the last, kill yourself
 let Tlist_Close_On_Select = 1          " Close taglist window on select
+let Tlist_Inc_Winwidth = 0             " Only needed for neovim in tmux
 nmap <leader>l :TlistToggle<cr>
 
 " install vim-bbye
