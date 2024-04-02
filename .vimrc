@@ -79,6 +79,7 @@ else
     highlight ColorColumn ctermbg=233 guibg=Black " dark gray (or 17, dark blue)
   endif
   highlight statusline   ctermfg=23 ctermbg=250  " override scheme
+"  highlight User1        ctermfg=250 ctermbg=30
   highlight statuslineNC ctermfg=237 ctermbg=Gray  " override scheme
   highlight MatchParen   term=reverse ctermbg=23  " 23 is more subtle than default
 endif

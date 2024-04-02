@@ -20,4 +20,6 @@ hi statusline   cterm=bold,reverse ctermfg=23 ctermbg=250  " override scheme
 hi statuslineNC cterm=reverse ctermfg=238 ctermbg=Gray  " override scheme
 hi MatchParen   term=reverse ctermbg=23  " 23 is more subtle than default
 
+hi MyTagListTagName ctermbg=25
+
 "vim: sw=4
