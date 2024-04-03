@@ -600,7 +600,7 @@ function! s:Tlist_Window_Display_Help()
         call append(7, '" x : Zoom-out/Zoom-in taglist window')
         call append(8, '" + : Open a fold')
         call append(9, '" - : Close a fold')
-        call append(10, '" * : Open all folds')
+        call append(10, '" * : (DXB removed) Open all folds')
         call append(11, '" = : Close all folds')
         call append(12, '" [[ : Move to the start of previous file')
         call append(13, '" ]] : Move to the start of next file')
@@ -1644,7 +1644,7 @@ function! s:Tlist_Window_Init()
                 \ :call <SID>Tlist_Change_Sort('cmd', 'toggle', '')<CR>
     nnoremap <buffer> <silent> + :silent! foldopen<CR>
     nnoremap <buffer> <silent> - :silent! foldclose<CR>
-    nnoremap <buffer> <silent> * :silent! %foldopen!<CR>
+    " DXB removed nnoremap <buffer> <silent> * :silent! %foldopen!<CR>
     nnoremap <buffer> <silent> = :silent! %foldclose<CR>
     nnoremap <buffer> <silent> <kPlus> :silent! foldopen<CR>
     nnoremap <buffer> <silent> <kMinus> :silent! foldclose<CR>
