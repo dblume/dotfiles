@@ -109,5 +109,6 @@ hi TabLineSel	ctermfg=white ctermbg=239
 hi TabLine	ctermfg=247 ctermbg=237
 hi TabLineFill	ctermfg=235
 
+hi MyTagListTagName ctermbg=18
 
 "vim: sw=4
