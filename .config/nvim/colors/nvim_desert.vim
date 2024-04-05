@@ -22,9 +22,9 @@ hi statusline   cterm=bold,reverse ctermfg=23 ctermbg=250  " override scheme
 hi statuslineNC cterm=reverse ctermfg=238 ctermbg=Gray  " override scheme
 hi MatchParen   term=reverse ctermbg=23  " 23 is more subtle than default
 
-hi htmlItalic   term=italic cterm=italic ctermbg=62 gui=italic
-hi htmlBold     term=bold cterm=bold ctermbg=237 gui=bold
-hi htmlBoldItalic term=bold cterm=bold ctermbg=52 gui=bold
+hi htmlItalic   term=italic cterm=italic ctermbg=24 gui=italic
+hi htmlBold     term=bold cterm=bold ctermfg=white ctermbg=237 gui=bold
+hi htmlBoldItalic term=bold cterm=bold ctermfg=white ctermbg=24 gui=bold
 hi htmlStrike   ctermfg=248 ctermbg=236
 
 hi MyTagListTagName ctermbg=25
