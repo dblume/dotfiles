@@ -33,6 +33,9 @@ nnoremap k gk
 inoremap <expr> jk pumvisible() ? '' : '<esc>'
 inoremap <expr> j pumvisible() ? '<Down>' : 'j'
 inoremap <expr> k pumvisible() ? '<Up>' : 'k'
+inoremap <expr> <Tab> pumvisible() ? '<Down>' : '<Tab>'
+inoremap <expr> <S-Tab> pumvisible() ? '<Up>' : '<S-Tab>'
+inoremap <expr> <cr> pumvisible() ? '<C-y>' : '<cr>'
 
 " https://stevelosh.com/blog/2010/09/coming-home-to-vim/#s3-why-i-came-back-to-vim
 nnoremap <leader>v <C-w>v<C-w>l
