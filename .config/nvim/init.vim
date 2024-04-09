@@ -328,22 +328,10 @@ set omnifunc=syntaxcomplete#Complete
 " Omni completion via ctrl-space (in addition to ctrl-x ctrl-o)
 inoremap <C-Space> <C-x><C-o>
 
-" cscope
-if has("cscope")
-    set cscopetag  " Use both cscope and ctag for 'ctrl-]'
-    set csto=1     " 0=cscope first; 1=ctags first
-    set cscopequickfix=s-,c-,d-,i-,t-,e-,a- " cscope to quickfix window
-
-    set nocsverb
-    " add any database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-    " else add database pointed to by environment
-    elseif $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    endif
-    set csverb
-endif
+" See https://wiki.dlma.com/neovim#cscope
+"lua << EOF
+"require("cscope_maps").setup()
+"EOF
 
 " From https://stackoverflow.com/questions/15393301/how-to-automatically-sort-quickfix-entries-by-line-text-in-vim
 " :grep term %
