@@ -24,7 +24,7 @@ hi MatchParen   term=reverse ctermbg=23  " 23 is more subtle than default
 
 hi htmlItalic   term=italic cterm=italic ctermbg=24 gui=italic
 hi htmlBold     term=bold cterm=bold ctermfg=white ctermbg=237 gui=bold
-hi htmlBoldItalic term=bold cterm=bold ctermfg=white ctermbg=24 gui=bold
+hi htmlBoldItalic term=bold,italic cterm=bold,italic ctermfg=white ctermbg=24 gui=bold,italic
 hi htmlStrike   ctermfg=248 ctermbg=236
 
 hi MyTagListTagName ctermbg=25
