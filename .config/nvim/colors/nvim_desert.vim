@@ -2,7 +2,7 @@
 runtime colors/desert.vim
 
 hi Normal       ctermbg=233 ctermfg=252
-hi EndOfBuffer  ctermbg=234
+hi EndOfBuffer  ctermbg=234 ctermfg=244
 
 "hi Constant     ctermfg=172
 hi Constant     ctermfg=130
@@ -10,12 +10,15 @@ hi LineNr       ctermfg=3 guifg=#eeee00
 hi TabLineSel   ctermbg=white ctermfg=239
 hi TabLine      ctermbg=247 ctermfg=237
 hi TabLineFill  ctermbg=235
-hi Folded       ctermfg=228 ctermbg=236
-hi FoldColumn   ctermfg=228 ctermbg=236
-hi DiffDelete   ctermfg=236 ctermbg=52
-hi DiffChange   ctermfg=231 ctermbg=239
+hi Folded       ctermfg=143 ctermbg=235
+hi FoldColumn   ctermfg=143 ctermbg=235
+hi DiffDelete   ctermfg=235 ctermbg=52
+hi DiffChange   ctermfg=231 ctermbg=238
 hi DiffText     ctermfg=254 ctermbg=30
 "hi Type         ctermfg=121
+
+hi Search       ctermfg=186 ctermbg=240
+hi CurSearch    ctermbg=25
 
 hi ColorColumn  cterm=NONE ctermbg=234 guibg=Black " dark gray (or 17, dark blue)
 hi statusline   cterm=bold,reverse ctermfg=23 ctermbg=250  " override scheme
@@ -25,7 +28,7 @@ hi MatchParen   term=reverse ctermbg=23  " 23 is more subtle than default
 hi htmlItalic   term=italic cterm=italic ctermbg=24 gui=italic
 hi htmlBold     term=bold cterm=bold ctermfg=white ctermbg=237 gui=bold
 hi htmlBoldItalic term=bold,italic cterm=bold,italic ctermfg=white ctermbg=24 gui=bold,italic
-hi htmlStrike   ctermfg=248 ctermbg=236
+hi htmlStrike   ctermfg=248 ctermbg=235
 
 hi MyTagListTagName ctermbg=25
 
