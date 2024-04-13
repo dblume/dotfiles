@@ -1,6 +1,7 @@
 " Some override of the neovim desert theme from the old vim one.
 runtime colors/desert.vim
 
+" Consider ctermfg=250 (a little darker) for Normal
 hi Normal       ctermbg=233 ctermfg=252
 hi EndOfBuffer  ctermbg=234 ctermfg=244
 
@@ -19,6 +20,12 @@ hi DiffText     ctermfg=254 ctermbg=30
 
 hi Search       ctermfg=186 ctermbg=240
 hi CurSearch    ctermbg=25
+
+" Noticed these were different in vim and neovim in rokulog syntax
+hi Ignore       cterm=bold ctermfg=242 guifg=grey40
+hi Comment      term=bold ctermfg=6 guifg=SkyBlue
+hi Identifier   term=underline cterm=bold ctermfg=6 guifg=palegreen
+hi Error        term=reverse cterm=bold ctermfg=7 ctermbg=1
 
 hi ColorColumn  cterm=NONE ctermbg=234 guibg=Black " dark gray (or 17, dark blue)
 hi statusline   cterm=bold,reverse ctermfg=23 ctermbg=250  " override scheme
