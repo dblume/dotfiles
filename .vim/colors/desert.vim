@@ -72,7 +72,7 @@ hi SpecialKey	ctermfg=darkgreen
 hi NonText	cterm=bold ctermfg=darkblue
 hi Directory	ctermfg=darkcyan
 hi ErrorMsg	cterm=bold ctermfg=7 ctermbg=1
-hi IncSearch	cterm=NONE ctermfg=yellow ctermbg=green
+hi IncSearch    cterm=NONE ctermfg=0 ctermbg=184
 hi Search	cterm=NONE ctermfg=grey ctermbg=25
 hi MoreMsg	ctermfg=darkgreen
 hi ModeMsg	cterm=NONE ctermfg=brown
