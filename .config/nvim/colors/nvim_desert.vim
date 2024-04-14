@@ -5,8 +5,8 @@ runtime colors/desert.vim
 hi Normal       ctermbg=233 ctermfg=252
 hi EndOfBuffer  ctermbg=234 ctermfg=244
 
-"hi Constant     ctermfg=172
-hi Constant     ctermfg=130
+"hi Constant     ctermfg=179
+hi Constant     ctermfg=172
 hi LineNr       ctermfg=3 guifg=#eeee00
 hi TabLineSel   ctermbg=white ctermfg=239
 hi TabLine      ctermbg=247 ctermfg=237
@@ -16,7 +16,9 @@ hi FoldColumn   ctermfg=143 ctermbg=235
 hi DiffDelete   ctermfg=235 ctermbg=52
 hi DiffChange   ctermfg=231 ctermbg=238
 hi DiffText     ctermfg=254 ctermbg=30
-"hi Type         ctermfg=121
+" hi Title        cterm=bold ctermfg=221
+hi Title        cterm=bold ctermfg=214
+"hi Type         ctermfg=150
 
 hi Search       ctermfg=186 ctermbg=240
 hi CurSearch    ctermbg=25
