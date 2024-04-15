@@ -5,8 +5,7 @@ runtime colors/desert.vim
 hi Normal       ctermbg=233 ctermfg=252
 hi EndOfBuffer  ctermbg=234 ctermfg=244
 
-"hi Constant     ctermfg=179
-hi Constant     ctermfg=172
+hi Constant     ctermfg=179
 hi LineNr       ctermfg=3 guifg=#eeee00
 hi TabLineSel   ctermbg=white ctermfg=239
 hi TabLine      ctermbg=247 ctermfg=237
@@ -19,13 +18,15 @@ hi DiffText     ctermfg=254 ctermbg=30
 " hi Title        cterm=bold ctermfg=221
 hi Title        cterm=bold ctermfg=214
 "hi Type         ctermfg=150
+hi Type         ctermfg=144
+hi PreProc      ctermfg=173
 
 hi Search       ctermfg=186 ctermbg=240
 hi CurSearch    ctermbg=25
 
 " Noticed these were different in vim and neovim in rokulog syntax
 hi Ignore       cterm=bold ctermfg=242 guifg=grey40
-hi Comment      term=bold ctermfg=6 guifg=SkyBlue
+hi Comment      term=bold ctermfg=44 guifg=SkyBlue
 hi Identifier   term=underline cterm=bold ctermfg=6 guifg=palegreen
 hi Error        term=reverse cterm=bold ctermfg=7 ctermbg=1
 
