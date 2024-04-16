@@ -328,10 +328,16 @@ set omnifunc=syntaxcomplete#Complete
 " Omni completion via ctrl-space (in addition to ctrl-x ctrl-o)
 inoremap <C-Space> <C-x><C-o>
 
-" See https://wiki.dlma.com/neovim#cscope
-"lua << EOF
-"require("cscope_maps").setup()
-"EOF
+" These two commands display syntax/highlight info for what's under the cursor.
+if exists(":SynStack") != 2
+    command SynStack :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endif
+
+function! SynGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+command Hi :call SynGroup()
 
 " From https://stackoverflow.com/questions/15393301/how-to-automatically-sort-quickfix-entries-by-line-text-in-vim
 " :grep term %
@@ -391,6 +397,11 @@ let g:netrw_sort_sequence = '[\/]$,*'
 let g:rooter_patterns = ['.git', 'Makefile', 'builds/']
 let g:rooter_cd_cmd = 'lcd'
 let g:rooter_manual_only = 1
+
+" See https://wiki.dlma.com/neovim#cscope
+lua << EOF
+  require('cscope_maps').setup()
+EOF
 
 " In some environments, Vim starts in replace mode:
 " https://superuser.com/questions/1284561/why-is-vim-starting-in-replace-mode

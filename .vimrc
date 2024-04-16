@@ -349,6 +349,17 @@ set omnifunc=syntaxcomplete#Complete
 " Omni completion via ctrl-space (in addition to ctrl-x ctrl-o)
 inoremap <Nul> <C-x><C-o>
 
+" These two commands display syntax/highlight info for what's under the cursor.
+if exists(":SynStack") != 2
+    command SynStack :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endif
+
+function! SynGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+command Hi :call SynGroup()
+
 " cscope
 if has("cscope")
     set cscopetag  " Use both cscope and ctag for 'ctrl-]'
