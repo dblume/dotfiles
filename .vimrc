@@ -47,7 +47,7 @@ nnoremap <C-l> <C-w>l
 " clear search highlights
 nnoremap <cr> :noh<cr><cr>
 
-" Shift tab switches to prev buffer
+" Shift-Tab switches to prev buffer
 " (Not remapping Tab because Ctrl-i in use as 'go to next jump pos')
 nnoremap <S-Tab> :bp<cr>
 
