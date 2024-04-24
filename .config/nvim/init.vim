@@ -38,8 +38,13 @@ nnoremap <C-l> <C-w>l
 " clear search highlights
 nnoremap <cr> :noh<cr><cr>
 
-" Shift-Tab switches to prev buffer
-" (Not remapping Tab because Ctrl-i in use as 'go to next jump pos')
+" Use (Shift-)Tab to switch buffers if Tab different than C-i (usually not in tmux).
+" Test with this:
+" nvim -Nu NONE +'nno <C-i> :echom "C-i pressed"<cr>' +'nno <tab> :echom "Tab pressed"<cr>'
+if stridx(expand($TERM), 'xterm') == 0
+  nnoremap <C-i> <C-i>
+  nnoremap <Tab> :bn<cr>
+endif
 nnoremap <S-Tab> :bp<cr>
 
 set t_Co=256
