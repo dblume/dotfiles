@@ -147,6 +147,9 @@ case "$-" in
   # You may have to explicitly source /usr/share/bash-completion/bash_completion
   CDPATH=.:$HOME
 
+  # gnome-terminal can't distinguish C-i vs Tab, have i3wm use alacritty
+  export TERMINAL=alacritty
+
  ;;
 esac
 
