@@ -150,6 +150,9 @@ case "$-" in
   # gnome-terminal can't distinguish C-i vs Tab, have i3wm use alacritty
   export TERMINAL=alacritty
 
+  # This sets the terminal title
+  PROMPT_COMMAND="echo -ne \"\033]0;$HOSTNAME\007\""
+
  ;;
 esac
 

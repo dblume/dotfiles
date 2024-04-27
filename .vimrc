@@ -50,6 +50,10 @@ nnoremap <cr> :noh<cr><cr>
 
 " Shift-Tab switches to prev buffer
 " (Not remapping Tab because Ctrl-i in use as 'go to next jump pos')
+" Test with this:
+" vim -Nu NONE +'nno <C-i> :echom "C-i pressed"<cr>' +'nno <tab> :echom "Tab pressed"<cr>'
+""nnoremap <C-i> <C-i>
+""nmap <Tab> :bn<cr>
 nnoremap <S-Tab> :bp<cr>
 
 " Use yy to yank a whole line, use Y to yank to end of line like C and D
