@@ -14,6 +14,7 @@ set noruler         " Show coordinates on status line
 set hidden          " Don't abandon Scratch buffer when hidden.
 "set cursorline     " For CursorLineNR formatting similar to pre 8.0.
 set culopt=number   " Otherwise diff views have an underline. neovim issue 9800
+set title           " Set the title of the terminal window
 
 " Make j and k move to the next row, not file line
 nnoremap j gj

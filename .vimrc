@@ -16,6 +16,7 @@ set scrolloff=0     " EC2 defaults to 5. Set explicitly to be consistent
 set formatoptions+=j " Delete comment character when joining commented lines.
 set ttimeoutlen=100 " Affects Esc key, not leader.
 set noruler         " Don't show cursor pos on right side of status bar
+set title           " Set the title in the terminal window
 
 if v:version >= 703
   " Do save the undo tree to file, but not in the local directory.
