@@ -39,12 +39,14 @@ nnoremap <C-l> <C-w>l
 " clear search highlights
 nnoremap <cr> :noh<cr><cr>
 
+" tmux in Alacritty doesn't send C-i, so I have Alacritty map C-i to <leader>i
+nnoremap <leader>i <C-i>
 " Use (Shift-)Tab to switch buffers if Tab different than C-i (usually not in tmux).
 " Test with this:
 " nvim -Nu NONE +'nno <C-i> :echom "C-i pressed"<cr>' +'nno <tab> :echom "Tab pressed"<cr>'
 if stridx(expand($TERM), 'xterm') == 0
   nnoremap <C-i> <C-i>
-  nnoremap <Tab> :bn<cr>
+  nmap <Tab> :bn<cr>
 endif
 nnoremap <S-Tab> :bp<cr>
 

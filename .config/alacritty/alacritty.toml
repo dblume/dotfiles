@@ -1,2 +1,8 @@
 [font.normal]
 family = "DejaVu Sans Mono for Powerline"
+
+[keyboard]
+bindings = [
+# For vim <leader>i as a proxy for when in tmux where <C-i> is Tab
+{ key = "I", mods = "Control",        chars = "\\i" }
+]
