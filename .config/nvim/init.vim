@@ -308,7 +308,7 @@ augroup END
   " When editing a file, always jump to the last cursor position...
   autocmd BufReadPost *
   \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-  \   exe "normal! g'\"" |
+  \   exe "normal! g`\"" |
   \ endif
   " ...except for gitcommit where we always want to start at the top
   autocmd FileType gitcommit exe "normal! gg"
