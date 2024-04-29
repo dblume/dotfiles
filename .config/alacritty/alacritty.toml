@@ -1,6 +1,9 @@
 [font.normal]
 family = "DejaVu Sans Mono for Powerline"
 
+[window]
+dynamic_padding = true
+
 [keyboard]
 bindings = [
 # For vim <leader>i as a proxy for when in tmux where <C-i> is Tab
