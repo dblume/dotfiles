@@ -39,15 +39,16 @@ nnoremap <C-l> <C-w>l
 " clear search highlights
 nnoremap <cr> :noh<cr><cr>
 
-" tmux in Alacritty doesn't send C-i, so I have Alacritty map C-i to <leader>i
+" tmux 3.2+ doesn't send C-i, so have Alacritty iTerm2 map C-i to <leader>i
+" iTerm2: Settings > Keys > Key Bindings > + > Shortcut:^i Action:Send Text "\i"
 nnoremap <leader>i <C-i>
-" Use (Shift-)Tab to switch buffers if Tab different than C-i (usually not in tmux).
+" Use (Shift-)Tab to navigate buffers, retain C-i/C-o for jumps.
 " Test with this:
 " nvim -Nu NONE +'nno <C-i> :echom "C-i pressed"<cr>' +'nno <tab> :echom "Tab pressed"<cr>'
-if stridx(expand($TERM), 'xterm') == 0
+"if stridx(expand($TERM), 'xterm') == 0
   nnoremap <C-i> <C-i>
   nmap <Tab> :bn<cr>
-endif
+"endif
 nnoremap <S-Tab> :bp<cr>
 
 set t_Co=256
