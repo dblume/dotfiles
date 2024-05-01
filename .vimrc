@@ -54,7 +54,7 @@ nnoremap <cr> :noh<cr><cr>
 nnoremap <leader>i <C-i>
 " Use (Shift-)Tab to navigate buffers, retain C-i/C-o for jumps.
 " Test with this:
-" nvim -Nu NONE +'nno <C-i> :echom "C-i pressed"<cr>' +'nno <tab> :echom "Tab pressed"<cr>'
+" vim -Nu NONE +'nno <C-i> :echom "C-i pressed"<cr>' +'nno <tab> :echom "Tab pressed"<cr>'
 "if stridx(expand($TERM), 'xterm') == 0
   nnoremap <C-i> <C-i>
   nmap <Tab> :bn<cr>
