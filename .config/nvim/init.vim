@@ -16,6 +16,7 @@ set hidden          " Don't abandon Scratch buffer when hidden.
 set culopt=number   " Otherwise diff views have an underline. neovim issue 9800
 " Set the title of the terminal window. Consider changing titlestring, %t, %M
 set title titlestring=%f%m\ -\ nvim
+set clipboard^=unnamed  " Synchronize vim's default register and clipboard
 
 " Make j and k move to the next row, not file line
 nnoremap j gj

@@ -18,6 +18,7 @@ set ttimeoutlen=100 " Affects Esc key, not leader.
 set noruler         " Don't show cursor pos on right side of status bar
 " Set the title of the terminal window. Consider changing titlestring, %t, %M
 set title titlestring=%f%m\ -\ vim
+set clipboard^=unnamed  " Synchronize vim's default register and clipboard
 
 if v:version >= 703
   " Do save the undo tree to file, but not in the local directory.
