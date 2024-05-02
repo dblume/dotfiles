@@ -16,7 +16,27 @@ set hidden          " Don't abandon Scratch buffer when hidden.
 set culopt=number   " Otherwise diff views have an underline. neovim issue 9800
 " Set the title of the terminal window. Consider changing titlestring, %t, %M
 set title titlestring=%f%m\ -\ nvim
-set clipboard^=unnamed  " Synchronize vim's default register and clipboard
+
+" WSL clipboard-tool fom 'help clipboard'
+"let g:clipboard = {
+"            \   'name': 'WslClipboard',
+"            \   'copy': {
+"            \      '+': '/mnt/c/Windows/system32/clip.exe',
+"            \      '*': '/mnt/c/Windows/system32/clip.exe',
+"            \    },
+"            \   'paste': {
+"            \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+"            \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+"            \   },
+"            \   'cache_enabled': 0,
+"            \ }
+
+" Yank and put into the system Clipboard (register + or *)
+" Otherwise make explicit commands "+yy "+y "+Y (or * instead of + as needed)
+" N.B. Don't use unnamed register for clipboard (set clipboard=unnamed)
+"      Delete operations would overwrite clipboard before pasting.
+nnoremap <leader>c "+
+vnoremap <leader>c "+
 
 " Make j and k move to the next row, not file line
 nnoremap j gj
