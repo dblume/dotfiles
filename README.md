@@ -62,7 +62,8 @@ See [config.dlma.com](http://config.dlma.com) for more.
         3. [file-line](http://www.vim.org/scripts/script.php?script_id=2184), to open file:line as from a compiler error.
         4. [visual-star-search](http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html), so * and # work in visual mode too.
         5. [git-tab](https://github.com/dblume/gittab), use integrated context-sensitive git commands
-        6. Assorted favorite colors like [desert](https://github.com/dblume/desert.vim).
+        6. [rainbow](https://github.com/luochen1990/rainbow), for matching colored parentheses. 
+        7. Assorted favorite colors like [desert](https://github.com/dblume/desert.vim).
 3. Neovim resources
     1. .config/nvim/init.vim
     2. .config/nvim/colors/nvim\_desert.vim
