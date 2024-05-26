@@ -429,11 +429,11 @@ let g:rooter_patterns = ['.git', 'Makefile', 'builds/']
 let g:rooter_cd_cmd = 'lcd'
 let g:rooter_manual_only = 1
 
+" 'Rainbow Parentheses Improved' https://github.com/luochen1990/rainbow/
+let g:rainbow_conf = { 'ctermfgs': ['lightblue', 'yellow', 'green', 'cyan', 'lightmagenta'] }
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
 " See https://wiki.dlma.com/neovim#cscope
 lua << EOF
   require('cscope_maps').setup()
 EOF
-
-" In some environments, Vim starts in replace mode:
-" https://superuser.com/questions/1284561/why-is-vim-starting-in-replace-mode
-" set t_u7=
