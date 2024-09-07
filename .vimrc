@@ -248,6 +248,9 @@ vnoremap <leader>s :sort<cr>
 vnoremap < <gv
 vnoremap > >gv
 
+" Matches neovim (nvim), where P does not yank to unnamed register
+vnoremap P "_dP
+
 " If too many file system events are getting triggered.
 set nobackup       " ~ files
 set nowritebackup  " Don't write buff to temp, delete orig, rename temp to orig
