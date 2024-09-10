@@ -248,8 +248,10 @@ vnoremap <leader>s :sort<cr>
 vnoremap < <gv
 vnoremap > >gv
 
-" Matches neovim (nvim), where P does not yank to unnamed register
-vnoremap P "_dP
+" Match Vim 8.2 and greater, where P does not yank to unnamed register
+if v:version < 802
+    vnoremap P "_dP
+endif
 
 " If too many file system events are getting triggered.
 set nobackup       " ~ files
