@@ -35,6 +35,7 @@ set title titlestring=%f%m\ -\ nvim
 " Otherwise make explicit commands "+yy "+y "+Y (or * instead of + as needed)
 " N.B. Don't use unnamed register for clipboard (set clipboard=unnamed)
 "      Delete operations would overwrite clipboard before pasting.
+" Also N.B. cscope_maps might assign <leader>c to its prefix.
 nnoremap <leader>c "+
 vnoremap <leader>c "+
 
@@ -100,6 +101,7 @@ au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=23 c
 set mouse=  " neovim defaults to nvi
 
 " Make c-] show a list of tags, or jump straight if only single tag
+" Note cscope_maps plugin might map c-].
 nnoremap <c-]> g<c-]>
 vnoremap <c-]> g<c-]>
 nnoremap g<c-]> <c-]>
@@ -438,5 +440,10 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 
 " See https://wiki.dlma.com/neovim#cscope
 lua << EOF
-  require('cscope_maps').setup()
+  require('cscope_maps').setup({ 
+    disable_maps = true, -- Mapping C-] to :Cstag <cword> worse than :tag <cword>
+-- Alternatively, if we liked the mappings, then customise these two:
+--    skip_input_prompt = true,
+--    cscope = { skip_picker_for_single_result = true },
+  })
 EOF
