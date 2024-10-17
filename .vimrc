@@ -10,7 +10,6 @@ set foldlevel=99
 set nowrap          " no wrapping text lines on the screen (exceptions below)
 set sidescroll=5
 set listchars+=tab:>-,precedes:<,extends:>,nbsp:· " for :set list
-set iskeyword+=-    " Add - to list of non-word-breaking chars.
 set incsearch       " Navigate to matched strings while typing. Toggle: :set is!
 set scrolloff=0     " EC2 defaults to 5. Set explicitly to be consistent
 set formatoptions+=j " Delete comment character when joining commented lines.
@@ -320,7 +319,8 @@ if has("autocmd")
   " Don't let smartindent unindent the # character in Python files
   autocmd FileType python  inoremap # X<c-h>#
   autocmd FileType python,c,cpp,php,brs,sh  set expandtab  " Use spaces instead of tabs
-  autocmd Filetype make    setl noexpandtab       " ...not for files that use tabs.
+  autocmd FileType make    setl noexpandtab                " ...not for files that use tabs.
+  autocmd FileType markdown  set iskeyword+=-  " Add - to list of non-word-breaking chars.
 
   " Use the vim command %retab before applying the following
   " two with files that have 8-space tabs.
