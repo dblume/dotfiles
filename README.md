@@ -63,7 +63,8 @@ See [config.dlma.com](http://config.dlma.com) for more.
         4. [visual-star-search](http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html), so * and # work in visual mode too.
         5. [git-tab](https://github.com/dblume/gittab), use integrated context-sensitive git commands
         6. [rainbow](https://github.com/luochen1990/rainbow), for matching colored parentheses. 
-        7. Assorted favorite colors like [desert](https://github.com/dblume/desert.vim).
+        7. [tabular](https://github.com/godlygeek/tabular), for when aligning tables. 
+        8. Assorted favorite colors like [desert](https://github.com/dblume/desert.vim).
 3. Neovim resources
     1. .config/nvim/init.vim
     2. .config/nvim/colors/nvim\_desert.vim
