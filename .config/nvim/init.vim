@@ -9,7 +9,7 @@ set scrolloff=0     " EC2 defaults to 5. Set explicitly to be consistent
 set notermguicolors " Only needed for neovim while I port my color schemes
 set undofile        " undo even after closing and reopening a file
 set noshowcmd       " Show size of selected area in visual mode on last line
-set noruler         " Show coordinates on status line
+set ruler           " Show coordinates on status line
 set hidden          " Don't abandon Scratch buffer when hidden.
 "set cursorline     " For CursorLineNR formatting similar to pre 8.0.
 set culopt=number   " Otherwise diff views have an underline. neovim issue 9800
@@ -320,11 +320,12 @@ if has("autocmd")
   autocmd FileType c,cpp set foldmethod=syntax
 
 " https://jeffkreeftmeijer.com/vim-number/
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
-augroup END
+" Disabling for now, just keep the mode that was explicitly requested.
+"augroup numbertoggle
+"  autocmd!
+"  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+"  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+"augroup END
 
   autocmd BufRead *.txt set wrap linebreak   " "soft" wrap of existing lines
   autocmd BufRead README set wrap linebreak  " "soft" wrap of existing lines
