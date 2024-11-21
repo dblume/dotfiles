@@ -38,15 +38,15 @@ Run the following:
     dotfiles$ tar -xvf dotfiles.tar
     dotfiles$ rm dotfiles.tar
 
-Then, when you run `setup.sh`, it'll backup your changed files to `backup_of_dotfiles_<date>`
+Then, when you run `setup`, it'll backup your changed files to `backup_of_dotfiles_<date>`
 and replace them with the ones here. You can perform a **dry run** to see which files will
 be changed by passing the "-n" parameter.
 
-    ./setup.sh -n
+    ./setup -n
 
-If you approve of the changes, then just run `setup.sh`
+If you approve of the changes, then just run `setup`
 
-    ./setup.sh
+    ./setup
 
 See [config.dlma.com](http://config.dlma.com) for more.
 
