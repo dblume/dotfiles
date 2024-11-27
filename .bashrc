@@ -233,7 +233,7 @@ venv() {
 
 # https://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
 HISTCONTROL=ignoredups:erasedups
-HISTIGNORE="&:ls:[bf]g:exit:pwd:clear"
+HISTIGNORE="&:ls:[bf]g:exit:pwd:clear:\:[qw]*:ZZ"
 #HISTFILESIZE=2000
 #HISTSIZE=2000
 # [ $(wc -l < $HOME/.bash_history) -gt 950 ] && echo "David, your .bash_history is over 950 lines. Consider updating your .bashrc."
