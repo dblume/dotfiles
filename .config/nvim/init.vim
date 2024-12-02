@@ -455,7 +455,7 @@ lua << EOF
       priority = -math.huge,
       function(path, bufnr)
         local content = vim.filetype.getlines(bufnr, 1)
-        if vim.filetype.matchregex(content, [[^\d\{2\}-\d\{2\} \d\{2\}:\d\{2\}:\d\{2\}.\d\{3\}\s\+\(n\|dev\|\d\+\|tvinput\.\S\+\) \[]]) then
+        if vim.filetype.matchregex(content, [[^\d\{2\}-\d\{2\} \d\{2\}:\d\{2\}:\d\{2\}.\d\{3\}\s\+\(n\|dev\|\d\+\(_[0-9a-f]\+\)\?\|tvinput\.\S\+\) \[]]) then
           return 'rokulog'
         end
       end,
