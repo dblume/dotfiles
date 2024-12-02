@@ -5,6 +5,6 @@
 if did_filetype()  " filetype already set..
   finish           " ..don't do these checks
 endif
-if getline(1) =~? '^\d\{2\}-\d\{2\} \d\{2\}:\d\{2\}:\d\{2\}.\d\{3\}\s\+\(n\|dev\|\d\+\(_[0-9a-f]\+\)\?\|tvinput\.\S\+\) \['
+if getline(1) =~? '^\d\{2\}-\d\{2\} \d\{2\}:\d\{2\}:\d\{2\}.\d\{3\}\s\+\(!\|n\|dev\|\d\+\(_[0-9a-f]\+\)\?\|tvinput\.\S\+\)\?[ *]\['
   setfiletype rokulog
 endif
