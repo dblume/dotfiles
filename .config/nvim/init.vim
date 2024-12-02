@@ -443,8 +443,23 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 lua << EOF
   require('cscope_maps').setup({ 
     disable_maps = true, -- Mapping C-] to :Cstag <cword> worse than :tag <cword>
--- Alternatively, if we liked the mappings, then customise these two:
---    skip_input_prompt = true,
---    cscope = { skip_picker_for_single_result = true },
+  -- Alternatively, if we liked the mappings, then customise these two:
+  --    skip_input_prompt = true,
+  --    cscope = { skip_picker_for_single_result = true },
   })
+
+  -- From https://www.reddit.com/r/neovim/comments/wcq6sp/override_file_type_detection_for_existing/
+  vim.filetype.add {
+  pattern = {
+    ['.*'] = {
+      priority = -math.huge,
+      function(path, bufnr)
+        local content = vim.filetype.getlines(bufnr, 1)
+        if vim.filetype.matchregex(content, [[^\d\{2\}-\d\{2\} \d\{2\}:\d\{2\}:\d\{2\}.\d\{3\}\s\+\(n\|dev\|\d\+\|tvinput\.\S\+\) \[]]) then
+          return 'rokulog'
+        end
+      end,
+    },
+  },
+}
 EOF
