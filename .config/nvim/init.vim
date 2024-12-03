@@ -450,16 +450,24 @@ lua << EOF
 
   -- From https://www.reddit.com/r/neovim/comments/wcq6sp/override_file_type_detection_for_existing/
   vim.filetype.add {
-  pattern = {
-    ['.*'] = {
-      priority = -math.huge,
-      function(path, bufnr)
-        local content = vim.filetype.getlines(bufnr, 1)
-        if vim.filetype.matchregex(content, [[^\d\{2\}-\d\{2\} \d\{2\}:\d\{2\}:\d\{2\}.\d\{3\}\s\+\(!\|n\|dev\|\d\+\(_[0-9a-f]\+\)\?\|tvinput\.\S\+\)\?[ *]\[]]) then
-          return 'rokulog'
-        end
-      end,
+    pattern = {
+      ['.*'] = {
+        priority = -math.huge,
+        function(path, bufnr)
+          local rokulog_pat = [[^\d\{2\}-\d\{2\} \d\{2\}:\d\{2\}:\d\{2\}.\d\{3\}\s\+\(!\|n\|dev\|\d\+\(_[0-9a-f]\+\)\?\|tvinput\.\S\+\)\?[ *]\[]]
+          if vim.fn.has('nvim-0.10') == 1 then
+            local content = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] or ''
+            if vim.regex(rokulog_pat):match_str(content) ~= nil then
+              return 'rokulog'
+            end
+          else
+            local content = vim.filetype.getlines(bufnr, 1)
+            if vim.filetype.matchregex(content, rokulog_pat) then
+              return 'rokulog'
+            end
+          end
+        end,
+      },
     },
-  },
-}
+  }
 EOF
