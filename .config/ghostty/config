@@ -1,0 +1,10 @@
+# https://wiki.dlma.com/ghostty
+# https://ghostty.org/docs/config
+theme = "Builtin Pastel Dark"
+font-family = "Roboto Mono for Powerline"
+font-thicken = true
+window-height = 60
+window-width = 120
+ 
+# consider
+#copy-on-select = clipboard

@@ -70,15 +70,16 @@ See [config.dlma.com](http://config.dlma.com) for more.
     2. .config/nvim/colors/nvim\_desert.vim
     3. .local/share/nvim/site/plugin/ plugins
 4. .gitconfig and .gitignore
-5. .tmux.conf
-6. .inputrc, for vi mode and a [partially matched command history traversal](http://askubuntu.com/questions/59846/bash-history-search-partial-up-arrow/59855#59855).
-7. .editrc, for vi mode and tab word completion in macOS.
-8. .ssh/config, for a [fix for CVE-2016-0777](https://news.ycombinator.com/item?id=10901588). (Or upgrade to OpenSSH 7.1p2 released Jan 14, 2016 from http://www.openssh.com.)
-9. .ripgreprc, for ripgrep, or [rg](https://github.com/BurntSushi/ripgrep/).
-10. .gdbinit
-11. .visidatarc, to hide [visidata's](https://www.visidata.org/) menu at the top, for the old school UI.
-12. .config/gitui/key\_bindings.ron, for vim key bindings in [gitui](https://github.com/extrawurst/gitui).
-13. [i3](https://i3wm.org/) configs.
+5. [Ghostty](https://ghostty.org/) config in .config/ghostty/config
+6. .tmux.conf
+7. .inputrc, for vi mode and a [partially matched command history traversal](http://askubuntu.com/questions/59846/bash-history-search-partial-up-arrow/59855#59855).
+8. .editrc, for vi mode and tab word completion in macOS.
+9. .ssh/config, for a [fix for CVE-2016-0777](https://news.ycombinator.com/item?id=10901588). (Or upgrade to OpenSSH 7.1p2 released Jan 14, 2016 from http://www.openssh.com.)
+10. .ripgreprc, for ripgrep, or [rg](https://github.com/BurntSushi/ripgrep/).
+11. .gdbinit
+12. .visidatarc, to hide [visidata's](https://www.visidata.org/) menu at the top, for the old school UI.
+13. .config/gitui/key\_bindings.ron, for vim key bindings in [gitui](https://github.com/extrawurst/gitui).
+14. [i3](https://i3wm.org/) configs.
 
 #### Optional manual steps for fresh setups
 
