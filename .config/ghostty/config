@@ -5,6 +5,10 @@ font-family = "Roboto Mono for Powerline"
 font-thicken = true
 window-height = 60
 window-width = 120
+
+# Similar solid block cursor to iTerm2
+cursor-style-blink = false
+shell-integration-features = no-cursor
  
 # consider
 #copy-on-select = clipboard
