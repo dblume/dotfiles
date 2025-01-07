@@ -97,7 +97,7 @@ au InsertEnter * hi statusline guibg=Cyan ctermfg=25 guifg=Black ctermbg=248
 au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=23 ctermbg=250 guifg=black guibg=#c2bfa5
 
 " See https://neovim.io/doc/user/vim_diff.html#_default-mouse
-set mouse=  " neovim defaults to nvi
+" set mouse=  " neovim defaults to nvi
 
 " Make c-] show a list of tags, or jump straight if only single tag
 " Note cscope_maps plugin might map c-].
