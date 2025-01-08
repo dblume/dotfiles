@@ -1,9 +1,20 @@
 # https://wiki.dlma.com/ghostty
 # https://ghostty.org/docs/config
-theme = "Monokai Pro Spectrum"
-background = 1C2021
+theme = "catppuccin-mocha"
+
+# for catppuccin-mocha (palette 6 for nvim rokulog syntax)
+palette = 6=#74d0c0
+background = 1a1c1e
+
+# This foreground override is esp for SpaceGray Eighties
+#foreground = dddace
+
+# For Monokai Pro Spectrum
+#background = 141618
+
 font-family = "Roboto Mono for Powerline"
 font-thicken = true
+
 window-height = 60
 window-width = 120
 
