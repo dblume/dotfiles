@@ -1,6 +1,7 @@
 # https://wiki.dlma.com/ghostty
 # https://ghostty.org/docs/config
-theme = "Builtin Pastel Dark"
+theme = "Monokai Pro Spectrum"
+background = 1C2021
 font-family = "Roboto Mono for Powerline"
 font-thicken = true
 window-height = 60

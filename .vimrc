@@ -106,7 +106,7 @@ endif
 au InsertEnter * hi statusline guibg=Cyan ctermfg=25 guifg=Black ctermbg=248
 au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=23 ctermbg=250 guifg=black guibg=#c2bfa5
 
-" set mouse=v     " visual mode, not working great for PuTTY
+set mouse=nvi  " Matches neovim's default
 
 set tags=tags;/
 
