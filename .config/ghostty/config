@@ -4,6 +4,7 @@ theme = "catppuccin-mocha"
 
 # for catppuccin-mocha (palette 6 for nvim rokulog syntax)
 palette = 6=#74d0c0
+foreground = dde4ea
 background = 1a1c1e
 
 # This foreground override is esp for SpaceGray Eighties
@@ -21,6 +22,11 @@ window-width = 120
 # Similar solid block cursor to iTerm2
 cursor-style-blink = false
 shell-integration-features = no-cursor
+
+# vim maps tab/Shift-tab to :bn/bp
+# To keep vim C-i/o jumps working, map C-i to <leader>i
+# Same mapping is in .config/alacritty/alacritty.toml
+keybind = control+i=text:\\i
  
 # consider
 #copy-on-select = clipboard

@@ -7,5 +7,6 @@ dynamic_padding = true
 [keyboard]
 bindings = [
 # For vim <leader>i as a proxy for when in tmux where <C-i> is Tab
+# Same mapping is in .config/ghostty/config
 { key = "I", mods = "Control",        chars = "\\i" }
 ]
