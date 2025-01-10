@@ -107,6 +107,8 @@ au InsertEnter * hi statusline guibg=Cyan ctermfg=25 guifg=Black ctermbg=248
 au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=23 ctermbg=250 guifg=black guibg=#c2bfa5
 
 set mouse=nvi  " Matches neovim's default
+" Set jump point from before mouse click.
+nnoremap <LeftMouse> m'<LeftMouse>
 
 set tags=tags;/
 

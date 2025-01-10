@@ -99,6 +99,9 @@ au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=23 c
 " See https://neovim.io/doc/user/vim_diff.html#_default-mouse
 " set mouse=  " neovim defaults to nvi
 
+" Set jump point from before mouse click.
+nnoremap <LeftMouse> m'<LeftMouse>
+
 " Make c-] show a list of tags, or jump straight if only single tag
 " Note cscope_maps plugin might map c-].
 nnoremap <c-]> g<c-]>
