@@ -13,6 +13,7 @@ background = 1a1c1e
 # For Monokai Pro Spectrum
 #background = 141618
 
+#font-family = "DejaVu Sans Mono for Powerline"
 font-family = "Roboto Mono for Powerline"
 font-thicken = true
 
@@ -27,6 +28,10 @@ shell-integration-features = no-cursor
 # To keep vim C-i/o jumps working, map C-i to <leader>i
 # Same mapping is in .config/alacritty/alacritty.toml
 keybind = control+i=text:\\i
+
+# Linux-only configuration: Expected titlebar in i3
+gtk-adwaita = false
+gtk-titlebar = false
  
 # consider
 #copy-on-select = clipboard
