@@ -109,6 +109,7 @@ au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=23 c
 set mouse=nvi  " Matches neovim's default
 " Set jump point from before mouse click.
 nnoremap <LeftMouse> m'<LeftMouse>
+inoremap <LeftMouse> <Esc>m'<LeftMouse>
 
 set tags=tags;/
 

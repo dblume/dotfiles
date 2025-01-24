@@ -101,6 +101,7 @@ au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=23 c
 
 " Set jump point from before mouse click.
 nnoremap <LeftMouse> m'<LeftMouse>
+inoremap <LeftMouse> <Esc>m'<LeftMouse>
 
 " Make c-] show a list of tags, or jump straight if only single tag
 " Note cscope_maps plugin might map c-].
