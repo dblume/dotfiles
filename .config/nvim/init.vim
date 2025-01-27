@@ -99,6 +99,13 @@ au InsertLeave * hi statusline term=bold,reverse cterm=bold,reverse ctermfg=23 c
 " See https://neovim.io/doc/user/vim_diff.html#_default-mouse
 " set mouse=  " neovim defaults to nvi
 
+" Don't move the cursor when activating window (incompatible on PuTTY)
+augroup NO_CURSOR_MOVE_ON_FOCUS
+  au!
+  au FocusLost * let g:oldmouse=&mouse | set mouse=
+  au FocusGained * if exists('g:oldmouse') | let &mouse=g:oldmouse | unlet g:oldmouse | endif
+augroup END
+
 " Set jump point from before mouse click.
 nnoremap <LeftMouse> m'<LeftMouse>
 inoremap <LeftMouse> <Esc>m'<LeftMouse>
