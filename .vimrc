@@ -117,7 +117,6 @@ augroup END
 
 " Set jump point from before mouse click.
 nnoremap <LeftMouse> m'<LeftMouse>
-inoremap <LeftMouse> <Esc>m'<LeftMouse>
 
 set tags=tags;/
 
