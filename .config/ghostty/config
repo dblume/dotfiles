@@ -6,6 +6,7 @@ theme = "catppuccin-mocha"
 palette = 6=#74d0c0
 foreground = dde4ea
 background = 1a1c1e
+cursor-invert-fg-bg = true
 
 # This foreground override is esp for SpaceGray Eighties
 #foreground = dddace
