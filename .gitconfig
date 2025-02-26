@@ -3,9 +3,9 @@
 	email = david.blume@gmail.com
 [diff]
 	tool = vimdiff
-	noprefix = true
 	submodule = log
 	algorithm = histogram
+	mnemonicPrefix = true
 [difftool]
 	prompt = false
 [difftool "vimdiff"]
@@ -19,6 +19,7 @@
 [push]
 	default = simple
 	autoSetupRemote = true
+	followTags = true
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore
@@ -34,6 +35,7 @@
 	defaultBranch = main
 [fetch]
 	prune = true
+	pruneTags = true
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3
@@ -45,5 +47,11 @@
 	lineNumber = true
 [commit]
 	verbose = true
+[help]
+	autocorrect = prompt
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
 [include]
 	path = ~/.gitconfig.local
