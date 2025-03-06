@@ -30,13 +30,16 @@ set title titlestring=%f%m\ -\ nvim
 "            \   'cache_enabled': 0,
 "            \ }
 
+" N.B. Don't just use unnamed register for clipboard (set clipboard=unnamed)
+"      Delete operations would overwrite clipboard before pasting.
+set clipboard+=unnamedplus
+
+" Will remove these two remappings if unnamedplus (above) does the job
 " Yank and put into the system Clipboard (register + or *)
 " Otherwise make explicit commands "+yy "+y "+Y (or * instead of + as needed)
-" N.B. Don't use unnamed register for clipboard (set clipboard=unnamed)
-"      Delete operations would overwrite clipboard before pasting.
-" Also N.B. cscope_maps might assign <leader>c to its prefix.
-nnoremap <leader>c "+
-vnoremap <leader>c "+
+" N.B. cscope_maps might assign <leader>c to its prefix.
+"nnoremap <leader>c "+
+"vnoremap <leader>c "+
 
 " Make j and k move to the next row, not file line
 nnoremap j gj
