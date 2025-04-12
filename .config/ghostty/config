@@ -20,6 +20,10 @@ cursor-invert-fg-bg = true
 font-family = "Roboto Mono for Powerline"
 font-thicken = true
 
+# Disable ligatures when using default font JetBrains Mono.
+# https://ghostty.org/docs/config/reference#font-feature
+font-feature = -calt
+
 window-height = 60
 window-width = 120
 
