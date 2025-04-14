@@ -482,4 +482,13 @@ lua << EOF
       },
     },
   }
+
+  -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
+  require("CopilotChat").setup({
+  })
+
+-- Both Copilot and CopilotChat are installed and both remap "<Tab>". Make <S-Tab> work for CopilotChat.
+-- https://github.com/CopilotC-Nvim/CopilotChat.nvim/issues/1062
+vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
+
 EOF
