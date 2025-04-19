@@ -487,8 +487,8 @@ lua << EOF
     if str:find("copilotchat") then
       -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
       require("CopilotChat").setup({
-        question_header = "# ?? ",
-        answer_header = "# ?? ",
+        question_header = "# 👤 ",
+        answer_header = "# 🤖 ",
       })
 
       -- Both Copilot and CopilotChat are installed and both remap "<Tab>". Make <S-Tab> work for CopilotChat.
