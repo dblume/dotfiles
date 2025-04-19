@@ -483,14 +483,19 @@ lua << EOF
     },
   }
 
-  -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
-  require("CopilotChat").setup({
-    question_header = "# 👤 ",
-    answer_header = "# 🤖 ",
-  })
+  for _, str in ipairs(vim.api.nvim_list_runtime_paths()) do
+    if str:find("copilotchat") then
+      -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
+      require("CopilotChat").setup({
+        question_header = "# ?? ",
+        answer_header = "# ?? ",
+      })
 
--- Both Copilot and CopilotChat are installed and both remap "<Tab>". Make <S-Tab> work for CopilotChat.
--- https://github.com/CopilotC-Nvim/CopilotChat.nvim/issues/1062
-vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
+      -- Both Copilot and CopilotChat are installed and both remap "<Tab>". Make <S-Tab> work for CopilotChat.
+      -- https://github.com/CopilotC-Nvim/CopilotChat.nvim/issues/1062
+      vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
+      break
+    end
+  end
 
 EOF
