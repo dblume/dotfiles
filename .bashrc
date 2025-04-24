@@ -232,7 +232,7 @@ venv() {
 }
 
 # https://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
-HISTCONTROL=ignoredups:erasedups
+HISTCONTROL=ignoreboth:erasedups
 HISTIGNORE="&:ls:[bf]g:exit:pwd:clear:\:[qw]*:ZZ"
 #HISTFILESIZE=2000
 #HISTSIZE=2000
