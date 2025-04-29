@@ -485,15 +485,19 @@ lua << EOF
 
   for _, str in ipairs(vim.api.nvim_list_runtime_paths()) do
     if str:find("copilotchat") then
+      local chat = require('CopilotChat')
       -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
-      require("CopilotChat").setup({
-        question_header = "# 👤 ",
-        answer_header = "# 🤖 ",
+      chat.setup({
+        model = 'claude-3.7-sonnet',
+        question_header = '  ',
+        answer_header = '   ',
+        error_header = '  '
       })
 
       -- Both Copilot and CopilotChat are installed and both remap "<Tab>". Make <S-Tab> work for CopilotChat.
       -- https://github.com/CopilotC-Nvim/CopilotChat.nvim/issues/1062
       vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
+      vim.keymap.set({ 'n' }, '<leader>aa', chat.toggle, { desc = 'AI Toggle' })
       break
     end
   end
