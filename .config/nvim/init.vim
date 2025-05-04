@@ -466,7 +466,7 @@ lua << EOF
       ['.*'] = {
         priority = -math.huge,
         function(path, bufnr)
-          local rokulog_pat = [[^\d\{2\}-\d\{2\} \d\{2\}:\d\{2\}:\d\{2\}.\d\{3\}\s\+\(!\|n\|dev\|\d\+\(_[0-9a-f]\+\)\?\|tvinput\.\S\+\)\?[ *]\[]]
+          local rokulog_pat = [[^\(\d\{4\}-\)\?\d\{2\}-\d\{2\} \d\{2\}:\d\{2\}:\d\{2\}.\d\{3\}\s\+\(!\|n\|dev\|\d\+\(_[0-9a-f]\+\)\?\|tvinput\.\S\+\)\?[ *]\[]]
           if vim.fn.has('nvim-0.10') == 1 then
             local content = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] or ''
             if vim.regex(rokulog_pat):match_str(content) ~= nil then
