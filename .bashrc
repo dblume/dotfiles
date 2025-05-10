@@ -110,9 +110,9 @@ export P4DIFF='vim -d'  # Override from the command line: "P4DIFF=; p4 diff main
 export CSCOPE_EDITOR=vim
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+alias grep='grep --color=auto --exclude-dir=.git'
+alias fgrep='fgrep --color=auto --exclude-dir=.git'
+alias egrep='egrep --color=auto --exclude-dir=.git'
 alias tmux='tmux -2u'
 
 # colored GCC warnings and errors
