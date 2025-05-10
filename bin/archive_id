@@ -42,7 +42,6 @@ if [ $# -ne 1 ]; then
 fi
 declare -r gpg_id="$1"
 declare -r backup_dir="$HOSTNAME"_"${gpg_id//.}"_archive_$(date "+%Y-%m-%d_%H%M%S")
-echo DXB $gpg_id DXB $backup_dir
 
 # Copy archive directories to backup_dir
 for i in "${archdirs[@]}"
