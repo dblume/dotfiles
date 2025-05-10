@@ -143,6 +143,10 @@ case "$-" in
   stty ixoff # enable sending (to app) of start/stop characters
   stty ixany # let any character restart output, not only start character
 
+  if [ -f ${HOME}/bin/set_colorscheme ]; then
+    source ${HOME}/bin/set_colorscheme
+  fi
+
   # Don't use export for CDPATH. This may get appended to in .localrc too.
   # You may have to explicitly source /usr/share/bash-completion/bash_completion
   CDPATH=.:$HOME

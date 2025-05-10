@@ -7,7 +7,8 @@ declare -a dotfiles=(".bashrc" ".bash_profile" ".vimrc" ".editrc" ".gitconfig"
                      ".gitignore" ".inputrc" ".tmux.conf" ".ssh/config" ".ripgreprc"
                      ".gdbinit" ".config/gitui/key_bindings.ron" ".visidatarc"
                      ".config/i3/config" ".config/i3status/config"
-                     ".config/dunst/dunstrc" ".config/alacritty/alacritty.toml")
+                     ".config/dunst/dunstrc" ".config/alacritty/alacritty.toml"
+                     "bin/set_colorscheme")
 declare -i dry_run=0
 
 ## exit the shell (with status 2) after printing the message
