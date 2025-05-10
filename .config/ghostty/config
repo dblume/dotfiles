@@ -6,7 +6,7 @@ split-divider-color = #789
 
 # for catppuccin-mocha (palette 6 for nvim rokulog syntax)
 # 16 ANSI colors https://jvns.ca/blog/2024/10/01/terminal-colours/
-palette = 2=#57DF51
+palette = 2=#57DF5a
 palette = 6=#7FD6C8
 foreground = dde4ea
 background = 1a1c1e

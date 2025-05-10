@@ -28,11 +28,11 @@ fi
 # 16 color space
 put_template 0  "45/47/5a"
 put_template 1  "f3/8b/a8"
-put_template 2  "a6/e3/a1"
+put_template 2  "57/df/5a"
 put_template 3  "f9/e2/af"
 put_template 4  "89/b4/fa"
 put_template 5  "f5/c2/e7"
-put_template 6  "94/e2/d5"
+put_template 6  "7f/d6/c8"
 put_template 7  "a6/ad/c8"
 put_template 8  "58/5b/70"
 put_template 9  "f3/77/99"
