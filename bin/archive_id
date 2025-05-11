@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+set -eu -o pipefail # See: https://sipb.mit.edu/doc/safe-shell/
+
+declare -r script_name=$(basename "${BASH_SOURCE[0]}")
+declare -a archdirs=(".ssh" ".gnupg")
+declare -a archfiles=(".bash_history" ".crontab" ".gitconfig.local"
+                      ".gnuplot_history" ".localrc" ".python_history"
+                      ".sqlite_history" ".telnet_history" "bin/archive_id")
+declare -i dry_run=0
+
+## exit the shell (with status 2) after printing the message
+usage() {
+    echo "\
+$script_name -hn <id>
+
+Backup .ssh and .gnupg to an encrypted zip file so you can copy that over
+first and then rsync the rest.
+
+    -h      Print this help text
+    -n      Perform a dry run, to see what'll change
+
+    id      id/email associated with your gpg keys to archive
+"
+    exit 2;
+}
+
+## Process the options
+while getopts "hn" OPTION
+do
+  case $OPTION in
+    h) usage;;
+    n) dry_run=1;;
+    \?) usage;;
+  esac
+done
+
+shift $((OPTIND - 1))
+
+if [ $# -ne 1 ]; then
+  echo "Error: This script requires an argument, the id (email address) of your gpg secret."
+  usage
+fi
+declare -r gpg_id="$1"
+declare -r backup_dir="$HOSTNAME"_"${gpg_id//.}"_archive_$(date "+%Y-%m-%d_%H%M%S")
+
+# Copy archive directories to backup_dir
+for i in "${archdirs[@]}"
+do
+    if [ -e "$HOME"/"$i" ]; then
+        # We use rsync --no-specials to exclude .gnupg's named sockets.
+        ((dry_run==0)) && mkdir -p "${backup_dir}"/"$(dirname "$i")" && rsync -axr --no-specials "$HOME"/"$i" "${backup_dir}"
+    else
+        >&2 echo "$i" does not exist in "$HOME"
+    fi
+done
+
+# Copy archive files to backup_dir
+for i in "${archfiles[@]}"
+do
+    if [ -e "$HOME"/"$i" ]; then
+        ((dry_run==0)) && mkdir -p "${backup_dir}"/"$(dirname "$i")" && cp -p "$HOME"/"$i" "${backup_dir}"/"$i"
+    else
+        >&2 echo "$i" does not exist in "$HOME"
+    fi
+done
+
+if [ $dry_run -eq 0 ]; then
+    # Also gpg --export the keys, in case .gnupg doesn't restore right.
+    gpg --export --armor ${gpg_id} > "${backup_dir}"/gpg_${gpg_id}_pub_keys.asc
+    echo "Now doing secret keys for ${gpg_id}."
+    gpg --export-secret-keys --pinentry-mode loopback --armor --export-options backup ${gpg_id} > "${backup_dir}"/gpg_${gpg_id}_secret_keys.asc
+    echo "Now doing secret subkeys for ${gpg_id}."
+    gpg --export-secret-subkeys --pinentry-mode loopback --armor --export-options backup ${gpg_id} > "${backup_dir}"/gpg_${gpg_id}_secret_subkeys.asc
+    #gpg --export-options backup > "${backup_dir}"/keyring.gpg --export
+    gpg --export-ownertrust > "${backup_dir}"/gpg_${gpg_id}_ownertrust.txt
+    
+    cat << EOF > "${backup_dir}"/README.txt
+This is a backup of .gnupg and .ssh, and some other files.
+I also gpg exported the public and private keys for ${gpg_id}. Restore them with:
+
+gpg --import gpg_${gpg_id}_pub_keys.asc
+gpg --pinentry-mode loopback --import gpg_${gpg_id}_secret_keys.asc
+gpg --import gpg_${gpg_id}_secret_subkeys.asc
+gpg --import-ownertrust gpg_${gpg_id}_ownertrust.txt
+
+And then trust the imported keys with:
+gpg --edit-key ${gpg_id}
+gpg> trust
+Your decision? 5
+EOF
+fi
+
+if [ $dry_run -eq 0 ]; then
+    echo Your archive files are backed up to "${backup_dir}"
+    echo You will now be asked for a password to encrypt the backup to a zip file.
+    zip -er "${backup_dir}" "${backup_dir}" && rm -r "${backup_dir}"
+    echo Done.
+else
+    echo Your archive files would have been backed up to "${backup_dir}"
+    echo Dry run completed.
+fi
+

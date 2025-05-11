@@ -69,9 +69,11 @@ See [config.dlma.com](http://config.dlma.com) for more.
     1. .config/nvim/init.vim
     2. .config/nvim/colors/nvim\_desert.vim
     3. .local/share/nvim/site/plugin/ plugins
-4. .gitconfig and .gitignore
-5. [Ghostty](https://ghostty.org/) config in .config/ghostty/config
-6. Shell script to set the [Catppuccin Mocha](https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/generic/catppuccin-mocha.sh) color scheme.
+4. bin directory with:
+    1. set\_colorscheme, a script to set the [Catppuccin Mocha](https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/generic/catppuccin-mocha.sh) color scheme.
+    2. archive\_id, a script to archive your gpg secrets and .ssh keys
+5. .gitconfig and .gitignore
+6. [Ghostty](https://ghostty.org/) config in .config/ghostty/config
 7. .tmux.conf
 8. .inputrc, for vi mode and a [partially matched command history traversal](http://askubuntu.com/questions/59846/bash-history-search-partial-up-arrow/59855#59855).
 9. .editrc, for vi mode and tab word completion in macOS.
