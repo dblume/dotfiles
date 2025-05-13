@@ -44,7 +44,7 @@ put_template 14 "6b/d7/ca"
 put_template 15 "de/e2/f8"
 
 color_foreground="d0/d5/e5"
-color_background="1e/1e/2e"
+color_background="1e/1e/2a"
 
 if [ -n "$ITERM_SESSION_ID" ]; then
   # iTerm2 proprietary escape codes
