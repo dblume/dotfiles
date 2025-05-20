@@ -453,6 +453,17 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 
 " See https://wiki.dlma.com/neovim#cscope
 lua << EOF
+
+  vim.lsp.config.clangd = {
+    cmd = { 'clangd', '--background-index' },
+    root_markers = { '.git', '.clang-format', '.editorconfig' },
+    filetypes = { 'c', 'cpp' },
+  }
+  vim.keymap.set("n", "<Leader>d", ":lua vim.diagnostic.open_float(0, {scope='line'})<CR>", { desc = "Show diagnostics" })
+  vim.keymap.set("n", "gl", ":lua vim.diagnostic.open_float({ border = 'rounded' })<CR>", { desc = "Show diagnostic fixes" })
+  
+  vim.lsp.enable({'clangd'})
+
   require('cscope_maps').setup({ 
     disable_maps = true, -- Mapping C-] to :Cstag <cword> worse than :tag <cword>
   -- Alternatively, if we liked the mappings, then customise these two:
@@ -489,6 +500,9 @@ lua << EOF
       -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
       chat.setup({
         model = 'claude-3.7-sonnet',
+--        question_header = " 👤 ",
+--        answer_header = " 🤖 ",
+--        error_header = " ❗ ", 
         question_header = '  ',
         answer_header = '   ',
         error_header = '  '
