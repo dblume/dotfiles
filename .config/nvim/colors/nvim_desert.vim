@@ -40,8 +40,8 @@ hi htmlBold     term=bold cterm=bold ctermfg=white ctermbg=237 gui=bold
 hi htmlBoldItalic term=bold,italic cterm=bold,italic ctermfg=white ctermbg=24 gui=bold,italic
 hi htmlStrike   ctermfg=248 ctermbg=235
 
-hi NormalFloat  cterm=NONE ctermbg=236
-hi FloatBorder cterm=NONE ctermbg=233
+hi NormalFloat  cterm=NONE ctermbg=23
+hi FloatBorder cterm=NONE ctermbg=23
 
 hi MyTagListTagName ctermbg=25
 
