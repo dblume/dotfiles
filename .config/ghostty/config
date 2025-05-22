@@ -7,9 +7,11 @@ split-divider-color = #789
 # for catppuccin-mocha (palette 6 for nvim rokulog syntax)
 # 16 ANSI colors https://jvns.ca/blog/2024/10/01/terminal-colours/
 palette = 2=#57DF5a
-palette = 6=#7FD6C8
-foreground = dde4ea
-background = 1a1c1e
+palette = 6=#48d6d8
+palette = 7=#d0d5e5
+palette = 15=#dee2f8
+foreground = d0d5e5
+background = 1e1e2a
 cursor-invert-fg-bg = true
 
 # This foreground override is esp for SpaceGray Eighties
