@@ -50,7 +50,7 @@ inoremap <expr> <S-Tab> pumvisible() ? '<Up>' : '<S-Tab>'
 inoremap <expr> <cr> pumvisible() ? '<C-y>' : '<cr>'
 
 " https://stevelosh.com/blog/2010/09/coming-home-to-vim/#s3-why-i-came-back-to-vim
-nnoremap <leader>v <C-w>v<C-w>l
+nnoremap <leader>v <C-w>v:bp<cr><C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
