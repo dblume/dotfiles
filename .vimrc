@@ -22,6 +22,12 @@ set title titlestring=%f%m\ -\ vim
 "      Delete operations would overwrite clipboard before pasting.
 set clipboard=unnamed,unnamedplus
 
+" Deleting shouldn't overwrite the clipboard. Use yank when you want to copy.
+nnoremap d "_d
+nnoremap D "_D
+vnoremap d "_d
+vnoremap D "_D
+
 " Will remove these two remappings if unnamedplus (above) does the job
 " Yank and put into the system Clipboard (register + or *)
 " Otherwise make explicit commands "+yy "+y "+Y (or * instead of + as needed)

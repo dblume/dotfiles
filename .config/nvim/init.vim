@@ -34,6 +34,12 @@ set title titlestring=%f%m\ -\ nvim
 "      Delete operations would overwrite clipboard before pasting.
 set clipboard+=unnamedplus
 
+" Deleting shouldn't overwrite the clipboard. Use yank when you want to copy.
+nnoremap d "_d
+nnoremap D "_D
+vnoremap d "_d
+vnoremap D "_D
+
 " Will remove these two remappings if unnamedplus (above) does the job
 " Yank and put into the system Clipboard (register + or *)
 " Otherwise make explicit commands "+yy "+y "+Y (or * instead of + as needed)
@@ -500,7 +506,7 @@ lua << EOF
       local chat = require('CopilotChat')
       -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
       chat.setup({
-        model = 'claude-3.7-sonnet',
+        model = 'claude-sonnet-4',
 --        question_header = " 👤 ",
 --        answer_header = " 🤖 ",
 --        error_header = " ❗ ", 
