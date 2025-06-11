@@ -30,15 +30,16 @@ set title titlestring=%f%m\ -\ nvim
 "            \   'cache_enabled': 0,
 "            \ }
 
-" N.B. Don't just use unnamed register for clipboard (set clipboard=unnamed)
-"      Delete operations would overwrite clipboard before pasting.
+" David, you rely on delete operations going to the default register.
+" So remapping to deletes to go to _ won't work for you.
+"
+"    nnoremap d "_d   <-- you won't like this.
+"
+" Get used to using visual mode to select the text you want to replace
+" with something that's in a register or the clipboard.
+"
+" Having said that, use unnamedplus.
 set clipboard+=unnamedplus
-
-" Deleting shouldn't overwrite the clipboard. Use yank when you want to copy.
-nnoremap d "_d
-nnoremap D "_D
-vnoremap d "_d
-vnoremap D "_D
 
 " Will remove these two remappings if unnamedplus (above) does the job
 " Yank and put into the system Clipboard (register + or *)
