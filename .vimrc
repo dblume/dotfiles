@@ -59,7 +59,7 @@ nnoremap <C-l> <C-w>l
 " clear search highlights
 nnoremap <cr> :noh<cr><cr>
 
-" tmux 3.2+ doesn't send C-i, so have Alacritty iTerm2 map C-i to <leader>i
+" tmux 3.2+ doesn't send C-i, so Ghostty, Alacritty and iTerm2 map C-i to <leader>i
 " iTerm2: Settings > Keys > Key Bindings > + > Shortcut:^i Action:Send Text "\i"
 nnoremap <leader>i <C-i>
 " Use (Shift-)Tab to navigate buffers, retain C-i/C-o for jumps.
