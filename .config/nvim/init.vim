@@ -41,13 +41,6 @@ set title titlestring=%f%m\ -\ nvim
 " Having said that, use unnamedplus.
 set clipboard+=unnamedplus
 
-" Will remove these two remappings if unnamedplus (above) does the job
-" Yank and put into the system Clipboard (register + or *)
-" Otherwise make explicit commands "+yy "+y "+Y (or * instead of + as needed)
-" N.B. cscope_maps might assign <leader>c to its prefix.
-"nnoremap <leader>c "+
-"vnoremap <leader>c "+
-
 " Make j and k move to the next row, not file line
 nnoremap j gj
 nnoremap k gk
@@ -71,7 +64,7 @@ nnoremap <C-l> <C-w>l
 " clear search highlights
 nnoremap <cr> :noh<cr><cr>
 
-" tmux 3.2+ doesn't send C-i, so have Alacritty iTerm2 map C-i to <leader>i
+" tmux 3.2+ doesn't send C-i, so Ghostty, Alacritty and iTerm2 map C-i to <leader>i
 " iTerm2: Settings > Keys > Key Bindings > + > Shortcut:^i Action:Send Text "\i"
 nnoremap <leader>i <C-i>
 " Use (Shift-)Tab to navigate buffers, retain C-i/C-o for jumps.

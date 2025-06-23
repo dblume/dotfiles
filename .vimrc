@@ -29,14 +29,6 @@ set title titlestring=%f%m\ -\ vim
 " Having said that, use unnamedplus.
 set clipboard=unnamed,unnamedplus
 
-
-" Will remove these two remappings if unnamedplus (above) does the job
-" Yank and put into the system Clipboard (register + or *)
-" Otherwise make explicit commands "+yy "+y "+Y (or * instead of + as needed)
-" N.B. cscope_maps might assign <leader>c to its prefix.
-"nnoremap <leader>c "+
-"vnoremap <leader>c "+
-
 if v:version >= 703
   " Do save the undo tree to file, but not in the local directory.
   " Don't forget to mkdir ~/.vim_undo
