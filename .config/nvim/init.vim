@@ -330,7 +330,7 @@ if has("autocmd")
   autocmd FileType python  set foldmethod=indent  " 'za' to fold
 
   autocmd FileType c,cpp nmap <buffer> <leader>s :call SwitchSourceHeader()<cr>
-  autocmd FileType c,cpp set foldmethod=syntax
+  autocmd FileType c,cpp,json,javascript set foldmethod=syntax
 
 " https://jeffkreeftmeijer.com/vim-number/
 " Disabling for now, just keep the mode that was explicitly requested.
