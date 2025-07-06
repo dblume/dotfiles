@@ -157,6 +157,8 @@ case "$-" in
   # This sets the terminal title
   PROMPT_COMMAND="echo -ne \"\033]0;$HOSTNAME\007\""
 
+  # Enables recursive matches: ls -l **/*.png
+  shopt -s globstar
  ;;
 esac
 
