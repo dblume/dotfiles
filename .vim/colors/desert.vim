@@ -36,7 +36,6 @@ hi VertSplit	guibg=#c2bfa5 guifg=grey50 gui=none
 hi Folded	guibg=grey30 guifg=gold
 hi FoldColumn	guibg=grey30 guifg=tan
 hi IncSearch	guifg=slategrey guibg=khaki
-"hi LineNr
 hi ModeMsg	guifg=goldenrod
 hi MoreMsg	guifg=SeaGreen
 hi NonText	guifg=LightBlue guibg=grey30
@@ -76,7 +75,10 @@ hi IncSearch    cterm=NONE ctermfg=0 ctermbg=184
 hi Search	cterm=NONE ctermfg=grey ctermbg=25
 hi MoreMsg	ctermfg=darkgreen
 hi ModeMsg	cterm=NONE ctermfg=brown
-hi LineNr	ctermfg=3
+hi LineNr       ctermbg=237 ctermfg=3
+hi SignColumn   ctermbg=237
+hi CursorLineNr cterm=none ctermbg=235 ctermfg=11
+hi CursorLine   term=none cterm=none
 hi Question	ctermfg=green
 hi StatusLine	cterm=bold,reverse
 hi StatusLineNC cterm=reverse

@@ -6,7 +6,9 @@ hi Normal       ctermbg=233 ctermfg=252
 hi EndOfBuffer  ctermbg=234 ctermfg=244
 
 hi Constant     ctermfg=179
-hi LineNr       ctermfg=3 guifg=#eeee00
+hi LineNr       ctermbg=237 ctermfg=3 guifg=#eeee00
+hi SignColumn   ctermbg=237
+hi CursorLineNr ctermbg=242
 hi TabLineSel   ctermbg=white ctermfg=239
 hi TabLine      ctermbg=247 ctermfg=237
 hi TabLineFill  ctermbg=235
