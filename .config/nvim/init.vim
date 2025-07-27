@@ -454,15 +454,34 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 " See https://wiki.dlma.com/neovim#cscope
 lua << EOF
 
+  vim.keymap.set("n", "<Leader>d", ":lua vim.diagnostic.open_float(0, {scope='line'})<CR>", { desc = "Show diagnostics" })
+  vim.keymap.set("n", "gl", ":lua vim.diagnostic.open_float({ border = 'rounded' })<CR>", { desc = "Show diagnostic fixes" })
   if vim.fn.executable('clangd') == 1 then
     vim.lsp.config.clangd = {
       cmd = { 'clangd', '--background-index' },
       root_markers = { '.git', '.clang-format', '.editorconfig' },
       filetypes = { 'c', 'cpp' },
     }
-    vim.keymap.set("n", "<Leader>d", ":lua vim.diagnostic.open_float(0, {scope='line'})<CR>", { desc = "Show diagnostics" })
-    vim.keymap.set("n", "gl", ":lua vim.diagnostic.open_float({ border = 'rounded' })<CR>", { desc = "Show diagnostic fixes" })
     vim.lsp.enable({'clangd'})
+  end
+
+  -- python3 -m pip install basedpyright
+  if vim.fn.executable('basedpyright') == 1 then
+    vim.lsp.config.basedpyright = {
+      cmd = { 'basedpyright-langserver', '--stdio', },
+      root_markers = { '.git', 'pyproject.toml', 'setup.py', 'requirements.txt' },
+      filetypes = { 'python' },
+      settings = {
+        basedpyright = {
+          analysis = {
+            typeCheckingMode = 'basic',
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+          },
+        },
+      },
+    }
+    vim.lsp.enable({'basedpyright'})
   end
 
   require('cscope_maps').setup({ 
