@@ -465,7 +465,7 @@ lua << EOF
     vim.lsp.enable({'clangd'})
   end
 
-  -- python3 -m pip install basedpyright
+  -- python3 -m pip install basedpyright --break-system-packages
   if vim.fn.executable('basedpyright') == 1 then
     vim.lsp.config.basedpyright = {
       cmd = { 'basedpyright-langserver', '--stdio', },
