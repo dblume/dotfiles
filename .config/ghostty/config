@@ -1,6 +1,7 @@
 # https://wiki.dlma.com/ghostty
 # https://ghostty.org/docs/config
-theme = "catppuccin-mocha"
+# Ghostty 1.2 renamed catppuccin-mocha to "Catppuccin Mocha" and 
+theme = "Catppuccin Mocha"
 
 split-divider-color = #789
 
@@ -12,13 +13,9 @@ palette = 7=#d0d5e5
 palette = 15=#dee2f8
 foreground = d0d5e5
 background = 1e1e2a
-cursor-invert-fg-bg = true
-
-# This foreground override is esp for SpaceGray Eighties
-#foreground = dddace
-
-# For Monokai Pro Spectrum
-#background = 141618
+# An improvment to cursor-text color means maybe don't need cursor-color and cursor-text overrides now.
+cursor-color=cell-foreground
+cursor-text=cell-background
 
 #font-family = "DejaVu Sans Mono for Powerline"
 font-family = "Roboto Mono for Powerline"
@@ -41,7 +38,9 @@ shell-integration-features = no-cursor
 keybind = control+i=text:\\i
 
 # Linux-only configuration: Expected titlebar in i3
-gtk-adwaita = false
+# In Ghostty 1.2, libadwaita is required. https://ghostty.org/docs/install/release-notes/1-2-0
+# https://ghostty.org/docs/install/release-notes/1-1-0#gtk:-forcing-a-dependency-on-libadwaita
+#gtk-adwaita = false
 gtk-titlebar = false
  
 # consider
