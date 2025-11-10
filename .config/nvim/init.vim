@@ -54,6 +54,13 @@ inoremap <expr> <Tab> pumvisible() ? '<Down>' : '<Tab>'
 inoremap <expr> <S-Tab> pumvisible() ? '<Up>' : '<S-Tab>'
 inoremap <expr> <cr> pumvisible() ? '<C-y>' : '<cr>'
 
+" I don't have access to the Meta key on macOS with Microsoft Keyboard and Karabiner.
+" Copilot mappings from :help copilot
+imap <C-h> <Plug>(copilot-accept-line)
+imap <C-j> <Plug>(copilot-next)
+imap <C-k> <Plug>(copilot-previous)
+imap <C-l> <Plug>(copilot-accept-word)
+
 " https://stevelosh.com/blog/2010/09/coming-home-to-vim/#s3-why-i-came-back-to-vim
 nnoremap <leader>v <C-w>v:bp<cr><C-w>l
 nnoremap <C-h> <C-w>h
