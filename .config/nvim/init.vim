@@ -54,13 +54,6 @@ inoremap <expr> <Tab> pumvisible() ? '<Down>' : '<Tab>'
 inoremap <expr> <S-Tab> pumvisible() ? '<Up>' : '<S-Tab>'
 inoremap <expr> <cr> pumvisible() ? '<C-y>' : '<cr>'
 
-" I don't have access to the Meta key on macOS with Microsoft Keyboard and Karabiner.
-" Copilot mappings from :help copilot
-imap <C-h> <Plug>(copilot-accept-line)
-imap <C-j> <Plug>(copilot-next)
-imap <C-k> <Plug>(copilot-previous)
-imap <C-l> <Plug>(copilot-accept-word)
-
 " https://stevelosh.com/blog/2010/09/coming-home-to-vim/#s3-why-i-came-back-to-vim
 nnoremap <leader>v <C-w>v:bp<cr><C-w>l
 nnoremap <C-h> <C-w>h
@@ -539,7 +532,13 @@ lua << EOF
       -- https://github.com/CopilotC-Nvim/CopilotChat.nvim/issues/1062
       vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
       vim.keymap.set({ 'n' }, '<leader>aa', chat.toggle, { desc = 'AI Toggle' })
-      break
+    elseif str:find("copilot") then
+      -- No access to the Meta key on macOS with Microsoft Keyboard and Karabiner.
+      -- So remap the Copilot suggestion keys to Ctrl+<h,j,k,l>. See :help copilot
+      vim.keymap.set('i', '<C-h>', '<Plug>(copilot-accept-line)')
+      vim.keymap.set('i', '<C-j>', '<Plug>(copilot-next)')
+      vim.keymap.set('i', '<C-k>', '<Plug>(copilot-previous)')
+      vim.keymap.set('i', '<C-l>', '<Plug>(copilot-accept-word)')
     end
   end
 
