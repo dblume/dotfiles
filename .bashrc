@@ -168,7 +168,7 @@ case "$-" in
     gf() {
       local file
       if type batcat >/dev/null 2>&1; then
-        file="$(git ls-files | fzf --preview 'batcat --color=always --wrap never --line-range :$(($LINES - 4)) {}' --preview-window=right:60%)"
+        file="$(git ls-files | fzf --preview 'batcat --color=always --wrap never --line-range :$(($LINES - 4)) --terminal-width $COLUMNS {}' --preview-window=right:60%)"
       else
         file="$(git ls-files | fzf --preview 'head -n $LINES {}' --preview-window=right:60%)"
       fi
