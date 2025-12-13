@@ -172,7 +172,12 @@ case "$-" in
       else
         file="$(git ls-files | fzf --preview 'cat {}' --preview-window=right:60%)"
       fi
-      [ -n "$file" ] && ${EDITOR:-vim} "$file"
+      if [ -n "$file" ]; then
+        echo ${EDITOR:-vim} "$file"
+        # It's more useful to have "vim [file]" in your history than just a "gf".
+        history -s "${EDITOR:-vim} \"$file\""
+        ${EDITOR:-vim} "$file"
+      fi
     }
 
   fi
