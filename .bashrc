@@ -173,7 +173,7 @@ case "$-" in
         file="$(git ls-files | fzf --preview 'cat {}' --preview-window=right:60%)"
       fi
       if [ -n "$file" ]; then
-        echo ${EDITOR:-vim} "$file"
+        echo ${EDITOR:-vim} \""$file"\"
         # It's more useful to have "vim [file]" in your history than just a "gf".
         history -s "${EDITOR:-vim} \"$file\""
         ${EDITOR:-vim} "$file"
@@ -182,9 +182,13 @@ case "$-" in
 
   fi
 
+  export FZF_DEFAULT_OPTS="--reverse --height 50% --info=inline-right"
   # bat may be installed as "bat" (macOS) or "batcat" (Debian/Ubuntu)
   if type batcat >/dev/null 2>&1; then
     alias bat='batcat'
+    export FZF_CTRL_T_OPTS="--preview 'batcat --color=always --wrap never --terminal-width $COLUMNS {}' --preview-window=right:60%"
+  else
+    export FZF_CTRL_T_OPTS="--preview 'cat {}' --preview-window=right:60%"
   fi
  ;;
 esac
