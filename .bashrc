@@ -190,6 +190,16 @@ case "$-" in
   else
     export FZF_CTRL_T_OPTS="--preview 'cat {}' --preview-window=right:60%"
   fi
+
+  epoch() {
+    if [[ -z $1 ]]; then
+        echo "Usage: epoch <epoch_seconds>"
+        return 1
+    fi
+    date +"%F %T %Z" -ud @$1
+    date +"%F %T %Z" -d @$1
+  }
+
  ;;
 esac
 
