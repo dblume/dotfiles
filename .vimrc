@@ -17,7 +17,9 @@ set ttimeoutlen=100 " Affects Esc key, not leader.
 set ruler           " Show cursor pos on right side of status bar
 " Set the title of the terminal window. Consider changing titlestring, %t, %M
 set title titlestring=%f%m\ -\ vim
-set cursorline      " Highlight the line with the cursor
+set number          " Show line numbers
+set cursorline      " For CursorLineNR formatting similar to pre 8.0.
+set signcolumn=no   " Signcolumn is distracting unless needed.
 
 " David, you rely on delete operations going to the default register.
 " So remapping to deletes to go to _ won't work for you.

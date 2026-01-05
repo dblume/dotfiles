@@ -11,10 +11,12 @@ set undofile        " undo even after closing and reopening a file
 set noshowcmd       " Show size of selected area in visual mode on last line
 set ruler           " Show coordinates on status line
 set hidden          " Don't abandon Scratch buffer when hidden.
-"set cursorline     " For CursorLineNR formatting similar to pre 8.0.
 set culopt=number   " Otherwise diff views have an underline. neovim issue 9800
 " Set the title of the terminal window. Consider changing titlestring, %t, %M
 set title titlestring=%f%m\ -\ nvim
+set number          " Show line numbers
+set cursorline      " For CursorLineNR formatting similar to pre 8.0.
+set signcolumn=no   " Sign column is distracting unless needed.
 
 " WSL clipboard-tool fom 'help clipboard'
 "let g:clipboard = {
@@ -450,6 +452,9 @@ let g:rainbow_conf = {
 \   'separately': { 'rokulog': 0 }
 \ }
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
+" fzf integration
+"set rtp+=/opt/homebrew/opt/fzf
 
 " See https://wiki.dlma.com/neovim#cscope
 lua << EOF
