@@ -453,8 +453,12 @@ let g:rainbow_conf = {
 \ }
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
-" fzf integration
-"set rtp+=/opt/homebrew/opt/fzf
+" fzf integration for :FZF, not :Files, etc.
+if isdirectory(expand("~/.fzf"))
+    set rtp+=~/.fzf
+elseif isdirectory("/opt/homebrew/opt/fzf")
+    set rtp+=/opt/homebrew/opt/fzf
+endif
 
 " See https://wiki.dlma.com/neovim#cscope
 lua << EOF
