@@ -11,7 +11,7 @@ if [ -f "${HOME}/.bashrc" ]; then
     source "${HOME}/.bashrc"
 fi
 if [[ $(uname -s) == Darwin* ]]; then
-    if [[ -z $SSH_CLIENT && -f "${HOME}/tips.txt" ]]; then
+    if [[ $- == *i* && -z $SSH_CLIENT && -f "${HOME}/tips.txt" ]]; then
         cat "${HOME}/tips.txt"
     fi
     if [[ -n $CDPATH && -f $HOMEBREW_PREFIX/etc/bash_completion ]]; then
