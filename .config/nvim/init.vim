@@ -413,8 +413,7 @@ endfunction
 
 " Use ripgrep for search instead of grep
 if executable('rg')
-    " set grepprg=rg\ --vimgrep\ --hidden\ —glob '!.git'
-    set grepprg=rg
+    set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 endif
 " Navigate quickfix list with ease
 nnoremap <silent> [q :cprevious<CR>
