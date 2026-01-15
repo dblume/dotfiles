@@ -342,8 +342,8 @@ if has("autocmd")
 "  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 "augroup END
 
-  autocmd BufRead *.txt set wrap linebreak   " "soft" wrap of existing lines
-  autocmd BufRead README set wrap linebreak  " "soft" wrap of existing lines
+  autocmd BufRead *.txt set nonumber wrap linebreak   " "soft" wrap of existing lines
+  autocmd BufRead README set nonumber wrap linebreak  " "soft" wrap of existing lines
   autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
 
   " When editing a file, always jump to the last cursor position...
