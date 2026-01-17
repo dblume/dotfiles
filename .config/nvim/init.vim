@@ -455,8 +455,10 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 " fzf integration for :FZF, not :Files, etc.
 if isdirectory(expand("~/.fzf"))
     set rtp+=~/.fzf
+    nnoremap <leader>z :FZF<cr>
 elseif isdirectory("/opt/homebrew/opt/fzf")
     set rtp+=/opt/homebrew/opt/fzf
+    nnoremap <leader>z :FZF<cr>
 endif
 
 " See https://wiki.dlma.com/neovim#cscope

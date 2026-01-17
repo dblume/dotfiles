@@ -1,4 +1,4 @@
-" Version 2024-03-17.1 - status line color tweak
+" Version 2026-01-16.1 - Add fzf integration for :FZF
 set nocompatible    " Use Vim defaults, forget compatibility with vi.
 set bs=2            " allow backspacing over everything in insert mode
 set wildmenu        " Allows command-line completion with tab
@@ -19,7 +19,7 @@ set ruler           " Show cursor pos on right side of status bar
 set title titlestring=%f%m\ -\ vim
 set number          " Show line numbers
 set cursorline      " For CursorLineNR formatting similar to pre 8.0.
-set signcolumn=no   " Signcolumn is distracting unless needed.
+set signcolumn=no   " Sign column is distracting unless needed.
 
 " David, you rely on delete operations going to the default register.
 " So remapping to deletes to go to _ won't work for you.
@@ -357,8 +357,8 @@ if has("autocmd")
 "  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 "augroup END
 
-  autocmd BufRead *.txt set wrap linebreak   " "soft" wrap of existing lines
-  autocmd BufRead README set wrap linebreak  " "soft" wrap of existing lines
+  autocmd BufRead *.txt set nonumber wrap linebreak   " "soft" wrap of existing lines
+  autocmd BufRead README set nonumber wrap linebreak  " "soft" wrap of existing lines
   autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
 
   " When editing a file, always jump to the last cursor position...
@@ -442,8 +442,8 @@ endfunction
 
 " Use ripgrep for search instead of grep
 if executable('rg')
-    " set grepprg=rg\ --vimgrep\ --hidden\ —glob '!.git'
-    set grepprg=rg
+    " In vim, no need to pass these args, but they don't hurt.
+    set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 endif
 " Navigate quickfix list with ease
 nnoremap <silent> [q :cprevious<CR>
@@ -481,6 +481,15 @@ let g:rainbow_conf = {
 \   'separately': { 'rokulog': 0 }
 \ }
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
+" fzf integration for :FZF, not :Files, etc.
+if isdirectory(expand("~/.fzf"))
+    set rtp+=~/.fzf
+    nnoremap <leader>z :FZF<cr>
+elseif isdirectory("/opt/homebrew/opt/fzf")
+    set rtp+=/opt/homebrew/opt/fzf
+    nnoremap <leader>z :FZF<cr>
+endif
 
 " In some environments, Vim starts in replace mode:
 " https://superuser.com/questions/1284561/why-is-vim-starting-in-replace-mode
