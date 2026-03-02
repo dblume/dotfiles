@@ -128,7 +128,7 @@ append_to_path $HOME/.cargo/bin
 
 if command -v nvim &> /dev/null; then
     alias vim='nvim'
-    alias vim-='nvim +"setl buftype=nofile" -'
+    alias vim-='nvim +"setl buftype=nofile | setl nonumber" -'
     alias vimdiff='nvim -d'
     export MANPAGER="nvim +Man!"
 else
