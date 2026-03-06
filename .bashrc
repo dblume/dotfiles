@@ -278,6 +278,10 @@ venv() {
     fi
 }
 
+# Python 3.13+ uses a new REPL that doesn't support vi mode.
+# https://github.com/python/cpython/issues/118840
+export PYTHON_BASIC_REPL=1
+
 # https://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
 HISTCONTROL=ignoreboth:erasedups
 HISTIGNORE="&:ls:[bf]g:exit:pwd:clear:\:[qw]*:ZZ"
