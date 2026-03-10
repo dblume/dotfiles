@@ -20,6 +20,8 @@ set title titlestring=%f%m\ -\ vim
 set number          " Show line numbers
 set cursorline      " For CursorLineNR formatting similar to pre 8.0.
 set signcolumn=no   " Sign column is distracting unless needed.
+let &t_SI = "\033[6 q" " INSERT mode (bar)
+let &t_EI = "\033[2 q" " NORMAL mode (steady block)
 
 " David, you rely on delete operations going to the default register.
 " So remapping to deletes to go to _ won't work for you.
