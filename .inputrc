@@ -6,18 +6,22 @@
 set editing-mode vi
 # vi settings
 $if mode=vi
-    # insert mode
-    set keymap vi-insert
-    "jk": vi-movement-mode
-
-    # https://hachyderm.io/@mitchellh/115967643749932536
-    Control-k: history-search-backward
-    Control-j: history-search-forward
-
     # (ins) or (cmd) at beginning of prompt:
     set show-mode-in-prompt on
     # Set command mode cursor to a steady block
     set vi-cmd-mode-string "\1\e[2 q\2"
     # Set insert mode cursor to a steady bar
     set vi-ins-mode-string "\1\e[6 q\2"
+
+    set keymap vi-insert
+    "jk": vi-movement-mode
+    # https://hachyderm.io/@mitchellh/115967643749932536
+    Control-k: history-search-backward
+    Control-j: history-search-forward
+
+    set keymap vi-command
+    "k": history-search-backward
+    "j": history-search-forward
+    Control-k: history-search-backward
+    Control-j: history-search-forward
 $endif
