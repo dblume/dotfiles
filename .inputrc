@@ -18,10 +18,14 @@ $if mode=vi
     # https://hachyderm.io/@mitchellh/115967643749932536
     Control-k: history-search-backward
     Control-j: history-search-forward
+    Control-p: history-search-backward
+    Control-n: history-search-forward
 
     set keymap vi-command
     "k": history-search-backward
     "j": history-search-forward
     Control-k: history-search-backward
     Control-j: history-search-forward
+    Control-p: history-search-backward
+    Control-n: history-search-forward
 $endif
