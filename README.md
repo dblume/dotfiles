@@ -89,7 +89,7 @@ See [config.dlma.com](http://config.dlma.com) for more.
 Vim will work without warnings if you install `ctags` and `cscope`.
 
     sudo apt update
-    sudo apt install ctags cscope moreutils
+    sudo apt install ripgrep universal-ctags cscope moreutils
 
 If you're coming from the far future and want the latest modules, not those
 pinned to a version, `pip install` requirements.in instead of requirements.txt.
