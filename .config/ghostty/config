@@ -25,6 +25,9 @@ font-thicken = true
 # https://ghostty.org/docs/config/reference#font-feature
 font-feature = -calt
 
+# clipboard-write defaults to allow. (alternatives are "ask" and "deny")
+clipboard-read = allow
+
 window-height = 60
 window-width = 120
 
