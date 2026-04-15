@@ -99,8 +99,9 @@ update_dir () {
 update_dir ".vim"
 update_dir ".config/nvim"
 # Neovim's plugins go in ~/.local/share/nvim/site/plugin/
-# https://neovim.io/doc/user/usr_05.html
+# https://neovim.io/doc/user/usr_05/
 update_dir ".local/share/nvim/site/plugin"
+update_dir ".local/share/nvim/site/pack"
 
 # Make a directory for vim undo
 if [ ! -d "$HOME"/.vim_undo ]; then
