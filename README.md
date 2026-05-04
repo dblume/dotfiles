@@ -95,7 +95,7 @@ If you're coming from the far future and want the latest modules, not those
 pinned to a version, `pip install` requirements.in instead of requirements.txt.
 
     sudo apt install python3-pip
-    python3 -m pip install -r requirements.in
+    python3 -m pip install --user --break-system-packages -r requirements.in
 
 #### What's not installed
 
