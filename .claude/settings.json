@@ -34,5 +34,6 @@
     ]
   },
   "autoUpdatesChannel": "stable",
+  "_alternativeToHooks_preferredNotifChannel": "ghostty",
   "alwaysThinkingEnabled": true
 }
