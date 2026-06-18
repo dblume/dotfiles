@@ -1,0 +1,24 @@
+#!/bin/bash
+# For TUIs: Use OSC 777 to send a notification to the terminal emulator.
+# $1 is the event title, $2 is the message text
+TITLE="${1:-Claude Code}"
+MSG="${2:-Agent is ready}"
+
+# To enable passing env var SSH_CLIENT_MESSAGE
+# On Client:
+#    ~/.ssh/config:
+#    Host *
+#        SendEnv SSH_CLIENT_MESSAGE
+#
+# On remote:
+#    /etc/ssh/sshd_config:
+#    AcceptEnv LANG LC_* SSH_CLIENT_MESSAGE
+# Then `sudo systemctl restart ssh`
+if [ -n "${SSH_CLIENT}${SSH_TTY}" ] && [ "$SSH_CLIENT_MESSAGE" = "wsl2" ]; then
+    printf '\a'
+elif [ -n "$TMUX" ]; then
+    # DCS passthrough: each ESC in the inner sequence must be doubled
+    printf '\ePtmux;\e\e]777;notify;%s;%s\a\e\\' "$TITLE" "$MSG"
+else
+    printf '\e]777;notify;%s;%s\a' "$TITLE" "$MSG"
+fi

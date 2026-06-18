@@ -14,7 +14,8 @@
   "permissions": {
     "deny": [
       "Read(.env*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "allow": [
       "Read(README.md)"
@@ -23,6 +24,14 @@
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true
+  },
+  "hooks": {
+    "Notification": [
+      { "hooks": [ { "type": "command", "command": "notify" }] }
+    ],
+    "Stop": [
+      { "hooks": [ { "type": "command", "command": "notify" }] }
+    ]
   },
   "autoUpdatesChannel": "stable",
   "alwaysThinkingEnabled": true
