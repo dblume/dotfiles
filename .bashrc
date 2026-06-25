@@ -180,6 +180,19 @@ case "$-" in
       fi
     }
 
+    gitswitch() {
+      git switch $(git branch --sort=committerdate | fzf | sed 's/^[* ] //')
+    }
+
+    copyline() {
+        if [ -n "$TMUX" ]; then
+          tmux capture-pane && (tmux show-buffer | fzf | tr -d '\n' | tmux load-buffer -w -)
+        else
+          echo "$FUNCNAME needs to be in a tmux session." >&2
+          return 1
+        fi
+    }
+
   fi
 
   export FZF_DEFAULT_OPTS="--reverse --height 50% --info=inline-right"
