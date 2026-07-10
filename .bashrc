@@ -183,7 +183,10 @@ case "$-" in
     gitswitch() {
       local branch="$(git branch --sort=committerdate | fzf | sed 's/^[* ] //')"
       if [ -n "$branch" ]; then
-          git switch "$branch"
+        echo git switch \""$branch"\"
+        # It's more useful to have "git switch [branch]" in your history than just a "gitswitch".
+        history -s "git switch \"$branch\""
+        git switch "$branch"
       fi
     }
 
