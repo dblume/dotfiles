@@ -181,7 +181,10 @@ case "$-" in
     }
 
     gitswitch() {
-      git switch $(git branch --sort=committerdate | fzf | sed 's/^[* ] //')
+      local branch="$(git branch --sort=committerdate | fzf | sed 's/^[* ] //')"
+      if [ -n "$branch" ]; then
+          git switch "$branch"
+      fi
     }
 
   fi
