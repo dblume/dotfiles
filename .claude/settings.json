@@ -47,6 +47,10 @@
     "enabled": true,
     "autoAllowBashIfSandboxed": true
   },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": ["Working"]
+  },
   "alwaysThinkingEnabled": true,
   "autoUpdatesChannel": "stable",
   "_alternativeToHooks_preferredNotifChannel": "ghostty"
