@@ -49,9 +49,12 @@
   },
   "spinnerVerbs": {
     "mode": "replace",
-    "verbs": ["Working"]
+    "verbs": [
+      "Working"
+    ]
   },
   "alwaysThinkingEnabled": true,
   "autoUpdatesChannel": "stable",
+  "awaySummaryEnabled": false,
   "_alternativeToHooks_preferredNotifChannel": "ghostty"
 }
