@@ -50,7 +50,7 @@ else
     PS1_HOSTNAME=
 fi
 
-export PROMPT_DIRTRIM=2
+export PROMPT_DIRTRIM=4
 export PS1='$(if [ $? -eq 0 ]; then echo -e "\[\e[32m\]\xe2\x9c\x93";
               else echo -e "\[\e[31m\]\xe2\x9c\x97";
               fi)$(if [ -n "$DOCKER_VER" ]; then echo -e " $PS1_DOCKER_VER";
@@ -299,6 +299,9 @@ HISTIGNORE="&:ls:[bf]g:exit:pwd:clear:\:[qw]*:ZZ"
 #HISTSIZE=2000
 # [ $(wc -l < $HOME/.bash_history) -gt 950 ] && echo "David, your .bash_history is over 950 lines. Consider updating your .bashrc."
 shopt -s histappend
+
+# zsh does this, and it is necessary for ~/bin/notify (ex., for Claude Code)
+export TTY=$(tty)
 
 if [ -f $HOME/.localrc ]; then
     source $HOME/.localrc
