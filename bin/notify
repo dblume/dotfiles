@@ -2,8 +2,20 @@
 # For TUIs: Use OSC 777 to send a notification to the terminal emulator.
 # $1 is the event title, $2 is the message text
 # (Claude Code sends JSON to stdin, but it's not that useful.)
-TITLE="${1:-Claude Code}"
-MSG="${2:-Agent is ready}"
+# When called from the sshnotify tunnel listener, the raw "TITLE|MSG|NONFOCUS"
+# line is passed as a single argument to avoid word-splitting on spaces in MSG.
+if [[ $# -eq 1 && "${1}" == *'|'* ]]; then
+    _rest="${1#*|}"
+    TITLE="${1%%|*}"
+    MSG="${_rest%|*}"
+    NONFOCUS="${_rest##*|}"
+    TITLE="${TITLE:-Claude Code}"
+    MSG="${MSG:-Agent is ready}"
+else
+    TITLE="${1:-Claude Code}"
+    MSG="${2:-Agent is ready}"
+    NONFOCUS="${3:-0}"
+fi
 
 # To enable passing env var SSH_CLIENT_MESSAGE
 # On Client:
@@ -18,22 +30,34 @@ MSG="${2:-Agent is ready}"
 #
 # Re $TTY: zsh exports $TTY, you have to manually export it in .bashrc for bash.
 if [ -n "${SSH_CLIENT}${SSH_TTY}" ] && [ "$SSH_CLIENT_MESSAGE" = "wsl2" ]; then
-    # Spam mitigation: Only send if not in tmux or not in active pane.
-    if [ -z "$TMUX" ] || [ "$(tmux display-message -p -t "$TMUX_PANE" '#{pane_active}')" != "1" ]; then
-        # Try to send through reverse tunnel to a notify-daemon
-        if nc -zw2 localhost 19222 2>/dev/null; then
-            printf '%s|%s\n' "$TITLE" "$MSG" | nc -w2 localhost 19222 2>/dev/null 
-        else
-            printf '\a'
-        fi
+    # This is the server-side of an ssh connection. Set NONFOCUS=1 only when we're
+    # in remote tmux AND this is an inactive (unfocused) pane, else NONFOCUS=0.
+    if [ -n "$TMUX" ] && [ "$(tmux display-message -p -t "$TMUX_PANE" '#{pane_active}')" != "1" ]; then
+        NONFOCUS=1
+    else
+        NONFOCUS=0
+    fi
+
+    # Try to send through reverse tunnel to a notify-daemon
+    if nc -zw2 localhost 19222 2>/dev/null; then
+        printf '%s|%s|%s\n' "$TITLE" "$MSG" "$NONFOCUS" | nc -w2 localhost 19222 2>/dev/null
+    else
+        printf '\a'
     fi
 elif [[ -n "${WSL_DISTRO_NAME}" ]]; then
 
-    # Possible enhancement: Test if active window with powershell.exe and GetForegroundWindow().
-    #                       If this is the active window, then don't send a notification, just beep.
-
-    # Spam mitigation: Only send if not in tmux or not in active pane.
-    if [ -z "$TMUX" ] || [ "$(tmux display-message -p -t "$TMUX_PANE" '#{pane_active}')" != "1" ]; then
+    # This is the client-side of a WSL2 reverse tunnel running in Windows Terminal.
+    # Show a Windows toast only when the user isn't looking at this session's output:
+    #   1. $NONFOCUS=1 (remote tmux pane inactive; set by the sshnotify server-side code), OR
+    #   2. we're in local tmux and this is NOT the active pane, OR
+    #   3. Windows Terminal is NOT the foreground window (via GetForegroundWindow()).
+    # Cheap checks come first so the PowerShell foreground probe is skipped when possible.
+    if [ "$NONFOCUS" = "1" ] \
+        || { [ -n "$TMUX" ] && [ "$(tmux display-message -p -t "$TMUX_PANE" '#{pane_active}')" != "1" ]; } \
+        || [ "$(powershell.exe -NoProfile -Command "
+        Add-Type 'using System;using System.Runtime.InteropServices;public class Fg{[DllImport(\"user32.dll\")]public static extern IntPtr GetForegroundWindow();[DllImport(\"user32.dll\")]public static extern uint GetWindowThreadProcessId(IntPtr h,out uint p);}'
+        \$h=[Fg]::GetForegroundWindow(); \$p=0; [void][Fg]::GetWindowThreadProcessId(\$h,[ref]\$p)
+        (Get-Process -Id \$p).ProcessName" 2>/dev/null | tr -d '[:space:]')" != "WindowsTerminal" ]; then
         powershell.exe -Command "
         \$app = '{1AC14E77-02E7-4E5D-B744-2EB1AE5198B7}\WindowsPowerShell\v1.0\powershell.exe'
         [Windows.UI.Notifications.ToastNotificationManager,Windows.UI.Notifications,ContentType=WindowsRuntime] | Out-Null
