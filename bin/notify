@@ -1,6 +1,7 @@
 #!/bin/bash
 # For TUIs: Use OSC 777 to send a notification to the terminal emulator.
 # $1 is the event title, $2 is the message text
+# (Claude Code sends JSON to stdin, but it's not that useful.)
 TITLE="${1:-Claude Code}"
 MSG="${2:-Agent is ready}"
 
@@ -15,10 +16,35 @@ MSG="${2:-Agent is ready}"
 #    AcceptEnv LANG LC_* SSH_CLIENT_MESSAGE
 # Then `sudo systemctl restart ssh`
 #
-# Re $TTY: zsh export $TTY, you'll have to manually export it in .bashrc for bash.
+# Re $TTY: zsh exports $TTY, you have to manually export it in .bashrc for bash.
 if [ -n "${SSH_CLIENT}${SSH_TTY}" ] && [ "$SSH_CLIENT_MESSAGE" = "wsl2" ]; then
-    printf '\a'
+    # Spam mitigation: Only send if not in tmux or not in active pane.
+    if [ -z "$TMUX" ] || [ "$(tmux display-message -p -t "$TMUX_PANE" '#{pane_active}')" != "1" ]; then
+        # Try to send through reverse tunnel to a notify-daemon
+        if nc -zw2 localhost 19222 2>/dev/null; then
+            printf '%s|%s\n' "$TITLE" "$MSG" | nc -w2 localhost 19222 2>/dev/null 
+        else
+            printf '\a'
+        fi
+    fi
+elif [[ -n "${WSL_DISTRO_NAME}" ]]; then
+
+    # Possible enhancement: Test if active window with powershell.exe and GetForegroundWindow().
+    #                       If this is the active window, then don't send a notification, just beep.
+
+    # Spam mitigation: Only send if not in tmux or not in active pane.
+    if [ -z "$TMUX" ] || [ "$(tmux display-message -p -t "$TMUX_PANE" '#{pane_active}')" != "1" ]; then
+        powershell.exe -Command "
+        \$app = '{1AC14E77-02E7-4E5D-B744-2EB1AE5198B7}\WindowsPowerShell\v1.0\powershell.exe'
+        [Windows.UI.Notifications.ToastNotificationManager,Windows.UI.Notifications,ContentType=WindowsRuntime] | Out-Null
+        [Windows.Data.Xml.Dom.XmlDocument,Windows.Data.Xml.Dom,ContentType=WindowsRuntime] | Out-Null
+        \$xml = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent('ToastText01')
+        \$xml.GetElementsByTagName('text').Item(0).InnerText = '$TITLE: $MSG'
+        [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier(\$app).Show([Windows.UI.Notifications.ToastNotification]::new(\$xml))
+        "
+    fi
 elif [ -n "$TMUX" ]; then
+    # Terminals that support OSC 777 are smart enough to decide when not to notify.
     # DCS passthrough: each ESC in the inner sequence must be doubled
     printf '\ePtmux;\e\e]777;notify;%s;%s\a\e\\' "$TITLE" "$MSG" > "$TTY"
 else

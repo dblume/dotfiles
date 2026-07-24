@@ -1,0 +1,26 @@
+#!/bin/bash
+host="${1:?Usage: sshnotify <host>}"
+tunnel_port=19222
+
+if command -v socat &>/dev/null; then
+    socat TCP-LISTEN:${tunnel_port},bind=127.0.0.1,reuseaddr,fork \
+        SYSTEM:'read -r line; notify "${line%%|*}" "${line#*|}"' &
+    listener_pid=$!
+else
+    while true; do
+        line=$(nc -l -p ${tunnel_port} -q 1 2>/dev/null) || break
+        [[ -z "$line" ]] && continue
+        notify "${line%%|*}" "${line#*|}"
+    done &
+    listener_pid=$!
+fi
+
+SSH_CLIENT_MESSAGE=wsl2 ssh \
+    -o SendEnv=SSH_CLIENT_MESSAGE \
+    -R ${tunnel_port}:localhost:${tunnel_port} \
+    "$@"
+rc=$?
+
+kill "$listener_pid" 2>/dev/null
+wait "$listener_pid" 2>/dev/null
+exit $rc
