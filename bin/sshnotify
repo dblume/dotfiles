@@ -2,18 +2,19 @@
 host="${1:?Usage: sshnotify <host>}"
 tunnel_port=19222
 
-# Read "$TITLE|$MSG|$NONFOCUS" from the tunnel and forward the raw line to notify.
-# notify parses the fields itself, keeping the full MSG (which may contain '|').
+# Split "$TITLE|$MSG|$NONFOCUS" from the tunnel into three args for notify.
+# (MSG may contain '|'; TITLE is before the first, NONFOCUS is after the last.)
 
 if command -v socat &>/dev/null; then
     socat TCP-LISTEN:${tunnel_port},bind=127.0.0.1,reuseaddr,fork \
-        SYSTEM:'read -r line; notify \"$line\"' &
+        SYSTEM:'read -r line; _t="${line%%|*}"; _r="${line#*|}"; notify \"$_t\" \"${_r%|*}\" \"${_r##*|}\"' &
     listener_pid=$!
 else
     while true; do
         line=$(nc -l -p ${tunnel_port} -q 1 2>/dev/null) || break
         [[ -z "$line" ]] && continue
-        notify "$line"
+        _r="${line#*|}"
+        notify "${line%%|*}" "${_r%|*}" "${_r##*|}"
     done &
     listener_pid=$!
 fi

@@ -1,21 +1,10 @@
 #!/bin/bash
 # For TUIs: Use OSC 777 to send a notification to the terminal emulator.
-# $1 is the event title, $2 is the message text
+# $1 is the event title, $2 is the message text, $3 is 1 if the remote pane was inactive.
 # (Claude Code sends JSON to stdin, but it's not that useful.)
-# When called from the sshnotify tunnel listener, the raw "TITLE|MSG|NONFOCUS"
-# line is passed as a single argument to avoid word-splitting on spaces in MSG.
-if [[ $# -eq 1 && "${1}" == *'|'* ]]; then
-    _rest="${1#*|}"
-    TITLE="${1%%|*}"
-    MSG="${_rest%|*}"
-    NONFOCUS="${_rest##*|}"
-    TITLE="${TITLE:-Claude Code}"
-    MSG="${MSG:-Agent is ready}"
-else
-    TITLE="${1:-Claude Code}"
-    MSG="${2:-Agent is ready}"
-    NONFOCUS="${3:-0}"
-fi
+TITLE="${1:-Claude Code}"
+MSG="${2:-Agent is ready}"
+NONFOCUS="${3:-0}"
 
 # To enable passing env var SSH_CLIENT_MESSAGE
 # On Client:
