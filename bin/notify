@@ -3,7 +3,17 @@
 # $1 is the event title, $2 is the message text, $3 is 1 if the remote pane was inactive.
 # (Claude Code sends JSON to stdin, but it's not that useful.)
 TITLE="${1:-Claude Code}"
-MSG="${2:-Agent is ready}"
+if [ -z "$2" ] && [ -n "$TMUX" ]; then
+    PANE_TITLE="$(tmux display-message -p -t "$TMUX_PANE" '#{pane_title}' 2>/dev/null)"
+    PANE_TITLE="${PANE_TITLE//\"/}"
+    PANE_TITLE="$(echo "$PANE_TITLE" | sed 's/^[^a-zA-Z0-9]*//')"
+    MSG="Agent is ready at \"${PANE_TITLE}\""
+    [ -n "${SSH_CLIENT}${SSH_TTY}" ] && MSG="${MSG} on ${HOSTNAME}"
+else
+    _DEFAULT_MSG="Agent is ready"
+    [ -n "${SSH_CLIENT}${SSH_TTY}" ] && _DEFAULT_MSG="${_DEFAULT_MSG} on ${HOSTNAME}"
+    MSG="${2:-${_DEFAULT_MSG}}"
+fi
 NONFOCUS="${3:-0}"
 
 # To enable passing env var SSH_CLIENT_MESSAGE
