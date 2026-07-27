@@ -67,7 +67,13 @@ elif [[ -n "${WSL_DISTRO_NAME}" ]]; then
         "
     fi
 elif [ -n "$TMUX" ]; then
-    # Terminals that support OSC 777 are smart enough to decide when not to notify.
+    # TODO: We can be smarter about when to send the notification than Ghostty can be since we
+    #       have the remote hint and also know if locally we're in an inactive tmux pane. Use:
+    #       osascript -e 'display notification "$MSG" with title "$TITLE"'  # optional subtitle "Subtitle"
+    #
+    #       We can also use Xterm Focus tracking to determine if the Ghostty pane is active AFTER checking tmux.
+    #
+    # For now: terminals that support OSC 777 are somewhat smart about deciding when not to notify.
     # DCS passthrough: each ESC in the inner sequence must be doubled
     printf '\ePtmux;\e\e]777;notify;%s;%s\a\e\\' "$TITLE" "$MSG" > "$TTY"
 else
