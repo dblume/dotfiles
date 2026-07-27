@@ -16,19 +16,19 @@ else
 fi
 NONFOCUS="${3:-0}"
 
-# To enable passing env var SSH_CLIENT_MESSAGE
+# To enable passing env var SSH_CLIENT_NOTIFY
 # On Client:
 #    ~/.ssh/config:
 #    Host *
-#        SendEnv SSH_CLIENT_MESSAGE
+#        SendEnv SSH_CLIENT_NOTIFY
 #
 # On remote:
 #    /etc/ssh/sshd_config:
-#    AcceptEnv LANG LC_* SSH_CLIENT_MESSAGE
+#    AcceptEnv LANG LC_* SSH_CLIENT_NOTIFY
 # Then `sudo systemctl restart ssh`
 #
 # Re $TTY: zsh exports $TTY, you have to manually export it in .bashrc for bash.
-if [ -n "${SSH_CLIENT}${SSH_TTY}" ] && [ "$SSH_CLIENT_MESSAGE" = "wsl2" ]; then
+if [ -n "${SSH_CLIENT}${SSH_TTY}" ] && [ -n "$SSH_CLIENT_NOTIFY" ]; then
     # This is the server-side of an ssh connection. Set NONFOCUS=1 only when we're
     # in remote tmux AND this is an inactive (unfocused) pane, else NONFOCUS=0.
     if [ -n "$TMUX" ] && [ "$(tmux display-message -p -t "$TMUX_PANE" '#{pane_active}')" != "1" ]; then
@@ -38,8 +38,8 @@ if [ -n "${SSH_CLIENT}${SSH_TTY}" ] && [ "$SSH_CLIENT_MESSAGE" = "wsl2" ]; then
     fi
 
     # Try to send through reverse tunnel to a notify-daemon
-    if nc -zw2 localhost 19222 2>/dev/null; then
-        printf '%s|%s|%s\n' "$TITLE" "$MSG" "$NONFOCUS" | nc -w2 localhost 19222 2>/dev/null
+    if nc -zw2 localhost "${SSH_CLIENT_NOTIFY}" 2>/dev/null; then
+        printf '%s|%s|%s\n' "$TITLE" "$MSG" "$NONFOCUS" | nc -w2 localhost "${SSH_CLIENT_NOTIFY}" 2>/dev/null
     else
         printf '\a'
     fi

@@ -19,12 +19,11 @@ else
     listener_pid=$!
 fi
 
-SSH_CLIENT_MESSAGE=wsl2 ssh \
-    -o SendEnv=SSH_CLIENT_MESSAGE \
+trap 'kill "$listener_pid" 2>/dev/null; wait "$listener_pid" 2>/dev/null' EXIT
+
+SSH_CLIENT_NOTIFY=${tunnel_port} ssh \
+    -o SendEnv=SSH_CLIENT_NOTIFY \
     -R ${tunnel_port}:localhost:${tunnel_port} \
     "$@"
-rc=$?
 
-kill "$listener_pid" 2>/dev/null
-wait "$listener_pid" 2>/dev/null
-exit $rc
+exit $?
