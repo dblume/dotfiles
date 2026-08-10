@@ -44,6 +44,10 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "claude_statusline"
+  },
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true
@@ -57,9 +61,5 @@
   "alwaysThinkingEnabled": true,
   "autoUpdatesChannel": "stable",
   "awaySummaryEnabled": false,
-  "_alternativeToHooks_preferredNotifChannel": "ghostty",
-  "statusLine": {
-    "type": "command",
-    "command": "jq -r --arg home \"$HOME/\" '\"\\(.cwd | ltrimstr($home)) [\\(.model.display_name)] \\(.context_window.used_percentage // 0)% context\"'"
-  }
+  "_alternativeToHooks_preferredNotifChannel": "ghostty"
 }
