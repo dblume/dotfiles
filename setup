@@ -6,9 +6,10 @@ declare -r backup_dir="$HOME"/backup_of_dotfiles_$(date "+%Y-%m-%d_%H%M%S")
 declare -a dotfiles=(".bashrc" ".bash_profile" ".vimrc" ".editrc" ".gitconfig"
                      ".gitignore" ".inputrc" ".tmux.conf" ".ssh/config" ".ripgreprc"
                      ".gdbinit" ".config/gitui/key_bindings.ron" ".visidatarc"
+                     ".config/ghostty/config"
                      ".config/i3/config" ".config/i3status/config"
                      ".config/dunst/dunstrc" ".config/alacritty/alacritty.toml"
-                     "bin/set_colorscheme" "bin/archive_id" ".claude/settings.json")
+                     ".claude/settings.json" ".pi/agent/keybindings.json")
 declare -i dry_run=0
 
 ## exit the shell (with status 2) after printing the message
@@ -96,6 +97,7 @@ update_dir () {
     fi
 }
 
+update_dir "bin"
 update_dir ".vim"
 update_dir ".config/nvim"
 # Neovim's plugins go in ~/.local/share/nvim/site/plugin/
