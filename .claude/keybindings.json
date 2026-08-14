@@ -1,0 +1,39 @@
+{
+  "$schema": "https://www.schemastore.org/claude-code-keybindings.json",
+  "bindings": [
+    {
+      "context": "Select",
+      "bindings": {
+        "ctrl+p": "select:previous",
+        "ctrl+k": "select:previous",
+        "ctrl+j": "select:next",
+        "ctrl+n": "select:next"
+      }
+    },
+    {
+      "context": "Confirmation",
+      "bindings": {
+        "ctrl+p": "confirm:previous",
+        "ctrl+k": "confirm:previous",
+        "ctrl+j": "confirm:next",
+        "ctrl+n": "confirm:next"
+      }
+    },
+    {
+      "context": "HistorySearch",
+      "bindings": {
+        "ctrl+p": "history:previous",
+        "ctrl+k": "history:previous",
+        "ctrl+j": "history:next",
+        "ctrl+n": "history:next"
+      }
+    },
+    {
+      "context": "MessageSelector",
+      "bindings": {
+        "ctrl+k": "messageSelector:up",
+        "ctrl+j": "messageSelector:down"
+      }
+    }
+  ]
+}
