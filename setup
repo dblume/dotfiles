@@ -78,7 +78,7 @@ update_dir () {
             if [ -d "${backup_dir}"/"$1" ]; then
                 # Copy back proprietary file types (ex. ftdetect/my.vim), if any.
                 # Print only the files that got moved back into ~/"$1"
-                cp -RLnv "${backup_dir}"/"$1" "$HOME"/"$parentdir" | grep " -> " | cut -d " " -f3 | \
+                cp -RLnvp "${backup_dir}"/"$1" "$HOME"/"$parentdir" | grep " -> " | cut -d " " -f3 | \
                     xargs -I{} sh -c "test -f {} && echo Restored {}" || true
             fi
         fi
