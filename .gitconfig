@@ -54,4 +54,5 @@
 	autoStash = true
 	updateRefs = true
 [include]
+	# see .gitconfig.local for addl' directory-specific overrides too.
 	path = ~/.gitconfig.local

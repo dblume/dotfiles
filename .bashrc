@@ -210,6 +210,22 @@ case "$-" in
     date +"%F %T %Z" -d @$1
   }
 
+  if [[ -z "$SSH_CLIENT" ]]; then
+    # for SSH agent forwarding. See ~/.ssh/config for remotes using "ForwardAgent yes"
+    if command -v keychain &>/dev/null; then
+        eval "$(keychain --eval --quiet ~/.ssh/id_ed25519)"
+    else
+        eval "$(ssh-agent -s)" && ssh-add
+    fi
+#  else
+#    # Only for servers that rely on the SSH agent being forwarded.
+#    if [[ -z "$SSH_AUTH_SOCK" ]]; then
+#        echo "Warning: SSH agent not forwarded"
+#    elif ! ssh-add -l &>/dev/null; then
+#        echo "Warning: SSH agent forwarded but has no loaded keys"
+#    fi
+  fi
+
  ;;
 esac
 
