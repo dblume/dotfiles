@@ -215,7 +215,7 @@ case "$-" in
     if command -v keychain &>/dev/null; then
         eval "$(keychain --eval --quiet ~/.ssh/id_ed25519)"
     else
-        eval "$(ssh-agent -s)" && ssh-add
+        eval "$(ssh-agent -s)" >/dev/null && ssh-add 2>/dev/null
     fi
 #  else
 #    # Only for servers that rely on the SSH agent being forwarded.
