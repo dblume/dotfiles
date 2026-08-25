@@ -155,6 +155,21 @@ case "$-" in
   # gnome-terminal can't distinguish C-i vs Tab, have i3wm use alacritty
   export TERMINAL=alacritty
 
+  # Windows Terminal (with WSL2) supports sixel; otherwise use kitty.
+  # Update sshd server to accept the env var, and .ssh/config to SendEnv
+  if [[ -n $SSH_CLIENT ]]; then
+    if [[ -z $TERMINAL_IMAGE_PROTOCOL ]]; then
+      echo "### timg might not work. Check .ssh/config for SendEnv TERMINAL_IMAGE_PROTOCOL"
+    fi
+  elif [[ -n "${WSL_DISTRO_NAME}" ]]; then
+    export TERMINAL_IMAGE_PROTOCOL=sixel
+  else
+    export TERMINAL_IMAGE_PROTOCOL=kitty
+  fi
+  if [[ -n $TERMINAL_IMAGE_PROTOCOL ]]; then
+    alias timg="timg -p $TERMINAL_IMAGE_PROTOCOL"
+  fi
+
   # This sets the terminal title
   PROMPT_COMMAND="echo -ne \"\033]0;$HOSTNAME\007\""
 
