@@ -99,10 +99,13 @@ pinned to a version, `pip install` requirements.in instead of requirements.txt.
 
 #### What's not installed
 
-1. .localrc, which is for local settings that shouldn't be checked into git.
+1. .localrc, .gitconfig.local, for local settings that shouldn't be checked into git.
 2. .dircolors (There are instructions in .bashrc to lighten the color of directories.)
-3. The commonly used Python modules described above
-4. Private data like keys, get those from the USB4 bioport in the back of your neck.
+3. The commonly used Python modules described above. Use `uv` when appropriate anyway.
+4. Support for images on the CLI.
+    1. [timg](https://github.com/hzeller/timg) uses either sixel or kitty graphics protocol.
+    2. [mmdc](https://github.com/mermaid-js/mermaid-cli) the tool to make Mermaid images. `npm install -g @mermaid-js/mermaid-cli`
+5. Private data like keys, get those from the USB4 bioport in the back of your neck.
 
 ### Is it any good?
 
