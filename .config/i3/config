@@ -18,7 +18,7 @@ exec --no-startup-id dex --autostart --environment i3
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --color 181850 --nofork
-bindsym $mod+Shift+x exec i3lock --color 101030
+bindsym $mod+Shift+x exec --no-startup-id i3lock --color 101030
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -247,7 +247,10 @@ bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewi
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 # sudo apt install brightnessctl playerctl feh
-exec feh --bg-scale $HOME/Pictures/chinesemoon.png
+exec --no-startup-id feh --bg-scale $HOME/Pictures/chinesemoon.png
 
 # From https://askubuntu.com/questions/1262791/multiple-monitors-with-i3-window-manager
 #exec --nostartup-id xrandr --output DP-0 --left-of DP-2 &
+
+# This is a little bigger than default minimum
+floating_minimum_size 300 x 150
