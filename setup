@@ -9,7 +9,8 @@ declare -a dotfiles=(".bashrc" ".bash_profile" ".vimrc" ".editrc" ".gitconfig"
                      ".config/ghostty/config"
                      ".config/i3/config" ".config/i3status/config"
                      ".config/dunst/dunstrc" ".config/alacritty/alacritty.toml"
-                     ".claude/settings.json" ".pi/agent/keybindings.json")
+                     ".claude/settings.json" ".pi/agent/keybindings.json"
+                     ".codex/config.toml")
 declare -i dry_run=0
 
 ## exit the shell (with status 2) after printing the message
