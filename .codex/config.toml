@@ -1,6 +1,16 @@
+notify = [
+    "notify",
+    "Codex",
+    "Codex agent is ready."
+]
+
+sandbox_mode = "workspace-write"
 model = "gpt-5.6-sol"
 model_reasoning_effort = "medium"
 approvals_reviewer = "auto_review"
+
+[tui]
+notifications = false
 
 [tui.model_availability_nux]
 gpt-6-astra = 4
