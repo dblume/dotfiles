@@ -39,6 +39,9 @@ shell-integration-features = no-cursor
 # Same mapping is in .config/alacritty/alacritty.toml
 keybind = control+i=text:\\i
 
+# ESC CR is used for multiline input in most AI TUIs
+keybind = shift+enter=text:\x1b\r
+
 # Linux-only configuration: Expected titlebar in i3
 gtk-titlebar = false
  
