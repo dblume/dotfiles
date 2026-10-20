@@ -34,6 +34,9 @@ window-width = 120
 cursor-style-blink = false
 shell-integration-features = no-cursor
 
+# Neovim mouse-wheel scrolling is too fast, so reduce it to 1x
+mouse-scroll-multiplier = 1
+
 # vim maps tab/Shift-tab to :bn/bp
 # To keep vim C-i/o jumps working, map C-i to <leader>i
 # Same mapping is in .config/alacritty/alacritty.toml
