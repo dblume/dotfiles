@@ -76,6 +76,10 @@ elif [ -n "$TMUX" ]; then
     # For now: terminals that support OSC 777 are somewhat smart about deciding when not to notify.
     # DCS passthrough: each ESC in the inner sequence must be doubled
     printf '\ePtmux;\e\e]777;notify;%s;%s\a\e\\' "$TITLE" "$MSG" > "$TTY"
-else
+elif [ -n "${TTY:-}" ]; then
     printf '\e]777;notify;%s;%s\a' "$TITLE" "$MSG" > "$TTY"
+elif [ -t 1 ]; then
+    printf '\e]777;notify;%s;%s\a' "$TITLE" "$MSG"
 fi
+
+exit 0
