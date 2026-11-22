@@ -8,6 +8,7 @@ declare -a dotfiles=(".bashrc" ".bash_profile" ".vimrc" ".editrc" ".gitconfig"
                      ".gdbinit" ".config/gitui/key_bindings.ron" ".visidatarc"
                      ".config/ghostty/config"
                      ".config/i3/config" ".config/i3status/config"
+                     ".config/sway/config"
                      ".config/dunst/dunstrc" ".config/alacritty/alacritty.toml"
                      ".claude/settings.json" ".pi/agent/keybindings.json"
                      ".codex/config.toml")
