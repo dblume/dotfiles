@@ -19,8 +19,10 @@
     ],
     "deny": [
       "Read(.env*)",
+      "Read(~/.ssh/**)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git reset --hard *)"
     ],
     "defaultMode": "auto"
   },
